@@ -38,8 +38,7 @@ if($_SESSION['admin'])
 		$out['content'] .= '<form action = "config.php" method = "post">
 		<p>' .password(). '</p>
 		<p>' .text('title', $config['title']). '</p>
-		<p>' .select('theme', $themeOptions, $config['theme']). '</p>
-		<p>' .select('lang', $langOptions, $config['lang']). '</p>
+		<p>' .select('theme', $themeOptions, $config['theme']). ' ' .select('lang', $langOptions, $config['lang']). '</p>
 		<p>' .submit(). '</p>
 		</form>';
 	}

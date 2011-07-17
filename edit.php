@@ -54,8 +54,7 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 		$out['content'] .= '<form action = "edit.php?post=' .$_GET['post']. '" method = "post">
 		<p>' .text('title', $postEntry['title']). '</p>
 		<p>' .textarea($postEntry['content']). '</p>
-		<p>' .select('close', $commentOptions, $postEntry['close']? 'yes' : 'no'). '</p>
-		<p>' .select('category', $categoryOptions, $postEntry['category']). '</p>
+		<p>' .select('close', $commentOptions, $postEntry['close']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
 		<p>' .submit(). '</p>
 		</form>';
 	}
