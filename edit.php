@@ -9,13 +9,13 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 	$out['subtitle'] = $lang['edit'].$lang['post']. ' : ' .$postEntry['title'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot('token') && check('title') && check('content', 1, 0) &&
-		isPOST('close') && ($_POST['close'] === 'yes' || $_POST['close'] === 'no') &&
+		isPOST('locked') && ($_POST['locked'] === 'yes' || $_POST['locked'] === 'no') &&
 		isPOST('category') && ($_POST['category'] === '' || isValidEntry('category', $_POST['category'])))
 	{
 		$postEntry['title'] = clean($_POST['title']);
 		$postEntry['content'] = clean($_POST['content']);
 
-		$postEntry['close'] = $_POST['close'] === 'yes';
+		$postEntry['locked'] = $_POST['locked'] === 'yes';
 
 		if($postEntry['category'] !== $_POST['category'])
 		{
@@ -54,7 +54,7 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 		$out['content'] .= '<form action = "edit.php?post=' .$_GET['post']. '" method = "post">
 		<p>' .text('title', $postEntry['title']). '</p>
 		<p>' .textarea($postEntry['content']). '</p>
-		<p>' .select('close', $commentOptions, $postEntry['close']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
+		<p>' .select('locked', $commentOptions, $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
 		<p>' .submit(). '</p>
 		</form>';
 	}

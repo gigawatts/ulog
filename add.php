@@ -14,7 +14,7 @@ if(isGET('post') && $_SESSION['admin'])
 		$postEntry['view'] = 0;
 		$postEntry['comment'] = array();
 		$postEntry['category'] = '';
-		$postEntry['close'] = false;
+		$postEntry['locked'] = false;
 		$post = newEntry();
 		saveEntry('post', $post, $postEntry);
 		$out['content'] .= '<p><a href = "view.php?post=' .$post. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
@@ -31,7 +31,7 @@ if(isGET('post') && $_SESSION['admin'])
 else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 {
 	$postEntry = readEntry('post', $_GET['comment']);
-	if($postEntry['close'])
+	if($postEntry['locked'])
 	{
 		exit;
 	}

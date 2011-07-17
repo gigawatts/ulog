@@ -44,7 +44,7 @@ else if(isGET('comment'))
 			$postEntry = readEntry('post', $commentEntry['post']);
 			$out['content'] .= '<entry>
 			<id>' .$out['url']. 'view.php?post=' .$commentEntry['post']. '</id>
-			<title>' .$commentEntry['author']. ' @ ' .$postEntry['title']. '</title>
+			<title>' .$commentEntry['author']. '@' .$postEntry['title']. '</title>
 			<updated>' .entryDate($comment, 'c'). '</updated>
 			<link href = "' .$out['url']. 'view.php?post=' .$commentEntry['post']. '"/>
 			<summary type = "html">' .clean(summary($commentEntry['content'])). '</summary>

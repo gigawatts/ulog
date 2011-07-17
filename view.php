@@ -17,7 +17,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	<div class = "entryHeader"><h1>' .managePost($_GET['post']).$out['subtitle']. '</h1></div>
 	<div class = "entryMain">
 	<p>' .content($postEntry['content']). '</p>'.
-	(!$postEntry['close']? '<p><a class = "important" href = "add.php?comment=' .$_GET['post']. '">' .$lang['add'].$lang['comment']. '</a></p>' : '').
+	(!$postEntry['locked']? '<p><a class = "important" href = "add.php?comment=' .$_GET['post']. '">' .$lang['add'].$lang['comment']. '</a></p>' : '').
 	hook('afterPost', $_GET['post']).
 	'</div>
 	<div class = "entryFooter"><ul>';

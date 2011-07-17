@@ -8,7 +8,7 @@ require 'include/parser.inc.php';
 if(isGET('post'))
 {
 	$out['subtitle'] = $lang['post'];
-	$out['content'] .= '<h1>' .($_SESSION['admin']? '<a href = "add.php?post">[+]</a>' : '').$out['subtitle']. '</h1>';
+	$out['content'] .= '<h1>' .($_SESSION['admin']? '<a href = "add.php?post">[' .$lang['add']. ']</a>' : '').$out['subtitle']. '</h1>';
 	$posts = listEntry('post');
 	rsort($posts);
 	$page = array_chunk($posts, 4);
@@ -74,7 +74,7 @@ else if(isGET('comment'))
 			$commentEntry = readEntry('comment', $comment);
 			$postEntry = readEntry('post', $commentEntry['post']);
 			$out['content'] .= '<div class = "entryContainer">
-			<div class = "entryHeader">' .manageComment($comment).$commentEntry['author']. ' @ ' .$postEntry['title']. '</div>
+			<div class = "entryHeader">' .manageComment($comment).$commentEntry['author']. '@' .$postEntry['title']. '</div>
 			<div class = "entryMain">
 			<p>' .summary($commentEntry['content']). '</p>
 			<p><a class = "important" href = "view.php?post=' .$commentEntry['post']. '">' .$lang['more']. '</a></p>
@@ -99,7 +99,7 @@ else if(isGET('more'))
 	$out['subtitle'] = $lang['more'];
 
 	//link
-	$out['content'] .= '<h1>' .($_SESSION['admin']? '<a href = "add.php?link">[+]</a>' : '').$lang['link']. '</h1>
+	$out['content'] .= '<h1>' .($_SESSION['admin']? '<a href = "add.php?link">[' .$lang['add']. ']</a>' : '').$lang['link']. '</h1>
 	<ul>';
 	$links = listEntry('link');
 	if($links)
@@ -117,7 +117,7 @@ else if(isGET('more'))
 	$out['content'] .= '</ul>';
 
 	//category
-	$out['content'] .= '<h1>' .($_SESSION['admin']? '<a href = "add.php?category">[+]</a>' : '').$lang['category']. '</h1>
+	$out['content'] .= '<h1>' .($_SESSION['admin']? '<a href = "add.php?category">[' .$lang['add']. ']</a>' : '').$lang['category']. '</h1>
 	<ul>';
 	$categories = listEntry('category');
 	if($categories)
