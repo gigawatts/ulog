@@ -8,7 +8,7 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 	$postEntry = readEntry('post', $_GET['post']);
 	$out['subtitle'] = $lang['delete'].$lang['post']. ' : ' .$postEntry['title'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token'))
+	if(checkBot('token') && checkBot('captcha'))
 	{
 		deleteEntry('post', $_GET['post']);
 		if($postEntry['category'] !== '')
@@ -26,6 +26,7 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 	else
 	{
 		$out['content'] .= '<form action = "delete.php?post=' .$_GET['post']. '" method = "post">
+		<p>' .captcha(). '</p>
 		<p>' .submit(). '</p>
 		</form>';
 	}
@@ -35,7 +36,7 @@ else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET[
 	$commentEntry = readEntry('comment', $_GET['comment']);
 	$out['subtitle'] = $lang['delete'].$lang['comment'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token'))
+	if(checkBot('token') && checkBot('captcha'))
 	{
 		deleteEntry('comment', $_GET['comment']);
 
@@ -47,6 +48,7 @@ else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET[
 	else
 	{
 		$out['content'] .= '<form action = "delete.php?comment=' .$_GET['comment']. '" method = "post">
+		<p>' .captcha(). '</p>
 		<p>' .submit(). '</p>
 		</form>';
 	}
@@ -56,7 +58,7 @@ else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link'
 	$linkEntry = readEntry('link', $_GET['link']);
 	$out['subtitle'] = $lang['delete'].$lang['link']. ' : ' .$linkEntry['name'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token'))
+	if(checkBot('token') && checkBot('captcha'))
 	{
 		deleteEntry('link', $_GET['link']);
 		$out['content'] .= '<p><a href = "index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
@@ -64,6 +66,7 @@ else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link'
 	else
 	{
 		$out['content'] .= '<form action = "delete.php?link=' .$_GET['link']. '" method = "post">
+		<p>' .captcha(). '</p>
 		<p>' .submit(). '</p>
 		</form>';
 	}
@@ -73,7 +76,7 @@ else if(isGET('category') && $_SESSION['admin'] && isValidEntry('category', $_GE
 	$categoryEntry = readEntry('category', $_GET['category']);
 	$out['subtitle'] = $lang['delete'].$lang['category']. ' : ' .$categoryEntry['name'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token'))
+	if(checkBot('token') && checkBot('captcha'))
 	{
 		deleteEntry('category', $_GET['category']);
 		foreach($categoryEntry['post'] as $post)
@@ -87,6 +90,7 @@ else if(isGET('category') && $_SESSION['admin'] && isValidEntry('category', $_GE
 	else
 	{
 		$out['content'] .= '<form action = "delete.php?category=' .$_GET['category']. '" method = "post">
+		<p>' .captcha(). '</p>
 		<p>' .submit(). '</p>
 		</form>';
 	}
