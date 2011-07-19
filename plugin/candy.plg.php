@@ -1,6 +1,6 @@
 <?php
 
-function candy_head()
+function candy_body()
 {
 	return '<script src = "js/candy.js"></script>';
 }
