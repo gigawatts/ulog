@@ -17,7 +17,7 @@ header('Content-Type: text/html; charset=UTF-8');
 <link rel = "alternate" type = "application/atom+xml" href = "feed.php?post" title = "<?php echo $lang['post'];?> - <?php echo $config['title'];?>"/>
 <link rel = "alternate" type = "application/atom+xml" href = "feed.php?comment" title = "<?php echo $lang['comment'];?> - <?php echo $config['title'];?>"/>
 <script src = "http://code.jquery.com/jquery.min.js"></script>
-<?php echo hook('body')?>
+<?php echo hook('head')?>
 </head>
 <body>
 <div id = "container">
