@@ -13,11 +13,9 @@ header('Content-Type: text/html; charset=UTF-8');
 <meta charset = "UTF-8"/>
 <meta name = "description" content = "<?php echo $out['subtitle'];?>"/>
 <title><?php echo $out['subtitle'];?> - <?php echo $config['title'];?></title>
-<script src = "http://code.jquery.com/jquery.min.js"></script>
 <link rel = "stylesheet" type = "text/css" href = "theme/<?php echo $config['theme'];?>.thm.css"/>
 <link rel = "alternate" type = "application/atom+xml" href = "feed.php?post" title = "<?php echo $lang['post'];?> - <?php echo $config['title'];?>"/>
 <link rel = "alternate" type = "application/atom+xml" href = "feed.php?comment" title = "<?php echo $lang['comment'];?> - <?php echo $config['title'];?>"/>
-<?php echo hook('head');?>
 </head>
 <body>
 <div id = "container">
@@ -43,5 +41,7 @@ header('Content-Type: text/html; charset=UTF-8');
 <?php echo hook('footer');?>
 </ul></div>
 </div>
+<script src = "http://code.jquery.com/jquery.min.js"></script>
+<?php echo hook('body')?>
 </body>
 </html>
