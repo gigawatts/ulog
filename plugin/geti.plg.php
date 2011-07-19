@@ -1,6 +1,6 @@
 <?php
 
-function geti_head()
+function geti_body()
 {
   return '<script src = "js/geti.js"></script>';
 }
