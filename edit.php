@@ -8,7 +8,7 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 	$postEntry = readEntry('post', $_GET['post']);
 	$out['subtitle'] = $lang['edit'].$lang['post']. ' : ' .$postEntry['title'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('title') && check('content', 1, 0) &&
+	if(checkBot('token') && check('title') && check('content', 1, 1000) &&
 		isPOST('locked') && ($_POST['locked'] === 'yes' || $_POST['locked'] === 'no') &&
 		isPOST('category') && ($_POST['category'] === '' || isValidEntry('category', $_POST['category'])))
 	{
@@ -64,7 +64,7 @@ else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET[
 	$commentEntry = readEntry('comment', $_GET['comment']);
 	$out['subtitle'] = $lang['edit'].$lang['comment'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('content', 1, 0))
+	if(checkBot('token') && check('content', 1, 1000))
 	{
 		$commentEntry['content'] = clean($_POST['content']);
 		saveEntry('comment', $_GET['comment'], $commentEntry);

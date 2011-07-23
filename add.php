@@ -7,7 +7,7 @@ if(isGET('post') && $_SESSION['admin'])
 {
 	$out['subtitle'] = $lang['add'].$lang['post'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('title') && check('content', 1, 0))
+	if(checkBot('token') && check('title') && check('content', 1, 1000))
 	{
 		$postEntry['title'] = clean($_POST['title']);
 		$postEntry['content'] = clean($_POST['content']);
@@ -37,7 +37,7 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 	}
 	$out['subtitle'] = $lang['add'].$lang['comment']. ' : ' .$postEntry['title'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('name') && check('content', 1, 0) && checkBot('captcha'))
+	if(checkBot('token') && check('name') && check('content', 1, 1000) && checkBot('captcha'))
 	{
 		$commentEntry['author'] = clean($_POST['name']);
 		$commentEntry['content'] = clean($_POST['content']);
