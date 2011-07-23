@@ -33,7 +33,7 @@ if($_SESSION['admin'])
 			$langOptions[$value] = $value;
 		}
 		$out['content'] .= '<form action = "config.php" method = "post">
-		<p>' .password($config['password']). '</p>
+		<p>' .password(). '</p>
 		<p>' .text('title', $config['title']). '</p>
 		<p>' .select('theme', $themeOptions, $config['theme']). ' ' .select('lang', $langOptions, $config['lang']). '</p>
 		<p>' .submit(). '</p>
