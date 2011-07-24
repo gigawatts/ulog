@@ -41,6 +41,6 @@ $lang['second'] = '秒';
 $lang['plural'] = '';
 $lang['ago'] = '前';
 $lang['errorLength'] = '太短或太長';
-$lang['errorBot'] = '你是機器人';
+$lang['errorBot'] = '驗證碼不正確';
 
 ?>

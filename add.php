@@ -7,7 +7,7 @@ if(isGET('post') && $_SESSION['admin'])
 {
 	$out['subtitle'] = $lang['add'].$lang['post'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('title') && check('content', 1, 1000))
+	if(checkBot() && check('title') && check('content', 1, 1000))
 	{
 		$postEntry['title'] = clean($_POST['title']);
 		$postEntry['content'] = clean($_POST['content']);
@@ -37,7 +37,7 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 	}
 	$out['subtitle'] = $lang['add'].$lang['comment']. ' : ' .$postEntry['title'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('name') && check('content', 1, 1000) && checkBot('captcha'))
+	if(checkBot() && check('name') && check('content', 1, 1000))
 	{
 		$commentEntry['author'] = clean($_POST['name']);
 		$commentEntry['content'] = clean($_POST['content']);
@@ -54,7 +54,6 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 		$out['content'] .= '<form action = "add.php?comment=' .$_GET['comment']. '" method = "post">
 		<p>' .text('name'). '</p>
 		<p>' .textarea(). '</p>
-		<p>' .captcha(). '</p>
 		<p>' .submit(). '</p>
 		</form>';
 	}
@@ -63,7 +62,7 @@ else if(isGET('link') && $_SESSION['admin'])
 {
 	$out['subtitle'] = $lang['add'].$lang['link'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('name') && check('url', 1, 80))
+	if(checkBot() && check('name') && check('url', 1, 80))
 	{
 		$linkEntry['name'] = clean($_POST['name']);
 		$linkEntry['url'] = clean($_POST['url']);
@@ -83,7 +82,7 @@ else if(isGET('category') && $_SESSION['admin'])
 {
 	$out['subtitle'] = $lang['add'].$lang['category'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('name'))
+	if(checkBot() && check('name'))
 	{
 		$categoryEntry['name'] = clean($_POST['name']);
 		$categoryEntry['post'] = array();

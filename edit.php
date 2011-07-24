@@ -8,7 +8,7 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 	$postEntry = readEntry('post', $_GET['post']);
 	$out['subtitle'] = $lang['edit'].$lang['post']. ' : ' .$postEntry['title'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('title') && check('content', 1, 1000) &&
+	if(checkBot() && check('title') && check('content', 1, 1000) &&
 		isPOST('locked') && ($_POST['locked'] === 'yes' || $_POST['locked'] === 'no') &&
 		isPOST('category') && ($_POST['category'] === '' || isValidEntry('category', $_POST['category'])))
 	{
@@ -64,7 +64,7 @@ else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET[
 	$commentEntry = readEntry('comment', $_GET['comment']);
 	$out['subtitle'] = $lang['edit'].$lang['comment'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('content', 1, 1000))
+	if(checkBot() && check('content', 1, 1000))
 	{
 		$commentEntry['content'] = clean($_POST['content']);
 		saveEntry('comment', $_GET['comment'], $commentEntry);
@@ -84,7 +84,7 @@ else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link'
 	$linkEntry = readEntry('link', $_GET['link']);
 	$out['subtitle'] = $lang['edit'].$lang['link']. ' : ' .$linkEntry['name'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('name') && check('url', 1, 80))
+	if(checkBot() && check('name') && check('url', 1, 80))
 	{
 		$linkEntry['name'] = clean($_POST['name']);
 		$linkEntry['url'] = clean($_POST['url']);
@@ -105,7 +105,7 @@ else if(isGET('category') && $_SESSION['admin'] && isValidEntry('category', $_GE
 	$categoryEntry = readEntry('category', $_GET['category']);
 	$out['subtitle'] = $lang['edit'].$lang['category']. ' : ' .$categoryEntry['name'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot('token') && check('name'))
+	if(checkBot() && check('name'))
 	{
 		$categoryEntry['name'] = clean($_POST['name']);
 		saveEntry('category', $_GET['category'], $categoryEntry);
