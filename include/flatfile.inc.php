@@ -1,83 +1,98 @@
 <?php
 
-function isGET($name)
+function fdir($dir)
 {
-	return isset($_GET[$name]) && is_string($_GET[$name]);
-}
-
-function isPOST($name)
-{
-	return isset($_POST[$name]) && is_string($_POST[$name]);
-}
-
-function message($msg)
-{
-	global $out;
-	$out['content'] .= '<div class = "important">' .$msg. '</div>';
-}
-
-function password()
-{
-	global $lang;
-	return $lang['password']. ' <input type = "password" name = "password"/>';
-}
-
-function text($name, $default = '')
-{
-	global $lang;
-	return $lang[$name]. ' <input type = "text" name = "' .$name. '" value = "' .(isPOST($name)? clean($_POST[$name]) : $default). '"/>';
-}
-
-function textarea($default = '')
-{
-	global $lang;
-	return $lang['content']. '
-	<textarea name = "content" cols = "80" rows = "10">' .(isPOST('content')? clean($_POST['content']) : $default). '</textarea>';
-}
-
-function submit()
-{
-	global $lang;
-	$num1 = rand(1, 10);
-	$num2 = rand(1, 10);
-	$_SESSION['captcha'] = (string) ($num1 * $num2);
-	return $num1. ' x ' .$num2. ' = ? <input type = "text" name = "captcha" style = "width: 10%;"/> <input type = "submit" value = "' .$lang['confirm']. '"/>';
-}
-
-function select($name, $options, $default = '')
-{
-	global $lang;
-	$selected = isPOST($name) && isset($options[$_POST[$name]])? $_POST[$name] : $default;
-	$out = $lang[$name]. ' <select name = "' .$name. '">';
-	foreach($options as $value => $option)
+	$files = array();
+	$dh = opendir($dir);
+	while(false !== ($file = readdir($dh)))
 	{
-		$out .= '<option value = "' .$value. '"' .($value === $selected? ' selected = "selected"' : ''). '>' .$option. '</option>';
+		if($file !== '.' && $file !== '..')
+		{
+			$files[] = $file;
+		}
 	}
-	$out .= '</select>';
-	return $out;
+	closedir($dh);
+	return $files;
 }
 
-function check($name, $min = 1, $max = 40)
+function isEntry($file)
 {
-	global $lang;
-	if(!isPOST($name))
-		return false;
-	if(isset($_POST[$name][$min-1]) && !isset($_POST[$name][$max]))
-		return true;
-	message($lang[$name].$lang['errorLength']);
-	return false;
+	return strpos($file, '/') === false && strpos($file, '.') === false && strpos($file, "\0") === false;
 }
 
-function checkBot()
+function readEntry($type, $file)
+{
+	return json_decode(substr(file_get_contents('data/' .$type. '/' .$file. '.dat.php'), 13), true);
+}
+
+function saveEntry($type, $file, $data)
+{
+	file_put_contents('data/' .$type. '/' .$file. '.dat.php', '<?php exit;?>' . "\n" .json_encode($data));
+}
+
+function deleteEntry($type, $file)
+{
+	unlink('data/' .$type. '/' .$file. '.dat.php');
+}
+
+function listEntry($type)
+{
+	return array_map('pathToEntry', fdir('data/' .$type));
+}
+
+function isValidEntry($type, $file)
+{
+	return isEntry($file) && is_file('data/' .$type. '/' .$file. '.dat.php');
+}
+
+function pathToEntry($path)
+{
+	return substr($path, 0, -8);
+}
+
+function newEntry()
+{
+	return date('Y-m-dHis').uniqid();
+}
+
+function entryDate($file, $pattern = 'Y/m/d h:i A')
 {
 	global $lang;
-	if(!isPOST('captcha'))
-		return false;
-	if(isset($_SESSION['captcha']) && $_POST['captcha'] === $_SESSION['captcha'])
-		return true;
-	message($lang['errorBot']);
-	unset($_SESSION['captcha']);
-	return false;
+	$timestamp = strtotime(substr($file, 0, 16));
+	$diff = time() - $timestamp;
+	if($pattern !== 'c' && $diff < 604800) //1 week
+	{
+		$out = '';
+		$len = 2;
+		$periods = array($lang['day'] => 86400, $lang['hour'] => 3600, $lang['minute'] => 60, $lang['second'] => 1);
+		foreach($periods as $key => $value)
+		{
+			if($diff >= $value)
+			{
+				$time = (int) ($diff / $value);
+				$out .= $time. ' ' .$key.($time > 1? $lang['plural'] : ''). ' ';
+				$diff %= $value;
+				$len--;
+			}
+			if($len === 0) break;
+		}
+		return $out.$lang['ago'];
+	}
+	return date($pattern, $timestamp);
+}
+
+function clean($text)
+{
+	if(get_magic_quotes_gpc())
+	{
+		$text = stripslashes($text);
+	}
+	return htmlspecialchars($text, ENT_QUOTES);
+}
+
+function hide($text)
+{
+	return md5($text.md5($text));
 }
 
 ?>
