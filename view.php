@@ -38,7 +38,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	foreach($postEntry['comment'] as $comment)
 	{
 		$commentEntry = readEntry('comment', $comment);
-		$out['content'] .= '<div class = "entryContainer">
+		$out['content'] .= '<div id = "' .$comment. '" class = "entryContainer">
 		<div class = "entryHeader">' .manageComment($comment).$commentEntry['author']. ' ' .$lang['said']. '...</div>
 		<div class = "entryMain">
 		<p>' .content($commentEntry['content']). '</p>'.

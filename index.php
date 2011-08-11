@@ -77,7 +77,7 @@ else if(isGET('comment'))
 			<div class = "entryHeader">' .manageComment($comment).$commentEntry['author']. '@' .$postEntry['title']. '</div>
 			<div class = "entryMain">
 			<p>' .summary($commentEntry['content']). '</p>
-			<p><a class = "important" href = "view.php?post=' .$commentEntry['post']. '">' .$lang['more']. '</a></p>
+			<p><a class = "important" href = "view.php?post=' .$commentEntry['post']. '#' .$comment. '">' .$lang['more']. '</a></p>
 			</div>
 			<div class = "entryFooter"><ul><li>' .entryDate($comment). '</li></ul></div>
 			</div>';

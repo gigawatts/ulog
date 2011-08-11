@@ -47,7 +47,7 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 
 		$postEntry['comment'][$comment] = $comment;
 		saveEntry('post', $_GET['comment'], $postEntry);
-		$out['content'] .= '<p><a href = "view.php?post=' .$_GET['comment']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href = "view.php?post=' .$_GET['comment']. '#' .$comment. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{

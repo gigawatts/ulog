@@ -69,7 +69,7 @@ else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET[
 		$commentEntry['content'] = clean($_POST['content']);
 		saveEntry('comment', $_GET['comment'], $commentEntry);
 		$postEntry = readEntry('post', $commentEntry['post']);
-		$out['content'] .= '<p><a href = "view.php?post=' .$commentEntry['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href = "view.php?post=' .$commentEntry['post']. '#' .$_GET['comment']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
