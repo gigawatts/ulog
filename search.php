@@ -24,7 +24,7 @@ if(checkBot() && check('post'))
 	{
 		foreach($foundPosts as $post => $postEntry)
 		{
-			$out['content'] .= '<li>' .managePost($post). '<a href = "view.php?post=' .$post. '">' .$postEntry['title']. '</a></li>';
+			$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$postEntry['title']. '</a></li>';
 		}
 	}
 	else
@@ -34,7 +34,7 @@ if(checkBot() && check('post'))
 	$out['content'] .= '</ul>';
 }
 
-$out['content'] .= '<form action = "search.php" method = "post">
+$out['content'] .= '<form action="search.php" method="post">
 <p>' .text('post'). '</p>
 <p>' .submit(). '</p>
 </form>';

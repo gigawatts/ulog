@@ -16,7 +16,7 @@ if($_SESSION['admin'])
 		$config['theme'] = $_POST['theme'];
 		$config['lang'] = $_POST['lang'];
 		saveEntry('config', 'config', $config);
-		$out['content'] .= '<p><a href = "index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
@@ -32,7 +32,7 @@ if($_SESSION['admin'])
 			$value = pathToEntry($language);
 			$langOptions[$value] = $value;
 		}
-		$out['content'] .= '<form action = "config.php" method = "post">
+		$out['content'] .= '<form action="config.php" method="post">
 		<p>' .password(). '</p>
 		<p>' .text('title', $config['title']). '</p>
 		<p>' .select('theme', $themeOptions, $config['theme']). ' ' .select('lang', $langOptions, $config['lang']). '</p>

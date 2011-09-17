@@ -17,17 +17,17 @@ if(isGET('post') && $_SESSION['admin'])
 		$postEntry['locked'] = false;
 		$post = newEntry();
 		saveEntry('post', $post, $postEntry);
-		$out['content'] .= '<p><a href = "view.php?post=' .$post. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php?post=' .$post. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
 		require 'include/parser.inc.php';
-		$out['content'] .= '<form action = "add.php?post" method = "post">
+		$out['content'] .= '<form action="add.php?post" method="post">
 		<p>' .text('title'). '</p>
 		<p>' .textarea(). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(check('content', 1, 2000)? '<div class = "block">' .content(clean($_POST['content'])). '</div>' : '');
+		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
 else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
@@ -49,17 +49,17 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 
 		$postEntry['comment'][$comment] = $comment;
 		saveEntry('post', $_GET['comment'], $postEntry);
-		$out['content'] .= '<p><a href = "view.php?post=' .$_GET['comment']. '#' .$comment. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php?post=' .$_GET['comment']. '#' .$comment. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
 		require 'include/parser.inc.php';
-		$out['content'] .= '<form action = "add.php?comment=' .$_GET['comment']. '" method = "post">
+		$out['content'] .= '<form action="add.php?comment=' .$_GET['comment']. '" method="post">
 		<p>' .text('name'). '</p>
 		<p>' .textarea(). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(check('content', 1, 2000)? '<div class = "block">' .content(clean($_POST['content'])). '</div>' : '');
+		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
 else if(isGET('link') && $_SESSION['admin'])
@@ -71,11 +71,11 @@ else if(isGET('link') && $_SESSION['admin'])
 		$linkEntry['name'] = clean($_POST['name']);
 		$linkEntry['url'] = clean($_POST['url']);
 		saveEntry('link', newEntry(), $linkEntry);
-		$out['content'] .= '<p><a href = "index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action = "add.php?link" method = "post">
+		$out['content'] .= '<form action="add.php?link" method="post">
 		<p>' .text('name'). '</p>
 		<p>' .text('url'). '</p>
 		<p>' .submit(). '</p>
@@ -91,11 +91,11 @@ else if(isGET('category') && $_SESSION['admin'])
 		$categoryEntry['name'] = clean($_POST['name']);
 		$categoryEntry['post'] = array();
 		saveEntry('category', newEntry(), $categoryEntry);
-		$out['content'] .= '<p><a href = "index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action = "add.php?category" method = "post">
+		$out['content'] .= '<form action="add.php?category" method="post">
 		<p>' .text('name'). '</p>
 		<p>' .submit(). '</p>
 		</form>';

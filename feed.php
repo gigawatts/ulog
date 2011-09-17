@@ -23,8 +23,8 @@ if(isGET('post'))
 			<id>' .$out['url']. 'view.php?post=' .$post. '</id>
 			<title>' .$postEntry['title']. '</title>
 			<updated>' .entryDate($post, 'c'). '</updated>
-			<link href = "' .$out['url']. 'view.php?post=' .$post. '"/>
-			<summary type = "html">' .clean(summary($postEntry['content'])). '</summary>
+			<link href="' .$out['url']. 'view.php?post=' .$post. '"/>
+			<summary type="html">' .clean(summary($postEntry['content'])). '</summary>
 			</entry>';
 		}
 	}
@@ -46,8 +46,8 @@ else if(isGET('comment'))
 			<id>' .$out['url']. 'view.php?post=' .$commentEntry['post']. '#' .$comment. '</id>
 			<title>' .$commentEntry['author']. '@' .$postEntry['title']. '</title>
 			<updated>' .entryDate($comment, 'c'). '</updated>
-			<link href = "' .$out['url']. 'view.php?post=' .$commentEntry['post']. '#' .$comment. '"/>
-			<summary type = "html">' .clean(summary($commentEntry['content'])). '</summary>
+			<link href="' .$out['url']. 'view.php?post=' .$commentEntry['post']. '#' .$comment. '"/>
+			<summary type="html">' .clean(summary($commentEntry['content'])). '</summary>
 			</entry>';
 		}
 	}

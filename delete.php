@@ -21,11 +21,11 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 		{
 			deleteEntry('comment', $comment);
 		}
-		$out['content'] .= '<p><a href = "index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action = "delete.php?post=' .$_GET['post']. '" method = "post">
+		$out['content'] .= '<form action="delete.php?post=' .$_GET['post']. '" method="post">
 		<p>' .submit(). '</p>
 		</form>';
 	}
@@ -42,11 +42,11 @@ else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET[
 		$postEntry = readEntry('post', $commentEntry['post']);
 		unset($postEntry['comment'][$_GET['comment']]);
 		saveEntry('post', $commentEntry['post'], $postEntry);
-		$out['content'] .= '<p><a href = "view.php?post=' .$commentEntry['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php?post=' .$commentEntry['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action = "delete.php?comment=' .$_GET['comment']. '" method = "post">
+		$out['content'] .= '<form action="delete.php?comment=' .$_GET['comment']. '" method="post">
 		<p>' .submit(). '</p>
 		</form>';
 	}
@@ -59,11 +59,11 @@ else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link'
 	if(checkBot())
 	{
 		deleteEntry('link', $_GET['link']);
-		$out['content'] .= '<p><a href = "index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action = "delete.php?link=' .$_GET['link']. '" method = "post">
+		$out['content'] .= '<form action="delete.php?link=' .$_GET['link']. '" method="post">
 		<p>' .submit(). '</p>
 		</form>';
 	}
@@ -82,11 +82,11 @@ else if(isGET('category') && $_SESSION['admin'] && isValidEntry('category', $_GE
 			$postEntry['category'] = '';
 			saveEntry('post', $post, $postEntry);
 		}
-		$out['content'] .= '<p><a href = "index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action = "delete.php?category=' .$_GET['category']. '" method = "post">
+		$out['content'] .= '<form action="delete.php?category=' .$_GET['category']. '" method="post">
 		<p>' .submit(). '</p>
 		</form>';
 	}

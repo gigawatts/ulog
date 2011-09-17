@@ -37,7 +37,7 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 			}
 		}
 		saveEntry('post', $_GET['post'], $postEntry);
-		$out['content'] .= '<p><a href = "view.php?post=' .$_GET['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php?post=' .$_GET['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
@@ -53,13 +53,13 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 			$categoryEntry = readEntry('category', $category);
 			$categoryOptions[$category] = $categoryEntry['name'];
 		}
-		$out['content'] .= '<form action = "edit.php?post=' .$_GET['post']. '" method = "post">
+		$out['content'] .= '<form action="edit.php?post=' .$_GET['post']. '" method="post">
 		<p>' .text('title', $postEntry['title']). '</p>
 		<p>' .textarea($postEntry['content']). '</p>
 		<p>' .select('locked', $commentOptions, $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(check('content', 1, 2000)? '<div class = "block">' .content(clean($_POST['content'])). '</div>' : '');
+		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
 else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET['comment']))
@@ -72,16 +72,16 @@ else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET[
 		$commentEntry['content'] = clean($_POST['content']);
 		saveEntry('comment', $_GET['comment'], $commentEntry);
 		$postEntry = readEntry('post', $commentEntry['post']);
-		$out['content'] .= '<p><a href = "view.php?post=' .$commentEntry['post']. '#' .$_GET['comment']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php?post=' .$commentEntry['post']. '#' .$_GET['comment']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
 		require 'include/parser.inc.php';
-		$out['content'] .= '<form action = "edit.php?comment=' .$_GET['comment']. '" method = "post">
+		$out['content'] .= '<form action="edit.php?comment=' .$_GET['comment']. '" method="post">
 		<p>' .textarea($commentEntry['content']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(check('content', 1, 2000)? '<div class = "block">' .content(clean($_POST['content'])). '</div>' : '');
+		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
 else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link']))
@@ -94,11 +94,11 @@ else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link'
 		$linkEntry['name'] = clean($_POST['name']);
 		$linkEntry['url'] = clean($_POST['url']);
 		saveEntry('link', $_GET['link'], $linkEntry);
-		$out['content'] .= '<p><a href = "index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action = "edit.php?link=' .$_GET['link']. '" method = "post">
+		$out['content'] .= '<form action="edit.php?link=' .$_GET['link']. '" method="post">
 		<p>' .text('name', $linkEntry['name']). '</p>
 		<p>' .text('url', $linkEntry['url']). '</p>
 		<p>' .submit(). '</p>
@@ -114,11 +114,11 @@ else if(isGET('category') && $_SESSION['admin'] && isValidEntry('category', $_GE
 	{
 		$categoryEntry['name'] = clean($_POST['name']);
 		saveEntry('category', $_GET['category'], $categoryEntry);
-		$out['content'] .= '<p><a href = "index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action = "edit.php?category=' .$_GET['category']. '" method = "post">
+		$out['content'] .= '<form action="edit.php?category=' .$_GET['category']. '" method="post">
 		<p>' .text('name', $categoryEntry['name']). '</p>
 		<p>' .submit(). '</p>
 		</form>';
