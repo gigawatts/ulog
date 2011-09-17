@@ -21,11 +21,13 @@ if(isGET('post') && $_SESSION['admin'])
 	}
 	else
 	{
+		require 'include/parser.inc.php';
 		$out['content'] .= '<form action = "add.php?post" method = "post">
 		<p>' .text('title'). '</p>
 		<p>' .textarea(). '</p>
 		<p>' .submit(). '</p>
-		</form>';
+		</form>'.
+		(check('content', 1, 2000)? '<div class = "block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
 else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
@@ -51,11 +53,13 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 	}
 	else
 	{
+		require 'include/parser.inc.php';
 		$out['content'] .= '<form action = "add.php?comment=' .$_GET['comment']. '" method = "post">
 		<p>' .text('name'). '</p>
 		<p>' .textarea(). '</p>
 		<p>' .submit(). '</p>
-		</form>';
+		</form>'.
+		(check('content', 1, 2000)? '<div class = "block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
 else if(isGET('link') && $_SESSION['admin'])

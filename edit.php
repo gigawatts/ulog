@@ -41,6 +41,8 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 	}
 	else
 	{
+		require 'include/parser.inc.php';
+		
 		$commentOptions['yes'] = $lang['yes'];
 		$commentOptions['no'] = $lang['no'];
 
@@ -56,7 +58,8 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 		<p>' .textarea($postEntry['content']). '</p>
 		<p>' .select('locked', $commentOptions, $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
 		<p>' .submit(). '</p>
-		</form>';
+		</form>'.
+		(check('content', 1, 2000)? '<div class = "block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
 else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET['comment']))
@@ -73,10 +76,12 @@ else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET[
 	}
 	else
 	{
+		require 'include/parser.inc.php';
 		$out['content'] .= '<form action = "edit.php?comment=' .$_GET['comment']. '" method = "post">
 		<p>' .textarea($commentEntry['content']). '</p>
 		<p>' .submit(). '</p>
-		</form>';
+		</form>'.
+		(check('content', 1, 2000)? '<div class = "block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
 else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link']))
