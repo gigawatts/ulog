@@ -13,10 +13,10 @@ if(isGET('post'))
 	$out['type'] = 'post';
 	$posts = listEntry('post');
 	rsort($posts);
-	$page = array_chunk($posts, 4);
-	if($page)
+	$posts = array_slice($posts, 0, 4);
+	if($posts)
 	{
-		foreach($page[0] as $post)
+		foreach($posts as $post)
 		{
 			$postEntry = readEntry('post', $post);
 			$out['content'] .= '<entry>
@@ -35,10 +35,10 @@ else if(isGET('comment'))
 	$out['type'] = 'comment';
 	$comments = listEntry('comment');
 	rsort($comments);
-	$page = array_chunk($comments, 4);
-	if($page)
+	$comments = array_slice($comments, 0, 4);
+	if($comments)
 	{
-		foreach($page[0] as $comment)
+		foreach($comments as $comment)
 		{
 			$commentEntry = readEntry('comment', $comment);
 			$postEntry = readEntry('post', $commentEntry['post']);
