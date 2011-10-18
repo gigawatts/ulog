@@ -94,7 +94,7 @@ else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link'
 		$linkEntry['name'] = clean($_POST['name']);
 		$linkEntry['url'] = clean($_POST['url']);
 		saveEntry('link', $_GET['link'], $linkEntry);
-		$out['content'] .= '<p><a href="index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
@@ -114,7 +114,7 @@ else if(isGET('category') && $_SESSION['admin'] && isValidEntry('category', $_GE
 	{
 		$categoryEntry['name'] = clean($_POST['name']);
 		saveEntry('category', $_GET['category'], $categoryEntry);
-		$out['content'] .= '<p><a href="index.php?more">← ' .$lang['redirect']. ' : ' .$lang['more']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{

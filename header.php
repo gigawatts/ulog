@@ -34,5 +34,6 @@ foreach($plugins as $plugin)
 }
 
 $out['content'] = '';
+$out['sidebar'] = '';
 
 ?>

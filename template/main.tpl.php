@@ -26,7 +26,6 @@ header('Content-Type: text/html; charset=UTF-8');
 			<li><a href="index.php?post"><?php echo $lang['post'];?></a></li>
 			<li><a href="index.php?comment"><?php echo $lang['comment'];?></a></li>
 			<li><a href="search.php"><?php echo $lang['search'];?></a></li>
-			<li><a href="index.php?more"><?php echo $lang['more'];?></a></li>
 			<?php echo hook('menu').
 			($_SESSION['admin']?
 			'<li><a href="config.php">' .$lang['config']. '</a></li>
@@ -34,6 +33,7 @@ header('Content-Type: text/html; charset=UTF-8');
 			'<li><a href="auth.php?login">' .$lang['login']. '</a></li>');?>
 		</ul></div>
 		<div id="main"><?php echo $out['content'].hook('main');?></div>
+		<div id="sidebar"><?php echo $out['sidebar'].hook('sidebar');?></div>
 		<div id="footer"><ul>
 			<li><?php echo $lang['poweredBy'];?> <a href="http://github.com/taylorchu/goolog">goolog</a></li>
 			<li><a href="feed.php?post"><?php echo $lang['feed'];?> (<?php echo $lang['post'];?>)</a></li>
