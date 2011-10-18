@@ -2,7 +2,6 @@
 
 $template = 'main';
 require 'header.php';
-require 'include/manage.inc.php';
 
 $out['subtitle'] = $lang['search'];
 $out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
@@ -22,6 +21,8 @@ if(checkBot() && check('post'))
 	$out['content'] .= '<ul>';
 	if($foundPosts)
 	{
+		require 'include/manage.inc.php';
+		
 		foreach($foundPosts as $post => $postEntry)
 		{
 			$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$postEntry['title']. '</a></li>';
