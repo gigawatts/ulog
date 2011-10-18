@@ -29,11 +29,7 @@ if(isGET('post'))
 			<p><a class="important" href="view.php?post=' .$post. '">' .$lang['more']. '</a></p>
 			</div>
 			<div class="entryFooter"><ul>';
-			if($postEntry['category'] === '')
-			{
-				$out['content'] .= '<li>' .$lang['uncategorized']. '</li>';
-			}
-			else
+			if($postEntry['category'] !== '')
 			{
 				$categoryEntry = readEntry('category', $postEntry['category']);
 				$out['content'] .= '<li><a href="view.php?category=' .$postEntry['category']. '">' .$categoryEntry['name']. '</a></li>';

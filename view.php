@@ -21,11 +21,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	hook('afterPost', $_GET['post']).
 	'</div>
 	<div class="entryFooter"><ul>';
-	if($postEntry['category'] === '')
-	{
-		$out['content'] .= '<li>' .$lang['uncategorized']. '</li>';
-	}
-	else
+	if($postEntry['category'] !== '')
 	{
 		$categoryEntry = readEntry('category', $postEntry['category']);
 		$out['content'] .= '<li><a href="view.php?category=' .$postEntry['category']. '">' .$categoryEntry['name']. '</a></li>';
