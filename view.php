@@ -55,7 +55,7 @@ else if(isGET('category') && isValidEntry('category', $_GET['category']))
 		foreach($categoryEntry['post'] as $post)
 		{
 			$postEntry = readEntry('post', $post);
-			$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$postEntry['title']. '</a></li>';
+			$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$postEntry['title']. '</a> - ' .entryDate($post). '</li>';
 		}
 	}
 	else
@@ -85,7 +85,7 @@ else if(isGET('archive') && strlen($_GET['archive']) === 7)
 	foreach($archivedPosts as $post)
 	{
 		$postEntry = readEntry('post', $post);
-		$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$postEntry['title']. '</a></li>';
+		$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$postEntry['title']. '</a> - ' .entryDate($post). '</li>';
 	}
 	$out['content'] .= '</ul>';
 }
