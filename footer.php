@@ -5,9 +5,8 @@ if(!isset($template))
 	exit;
 }
 
-$script = basename($_SERVER['SCRIPT_NAME']);
-
-if($script === 'index.php' || $script === 'view.php' || $script === 'search.php')
+$script = basename($_SERVER['SCRIPT_NAME'], '.php');
+if($script === 'index' || $script === 'view' || $script === 'search')
 {
 	//link
 	$out['sidebar'] .= '<h1>' .($_SESSION['admin']? '<a href="add.php?link">[' .$lang['add']. ']</a>' : '').$lang['link']. '</h1>
