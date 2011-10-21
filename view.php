@@ -35,7 +35,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	{
 		$commentEntry = readEntry('comment', $comment);
 		$out['content'] .= '<div id="' .$comment. '" class="entryContainer">
-		<div class="entryHeader">' .manageComment($comment).$commentEntry['author']. ' ' .$lang['said']. '...</div>
+		<div class="entryHeader">' .manageComment($comment).substr($comment, 16, 13). '</div>
 		<div class="entryMain">
 		<p>' .content($commentEntry['content']). '</p>'.
 		hook('afterComment', $comment).

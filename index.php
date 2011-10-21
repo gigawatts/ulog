@@ -70,7 +70,7 @@ else if(isGET('comment'))
 			$commentEntry = readEntry('comment', $comment);
 			$postEntry = readEntry('post', $commentEntry['post']);
 			$out['content'] .= '<div class="entryContainer">
-			<div class="entryHeader">' .manageComment($comment).$commentEntry['author']. '@' .$postEntry['title']. '</div>
+			<div class="entryHeader">' .manageComment($comment). '@' .$postEntry['title']. '</div>
 			<div class="entryMain">
 			<p>' .summary($commentEntry['content']). '</p>
 			<p><a class="important" href="view.php?post=' .$commentEntry['post']. '#' .$comment. '">' .$lang['more']. '</a></p>

@@ -7,7 +7,6 @@ $lang['config'] = '設定';
 $lang['logout'] = '登出';
 $lang['login'] = '登入';
 $lang['redirect'] = '回到';
-$lang['said'] = '說道';
 $lang['add'] = '新增';
 $lang['edit'] = '編輯';
 $lang['delete'] = '刪除';

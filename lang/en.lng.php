@@ -7,7 +7,6 @@ $lang['config'] = 'Config';
 $lang['logout'] = 'Logout';
 $lang['login'] = 'Login';
 $lang['redirect'] = 'Go back to';
-$lang['said'] = 'said';
 $lang['add'] = 'Add ';
 $lang['edit'] = 'Edit ';
 $lang['delete'] = 'Delete ';
