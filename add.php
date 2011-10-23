@@ -39,11 +39,12 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 	}
 	$out['subtitle'] = $lang['add'].$lang['comment']. ' : ' .$postEntry['title'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot() && check('content', 1, 2000))
+	if(checkBot() && check('name', 0) && check('content', 1, 2000))
 	{
 		$commentEntry['content'] = clean($_POST['content']);
 		$commentEntry['post'] = $_GET['comment'];
 		$comment = newEntry();
+		$commentEntry['trip'] = $_POST['name'] === ''? substr($comment, -7) : trip(clean($_POST['name']));	
 		saveEntry('comment', $comment, $commentEntry);
 
 		$postEntry['comment'][$comment] = $comment;
@@ -54,6 +55,7 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 	{
 		require 'include/parser.inc.php';
 		$out['content'] .= '<form action="add.php?comment=' .$_GET['comment']. '" method="post">
+		<p>' .text('name'). '</p>
 		<p>' .textarea(). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
