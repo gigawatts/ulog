@@ -16,15 +16,15 @@ if(checkBot() && check('post'))
 		$postEntry = readEntry('post', $post);
 		if(strpos($postEntry['title'], $_POST['post']) !== false || strpos($postEntry['content'], $_POST['post']) !== false)
 		{
-			$foundPosts[$post]['title'] = $postEntry['title'];
+			$foundPosts[$post] = $postEntry['title'];
 		}
 	}
 	$out['content'] .= '<ul>';
 	if($foundPosts)
 	{		
-		foreach($foundPosts as $post => $postEntry)
+		foreach($foundPosts as $post => $title)
 		{
-			$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$postEntry['title']. '</a></li>';
+			$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$title. '</a></li>';
 		}
 	}
 	else
