@@ -38,6 +38,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 		<div class="entryHeader">' .manageComment($comment).$commentEntry['trip']. '</div>
 		<div class="entryMain">
 		<p>' .content($commentEntry['content']). '</p>'.
+		(!$postEntry['locked']? '<p><a class="important" href="add.php?comment=' .$_GET['post']. '&quote=' .$comment. '">' .$lang['add'].$lang['comment']. '</a></p>' : '').
 		hook('afterComment', $comment).
 		'</div>
 		<div class="entryFooter"><ul><li>' .entryDate($comment). '</li></ul></div>

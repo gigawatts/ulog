@@ -56,7 +56,7 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 		require 'include/parser.inc.php';
 		$out['content'] .= '<form action="add.php?comment=' .$_GET['comment']. '" method="post">
 		<p>' .text('name'). '</p>
-		<p>' .textarea(). '</p>
+		<p>' .textarea(isValidEntry('comment', $_GET['quote'])? '[quote]' .$_GET['quote']. '[/quote]' : ''). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
 		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
