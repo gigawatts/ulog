@@ -44,7 +44,7 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 		$commentEntry['content'] = clean($_POST['content']);
 		$commentEntry['post'] = $_GET['comment'];
 		$comment = newEntry();
-		$commentEntry['trip'] = $_POST['name'] === ''? substr($comment, -7) : trip(clean($_POST['name']));	
+		$commentEntry['trip'] = $_POST['name'] === ''? substr($comment, -5) : trip(clean($_POST['name']));	
 		saveEntry('comment', $comment, $commentEntry);
 
 		$postEntry['comment'][$comment] = $comment;
