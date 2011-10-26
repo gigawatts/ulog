@@ -24,7 +24,7 @@ if(isGET('post'))
 			<title>' .$postEntry['title']. '</title>
 			<updated>' .entryDate($post, 'c'). '</updated>
 			<link href="' .$out['url']. 'view.php?post=' .$post. '"/>
-			<summary type="html">' .clean(summary($postEntry['content'])). '</summary>
+			<summary type="html">' .htmlspecialchars(summary($postEntry['content']), ENT_QUOTES). '</summary>
 			</entry>';
 		}
 	}
@@ -47,7 +47,7 @@ else if(isGET('comment'))
 			<title>' .$commentEntry['trip']. ' - ' .$postEntry['title']. '</title>
 			<updated>' .entryDate($comment, 'c'). '</updated>
 			<link href="' .$out['url']. 'view.php?post=' .$commentEntry['post']. '#' .$comment. '"/>
-			<summary type="html">' .clean(summary($commentEntry['content'])). '</summary>
+			<summary type="html">' .htmlspecialchars(summary($commentEntry['content']), ENT_QUOTES). '</summary>
 			</entry>';
 		}
 	}
