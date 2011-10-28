@@ -15,7 +15,7 @@ if(checkBot() && check('post'))
 	foreach($posts as $post)
 	{
 		$postEntry = readEntry('post', $post);
-		if(strpos($postEntry['title'], $_POST['post']) !== false || strpos($postEntry['content'], $_POST['post']) !== false)
+		if(stripos($postEntry['title'], $_POST['post']) !== false || stripos($postEntry['content'], $_POST['post']) !== false)
 		{
 			$foundPosts[$post] = $postEntry['title'];
 		}
