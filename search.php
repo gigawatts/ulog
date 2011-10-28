@@ -11,6 +11,7 @@ if(checkBot() && check('post'))
 {
 	$_POST['post'] = clean($_POST['post']);
 	$posts = listEntry('post');
+	$foundPosts = array();
 	foreach($posts as $post)
 	{
 		$postEntry = readEntry('post', $post);
