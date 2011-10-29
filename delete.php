@@ -3,7 +3,7 @@
 $template = 'main';
 require 'header.php';
 
-if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
+if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 {
 	$postEntry = readEntry('post', $_GET['post']);
 	$out['subtitle'] = $lang['delete'].$lang['post']. ' : ' .$postEntry['title'];
@@ -30,7 +30,7 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 		</form>';
 	}
 }
-else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET['comment']))
+else if(isGET('comment') && (isAdmin() || isAuthor($_GET['comment'])) && isValidEntry('comment', $_GET['comment']))
 {
 	$commentEntry = readEntry('comment', $_GET['comment']);
 	$out['subtitle'] = $lang['delete'].$lang['comment'];
@@ -51,7 +51,7 @@ else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET[
 		</form>';
 	}
 }
-else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link']))
+else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
 {
 	$linkEntry = readEntry('link', $_GET['link']);
 	$out['subtitle'] = $lang['delete'].$lang['link']. ' : ' .$linkEntry['name'];
@@ -68,7 +68,7 @@ else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link'
 		</form>';
 	}
 }
-else if(isGET('category') && $_SESSION['admin'] && isValidEntry('category', $_GET['category']))
+else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['category']))
 {
 	$categoryEntry = readEntry('category', $_GET['category']);
 	$out['subtitle'] = $lang['delete'].$lang['category']. ' : ' .$categoryEntry['name'];

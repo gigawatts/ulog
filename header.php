@@ -14,15 +14,16 @@ if(!isValidEntry('config', 'config'))
 }
 
 session_start();
-if(!isset($_SESSION['admin']))
+if(!isset($_SESSION['role']))
 {
-	$_SESSION['admin'] = false;
+	$_SESSION['role'] = '';
 }
 
 //load config
 $config = readEntry('config', 'config');
 
 require 'lang/' .$config['lang']. '.lng.php';
+require 'include/user.inc.php';
 require 'include/ui.inc.php';
 require 'include/plugin.inc.php';
 

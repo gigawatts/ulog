@@ -3,7 +3,7 @@
 $template = 'main';
 require 'header.php';
 
-if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
+if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 {
 	$postEntry = readEntry('post', $_GET['post']);
 	$out['subtitle'] = $lang['edit'].$lang['post']. ' : ' .$postEntry['title'];
@@ -62,7 +62,7 @@ if(isGET('post') && $_SESSION['admin'] && isValidEntry('post', $_GET['post']))
 		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
-else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET['comment']))
+else if(isGET('comment') && (isAdmin() || isAuthor($_GET['comment'])) && isValidEntry('comment', $_GET['comment']))
 {
 	$commentEntry = readEntry('comment', $_GET['comment']);
 	$out['subtitle'] = $lang['edit'].$lang['comment'];
@@ -84,7 +84,7 @@ else if(isGET('comment') && $_SESSION['admin'] && isValidEntry('comment', $_GET[
 		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
-else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link']))
+else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
 {
 	$linkEntry = readEntry('link', $_GET['link']);
 	$out['subtitle'] = $lang['edit'].$lang['link']. ' : ' .$linkEntry['name'];
@@ -105,7 +105,7 @@ else if(isGET('link') && $_SESSION['admin'] && isValidEntry('link', $_GET['link'
 		</form>';
 	}
 }
-else if(isGET('category') && $_SESSION['admin'] && isValidEntry('category', $_GET['category']))
+else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['category']))
 {
 	$categoryEntry = readEntry('category', $_GET['category']);
 	$out['subtitle'] = $lang['edit'].$lang['category']. ' : ' .$categoryEntry['name'];

@@ -19,7 +19,7 @@ if(!isValidEntry('config', 'config'))
 	saveEntry('config', 'config', $config);
 
 	session_start();
-	$_SESSION['admin'] = true;
+	$_SESSION['role'] = 'admin';
 }
 
 header('Location: index.php?post');

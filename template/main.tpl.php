@@ -27,7 +27,7 @@ header('Content-Type: text/html; charset=UTF-8');
 			<li><a href="index.php?comment"><?php echo $lang['comment'];?></a></li>
 			<li><a href="search.php"><?php echo $lang['search'];?></a></li>
 			<?php echo hook('menu').
-			($_SESSION['admin']?
+			(isAdmin()?
 			'<li><a href="config.php">' .$lang['config']. '</a></li>
 			<li><a href="auth.php?logout">' .$lang['logout']. '</a></li>' :
 			'<li><a href="auth.php?login">' .$lang['login']. '</a></li>');?>

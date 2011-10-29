@@ -3,7 +3,7 @@
 $template = 'main';
 require 'header.php';
 
-if(isGET('post') && $_SESSION['admin'])
+if(isGET('post') && isAdmin())
 {
 	$out['subtitle'] = $lang['add'].$lang['post'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
@@ -49,6 +49,8 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 
 		$postEntry['comment'][$comment] = $comment;
 		saveEntry('post', $_GET['comment'], $postEntry);
+		
+		$_SESSION[$comment] = $comment;
 		$out['content'] .= '<p><a href="view.php?post=' .$_GET['comment']. '#' .$comment. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
@@ -62,7 +64,7 @@ else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
 		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
-else if(isGET('link') && $_SESSION['admin'])
+else if(isGET('link') && isAdmin())
 {
 	$out['subtitle'] = $lang['add'].$lang['link'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
@@ -82,7 +84,7 @@ else if(isGET('link') && $_SESSION['admin'])
 		</form>';
 	}
 }
-else if(isGET('category') && $_SESSION['admin'])
+else if(isGET('category') && isAdmin())
 {
 	$out['subtitle'] = $lang['add'].$lang['category'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';

@@ -7,9 +7,8 @@ if(isGET('login'))
 {
 	$out['subtitle'] = $lang['login'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot() && checkPass() && hide($_POST['password']) === $config['password'])
+	if(checkBot() && checkPass() && login($_POST['password']))
 	{
-		$_SESSION['admin'] = true;
 		session_regenerate_id(true);
 		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
@@ -21,9 +20,9 @@ if(isGET('login'))
 		</form>';
 	}
 }
-else if(isGET('logout') && $_SESSION['admin'])
+else if(isGET('logout') && isAdmin())
 {
-	$_SESSION['admin'] = false;
+	$_SESSION['role'] = '';
 	$out['subtitle'] = $lang['logout'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>
 	<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';

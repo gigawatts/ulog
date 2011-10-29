@@ -3,7 +3,7 @@
 $template = 'main';
 require 'header.php';
 
-if($_SESSION['admin'])
+if(isAdmin())
 {
 	$out['subtitle'] = $lang['config'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
