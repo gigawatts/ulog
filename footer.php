@@ -49,14 +49,15 @@ if($script === 'index' || $script === 'view' || $script === 'search')
 	$archives = array();
 	foreach($posts as $post)
 	{
-		$archive = substr($post, 0, 7);
-		if(isset($archives[$archive]))
+		$year = substr($post, 0, 4);
+		$month = substr($post, 5, 2);
+		if(isset($archives[$year][$month]))
 		{
-			$archives[$archive]++;
+			$archives[$year][$month]++;
 		}
 		else
 		{
-			$archives[$archive] = 1;
+			$archives[$year][$month] = 1;
 		}
 	}
 
@@ -64,9 +65,15 @@ if($script === 'index' || $script === 'view' || $script === 'search')
 	<ul>';
 	if($archives)
 	{
-		foreach($archives as $archive => $count)
+		foreach($archives as $year => $months)
 		{
-			$out['sidebar'] .= '<li><a href="view.php?archive=' .$archive. '">' .date('M Y', strtotime($archive)). ' (' .$count. ')</a></li>';
+			$out['sidebar'] .= '<li><b>' .$year. '</b>';
+			foreach($months as $month => $count)
+			{
+				$yearMonth = $year. '-' .$month;
+				$out['sidebar'] .= ' <a href="view.php?archive=' .$yearMonth. '">' .date('M', strtotime($yearMonth)). ' (' .$count. ')</a>';
+			}
+			$out['sidebar'] .= '</li>';
 		}
 	}
 	else
