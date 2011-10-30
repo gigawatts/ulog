@@ -80,7 +80,7 @@ else if(isGET('archive') && strlen($_GET['archive']) === 7)
 	{
 		exit;
 	}
-	$out['subtitle'] = date('F Y', strtotime($_GET['archive']));
+	$out['subtitle'] = date('M Y', strtotime($_GET['archive']));
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>
 	<ul>';
 	foreach($archivedPosts as $post)
