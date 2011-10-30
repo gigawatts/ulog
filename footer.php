@@ -66,7 +66,7 @@ if($script === 'index' || $script === 'view' || $script === 'search')
 	{
 		foreach($archives as $archive => $count)
 		{
-			$out['sidebar'] .= '<li><a href="view.php?archive=' .$archive. '">' .date('F Y', strtotime($archive)). ' (' .$count. ')</a></li>';
+			$out['sidebar'] .= '<li><a href="view.php?archive=' .$archive. '">' .date('M Y', strtotime($archive)). ' (' .$count. ')</a></li>';
 		}
 	}
 	else
