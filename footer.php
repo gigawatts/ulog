@@ -9,7 +9,7 @@ $script = basename($_SERVER['SCRIPT_NAME'], '.php');
 if($script === 'index' || $script === 'view' || $script === 'search')
 {
 	//link
-	$out['sidebar'] .= '<h1>' .(isAdmin()? '<a href="add.php?link">[' .$lang['add']. ']</a>' : '').$lang['link']. '</h1>
+	$out['sidebar'] .= '<h1>' .(isAdmin()? '<a href="add.php?link">[+]</a>' : '').$lang['link']. '</h1>
 	<ul>';
 	$links = listEntry('link');
 	if($links)
@@ -27,7 +27,7 @@ if($script === 'index' || $script === 'view' || $script === 'search')
 	$out['sidebar'] .= '</ul>';
 
 	//category
-	$out['sidebar'] .= '<h1>' .(isAdmin()? '<a href="add.php?category">[' .$lang['add']. ']</a>' : '').$lang['category']. '</h1>
+	$out['sidebar'] .= '<h1>' .(isAdmin()? '<a href="add.php?category">[+]</a>' : '').$lang['category']. '</h1>
 	<ul>';
 	$categories = listEntry('category');
 	if($categories)
