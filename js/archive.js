@@ -1,9 +1,9 @@
 $(document).ready(function(){
-	$('div#sidebar ul:last-child li').hide();
-	$('div#sidebar ul:last-child').append('<li id="archiveHover">[...]</li>');
-	$('li#archiveHover').hover(
+	$('#sidebar ul:last-child li').hide();
+	$('<li>[...]</li>').appendTo('#sidebar ul:last-child')
+	.hover(
 		function() {
-		        $('div#sidebar ul:last-child li').show('fast');
+		        $('#sidebar ul:last-child li').show('fast');
 		}
 	);
 });
