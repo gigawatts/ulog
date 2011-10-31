@@ -4,6 +4,7 @@ $(document).ready(function(){
 	.hover(
 		function() {
 		        $('#sidebar ul:last-child li').show('fast');
+		        $(this).remove();
 		}
 	);
 });
