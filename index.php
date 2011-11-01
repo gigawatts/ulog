@@ -35,6 +35,7 @@ if(isGET('post'))
 				$out['content'] .= '<li><a href="view.php?category=' .$postEntry['category']. '">' .$categoryEntry['name']. '</a></li>';
 			}
 			$out['content'] .= ($postEntry['comment']? '<li>' .$lang['comment']. ' (' .count($postEntry['comment']). ')</li>' : '').
+			($postEntry['locked']? '<li>' .$lang['locked']. '</li>' : '').
 			'<li>' .$lang['view']. ' (' .$postEntry['view']. ')</li>
 			<li>' .entryDate($post). '</li>
 			</ul></div>
