@@ -11,15 +11,12 @@ if(isGET('post'))
 	$out['content'] .= '<h1>' .(isAdmin()? '<a href="add.php?post">[+]</a>' : '').$out['subtitle']. '</h1>';
 	$posts = listEntry('post');
 	rsort($posts);
-	$page = array_chunk($posts, 4);
-	if(!isset($page[$_GET['post']-1]))
+	$pages = array_chunk($posts, 4);
+	$total = count($pages);
+	$p = pageNum($total);
+	if($total > 0)
 	{
-		$_GET['post'] = 1;
-	}
-	$i = $_GET['post'] - 1;
-	if($page)
-	{
-		foreach($page[$i] as $post)
+		foreach($pages[$p-1] as $post)
 		{
 			$postEntry = readEntry('post', $post);
 			$out['content'] .= '<div class="entryContainer">
@@ -46,11 +43,7 @@ if(isGET('post'))
 	{
 		$out['content'] .= '<p>' .$lang['none']. '</p>';
 	}
-	$out['content'] .= '<div id="page"><ul>' .
-	(isset($page[$i-1])? '<li><a href="index.php?post=' .($_GET['post']-1). '">← ' .$lang['prev']. '</a></li>' : '').
-	'<li>' .$lang['page']. ' : ' .$_GET['post']. ' / ' .count($page). '</li>' .
-	(isset($page[$i+1])? '<li><a href="index.php?post=' .($_GET['post']+1). '">' .$lang['next']. ' →</a></li>' : '').
-	'</ul></div>';
+	$out['content'] .= pageControl($p, $total, '?post');
 }
 else if(isGET('reply'))
 {
@@ -58,15 +51,12 @@ else if(isGET('reply'))
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	$replies = listEntry('reply');
 	rsort($replies);
-	$page = array_chunk($replies, 4);
-	if(!isset($page[$_GET['reply']-1]))
+	$pages = array_chunk($replies, 4);
+	$total = count($pages);
+	$p = pageNum($total);
+	if($total > 0)
 	{
-		$_GET['reply'] = 1;
-	}
-	$i = $_GET['reply'] - 1;
-	if($page)
-	{
-		foreach($page[$i] as $reply)
+		foreach($pages[$p-1] as $reply)
 		{
 			$replyEntry = readEntry('reply', $reply);
 			$postEntry = readEntry('post', $replyEntry['post']);
@@ -85,11 +75,7 @@ else if(isGET('reply'))
 	{
 		$out['content'] .= '<p>' .$lang['none']. '</p>';
 	}
-	$out['content'] .= '<div id="page"><ul>' .
-	(isset($page[$i-1])? '<li><a href="index.php?reply=' .($_GET['reply']-1). '">← ' .$lang['prev']. '</a></li>' : '').
-	'<li>' .$lang['page']. ' : ' .$_GET['reply']. ' / ' .count($page). '</li>' .
-	(isset($page[$i+1])? '<li><a href="index.php?reply=' .($_GET['reply']+1). '">' .$lang['next']. ' →</a></li>' : '').
-	'</ul></div>';
+	$out['content'] .= pageControl($p, $total, '?reply');
 }
 else
 {
