@@ -4,6 +4,7 @@ $template = 'main';
 require 'header.php';
 require 'include/manage.inc.php';
 require 'include/parser.inc.php';
+require 'include/page.inc.php';
 
 if(isGET('post'))
 {
