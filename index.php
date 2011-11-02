@@ -71,7 +71,7 @@ else if(isGET('reply'))
 			$replyEntry = readEntry('reply', $reply);
 			$postEntry = readEntry('post', $replyEntry['post']);
 			$out['content'] .= '<div class="entryContainer">
-			<div class="entryHeader">' .manageComment($reply).$replyEntry['trip']. ' - ' .$postEntry['title']. '</div>
+			<div class="entryHeader">' .manageComment($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</div>
 			<div class="entryMain">
 			<p>' .summary($replyEntry['content']). '</p>
 			<p><a class="important" href="view.php?post=' .$replyEntry['post']. '#' .$reply. '">' .$lang['more']. '</a></p>

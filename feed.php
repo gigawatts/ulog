@@ -44,7 +44,7 @@ else if(isGET('reply'))
 			$postEntry = readEntry('post', $replyEntry['post']);
 			$out['content'] .= '<entry>
 			<id>' .$out['url']. 'view.php?post=' .$replyEntry['post']. '#' .$reply. '</id>
-			<title>' .$replyEntry['trip']. ' - ' .$postEntry['title']. '</title>
+			<title>' .$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</title>
 			<updated>' .entryDate($reply, 'c'). '</updated>
 			<link href="' .$out['url']. 'view.php?post=' .$replyEntry['post']. '#' .$reply. '"/>
 			<summary type="html">' .htmlspecialchars(summary($replyEntry['content']), ENT_QUOTES). '</summary>
