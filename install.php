@@ -6,7 +6,7 @@ if(!isValidEntry('config', 'config'))
 {
 	mkdir('data');
 	mkdir('data/post');
-	mkdir('data/comment');
+	mkdir('data/reply');
 	mkdir('data/link');
 	mkdir('data/category');
 	mkdir('data/plugin');

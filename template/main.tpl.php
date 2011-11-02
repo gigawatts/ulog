@@ -15,7 +15,7 @@ header('Content-Type: text/html; charset=UTF-8');
 	<title><?php echo $out['subtitle'];?> - <?php echo $config['title'];?></title>
 	<link rel="stylesheet" type="text/css" href="theme/<?php echo $config['theme'];?>.css"/>
 	<link rel="alternate" type="application/atom+xml" href="feed.php?post" title="<?php echo $lang['post'];?> - <?php echo $config['title'];?>"/>
-	<link rel="alternate" type="application/atom+xml" href="feed.php?comment" title="<?php echo $lang['comment'];?> - <?php echo $config['title'];?>"/>
+	<link rel="alternate" type="application/atom+xml" href="feed.php?reply" title="<?php echo $lang['reply'];?> - <?php echo $config['title'];?>"/>
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<?php echo hook('head')?>
 </head>
@@ -24,7 +24,7 @@ header('Content-Type: text/html; charset=UTF-8');
 		<div id="header"><h2><?php echo $config['title'].hook('header');?></h2></div>
 		<div id="menu"><ul>
 			<li><a href="index.php?post"><?php echo $lang['post'];?></a></li>
-			<li><a href="index.php?comment"><?php echo $lang['comment'];?></a></li>
+			<li><a href="index.php?reply"><?php echo $lang['reply'];?></a></li>
 			<li><a href="search.php"><?php echo $lang['search'];?></a></li>
 			<?php echo hook('menu').
 			(isAdmin()?
@@ -37,7 +37,7 @@ header('Content-Type: text/html; charset=UTF-8');
 		<div id="footer"><ul>
 			<li><?php echo $lang['poweredBy'];?> <a href="http://github.com/taylorchu/goolog">goolog</a></li>
 			<li><a href="feed.php?post"><?php echo $lang['feed'];?> (<?php echo $lang['post'];?>)</a></li>
-			<li><a href="feed.php?comment"><?php echo $lang['feed'];?> (<?php echo $lang['comment'];?>)</a></li>
+			<li><a href="feed.php?reply"><?php echo $lang['feed'];?> (<?php echo $lang['reply'];?>)</a></li>
 			<?php echo hook('footer');?>
 		</ul></div>
 	</div>

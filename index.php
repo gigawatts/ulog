@@ -34,7 +34,7 @@ if(isGET('post'))
 				$categoryEntry = readEntry('category', $postEntry['category']);
 				$out['content'] .= '<li><a href="view.php?category=' .$postEntry['category']. '">' .$categoryEntry['name']. '</a></li>';
 			}
-			$out['content'] .= ($postEntry['comment']? '<li>' .$lang['comment']. ' (' .count($postEntry['comment']). ')</li>' : '').
+			$out['content'] .= ($postEntry['reply']? '<li>' .$lang['reply']. ' (' .count($postEntry['reply']). ')</li>' : '').
 			($postEntry['locked']? '<li>' .$lang['locked']. '</li>' : '').
 			'<li>' .$lang['view']. ' (' .$postEntry['view']. ')</li>
 			<li>' .entryDate($post). '</li>
@@ -52,31 +52,31 @@ if(isGET('post'))
 	(isset($page[$i+1])? '<li><a href="index.php?post=' .($_GET['post']+1). '">' .$lang['next']. ' →</a></li>' : '').
 	'</ul></div>';
 }
-else if(isGET('comment'))
+else if(isGET('reply'))
 {
-	$out['subtitle'] = $lang['comment'];
+	$out['subtitle'] = $lang['reply'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	$comments = listEntry('comment');
-	rsort($comments);
-	$page = array_chunk($comments, 4);
-	if(!isset($page[$_GET['comment']-1]))
+	$replies = listEntry('reply');
+	rsort($replies);
+	$page = array_chunk($replies, 4);
+	if(!isset($page[$_GET['reply']-1]))
 	{
-		$_GET['comment'] = 1;
+		$_GET['reply'] = 1;
 	}
-	$i = $_GET['comment'] - 1;
+	$i = $_GET['reply'] - 1;
 	if($page)
 	{
-		foreach($page[$i] as $comment)
+		foreach($page[$i] as $reply)
 		{
-			$commentEntry = readEntry('comment', $comment);
-			$postEntry = readEntry('post', $commentEntry['post']);
+			$replyEntry = readEntry('reply', $reply);
+			$postEntry = readEntry('post', $replyEntry['post']);
 			$out['content'] .= '<div class="entryContainer">
-			<div class="entryHeader">' .manageComment($comment).$commentEntry['trip']. ' - ' .$postEntry['title']. '</div>
+			<div class="entryHeader">' .manageComment($reply).$replyEntry['trip']. ' - ' .$postEntry['title']. '</div>
 			<div class="entryMain">
-			<p>' .summary($commentEntry['content']). '</p>
-			<p><a class="important" href="view.php?post=' .$commentEntry['post']. '#' .$comment. '">' .$lang['more']. '</a></p>
+			<p>' .summary($replyEntry['content']). '</p>
+			<p><a class="important" href="view.php?post=' .$replyEntry['post']. '#' .$reply. '">' .$lang['more']. '</a></p>
 			</div>
-			<div class="entryFooter"><ul><li>' .entryDate($comment). '</li></ul></div>
+			<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
 			</div>';
 
 		}
@@ -86,9 +86,9 @@ else if(isGET('comment'))
 		$out['content'] .= '<p>' .$lang['none']. '</p>';
 	}
 	$out['content'] .= '<div id="page"><ul>' .
-	(isset($page[$i-1])? '<li><a href="index.php?comment=' .($_GET['comment']-1). '">← ' .$lang['prev']. '</a></li>' : '').
-	'<li>' .$lang['page']. ' : ' .$_GET['comment']. ' / ' .count($page). '</li>' .
-	(isset($page[$i+1])? '<li><a href="index.php?comment=' .($_GET['comment']+1). '">' .$lang['next']. ' →</a></li>' : '').
+	(isset($page[$i-1])? '<li><a href="index.php?reply=' .($_GET['reply']-1). '">← ' .$lang['prev']. '</a></li>' : '').
+	'<li>' .$lang['page']. ' : ' .$_GET['reply']. ' / ' .count($page). '</li>' .
+	(isset($page[$i+1])? '<li><a href="index.php?reply=' .($_GET['reply']+1). '">' .$lang['next']. ' →</a></li>' : '').
 	'</ul></div>';
 }
 else

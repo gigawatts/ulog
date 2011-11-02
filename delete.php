@@ -17,9 +17,9 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 			unset($categoryEntry['post'][$_GET['post']]);
 			saveEntry('category', $postEntry['category'], $categoryEntry);
 		}
-		foreach($postEntry['comment'] as $comment)
+		foreach($postEntry['reply'] as $reply)
 		{
-			deleteEntry('comment', $comment);
+			deleteEntry('reply', $reply);
 		}
 		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
@@ -30,23 +30,23 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 		</form>';
 	}
 }
-else if(isGET('comment') && (isAdmin() || isAuthor($_GET['comment'])) && isValidEntry('comment', $_GET['comment']))
+else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntry('reply', $_GET['reply']))
 {
-	$commentEntry = readEntry('comment', $_GET['comment']);
-	$out['subtitle'] = $lang['delete'].$lang['comment'];
+	$replyEntry = readEntry('reply', $_GET['reply']);
+	$out['subtitle'] = $lang['delete'].$lang['reply'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot())
 	{
-		deleteEntry('comment', $_GET['comment']);
+		deleteEntry('reply', $_GET['reply']);
 
-		$postEntry = readEntry('post', $commentEntry['post']);
-		unset($postEntry['comment'][$_GET['comment']]);
-		saveEntry('post', $commentEntry['post'], $postEntry);
-		$out['content'] .= '<p><a href="view.php?post=' .$commentEntry['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$postEntry = readEntry('post', $replyEntry['post']);
+		unset($postEntry['reply'][$_GET['reply']]);
+		saveEntry('post', $replyEntry['post'], $postEntry);
+		$out['content'] .= '<p><a href="view.php?post=' .$replyEntry['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action="delete.php?comment=' .$_GET['comment']. '" method="post">
+		$out['content'] .= '<form action="delete.php?reply=' .$_GET['reply']. '" method="post">
 		<p>' .submit(). '</p>
 		</form>';
 	}

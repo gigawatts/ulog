@@ -17,7 +17,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	<div class="entryHeader"><h1>' .managePost($_GET['post']).$out['subtitle']. '</h1></div>
 	<div class="entryMain">
 	<p>' .content($postEntry['content']). '</p>'.
-	(!$postEntry['locked']? '<p><a class="important" href="add.php?comment=' .$_GET['post']. '">' .$lang['add'].$lang['comment']. '</a></p>' : '').
+	(!$postEntry['locked']? '<p><a class="important" href="add.php?reply=' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 	hook('afterPost', $_GET['post']).
 	'</div>
 	<div class="entryFooter"><ul>';
@@ -26,22 +26,22 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 		$categoryEntry = readEntry('category', $postEntry['category']);
 		$out['content'] .= '<li><a href="view.php?category=' .$postEntry['category']. '">' .$categoryEntry['name']. '</a></li>';
 	}
-	$out['content'] .= ($postEntry['comment']? '<li>' .$lang['comment']. ' (' .count($postEntry['comment']). ')</li>' : '').
+	$out['content'] .= ($postEntry['reply']? '<li>' .$lang['reply']. ' (' .count($postEntry['reply']). ')</li>' : '').
 	'<li>' .$lang['view']. ' (' .$postEntry['view']. ')</li>
 	<li>' .entryDate($_GET['post']). '</li>
 	</ul></div>
 	</div>';
-	foreach($postEntry['comment'] as $comment)
+	foreach($postEntry['reply'] as $reply)
 	{
-		$commentEntry = readEntry('comment', $comment);
-		$out['content'] .= '<div id="' .$comment. '" class="entryContainer">
-		<div class="entryHeader">' .manageComment($comment).$commentEntry['trip']. '</div>
+		$replyEntry = readEntry('reply', $reply);
+		$out['content'] .= '<div id="' .$reply. '" class="entryContainer">
+		<div class="entryHeader">' .manageComment($reply).$replyEntry['trip']. '</div>
 		<div class="entryMain">
-		<p>' .content($commentEntry['content']). '</p>'.
-		(!$postEntry['locked']? '<p><a class="important" href="add.php?comment=' .$_GET['post']. '&quote=' .$comment. '">' .$lang['add'].$lang['comment']. '</a></p>' : '').
-		hook('afterComment', $comment).
+		<p>' .content($replyEntry['content']). '</p>'.
+		(!$postEntry['locked']? '<p><a class="important" href="add.php?reply=' .$_GET['post']. '&quote=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
+		hook('afterComment', $reply).
 		'</div>
-		<div class="entryFooter"><ul><li>' .entryDate($comment). '</li></ul></div>
+		<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
 		</div>';
 	}
 }

@@ -12,7 +12,7 @@ if(isGET('post') && isAdmin())
 		$postEntry['title'] = clean($_POST['title']);
 		$postEntry['content'] = clean($_POST['content']);
 		$postEntry['view'] = 0;
-		$postEntry['comment'] = array();
+		$postEntry['reply'] = array();
 		$postEntry['category'] = '';
 		$postEntry['locked'] = false;
 		$post = newEntry();
@@ -30,35 +30,35 @@ if(isGET('post') && isAdmin())
 		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
-else if(isGET('comment') && isValidEntry('post', $_GET['comment']))
+else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 {
-	$postEntry = readEntry('post', $_GET['comment']);
+	$postEntry = readEntry('post', $_GET['reply']);
 	if($postEntry['locked'])
 	{
 		exit;
 	}
-	$out['subtitle'] = $lang['add'].$lang['comment']. ' : ' .$postEntry['title'];
+	$out['subtitle'] = $lang['add'].$lang['reply']. ' : ' .$postEntry['title'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('name', 0) && check('content', 1, 2000))
 	{
-		$commentEntry['content'] = clean($_POST['content']);
-		$commentEntry['post'] = $_GET['comment'];
-		$comment = newEntry();
-		$commentEntry['trip'] = $_POST['name'] === ''? substr($comment, -5) : trip(clean($_POST['name']));	
-		saveEntry('comment', $comment, $commentEntry);
+		$replyEntry['content'] = clean($_POST['content']);
+		$replyEntry['post'] = $_GET['reply'];
+		$reply = newEntry();
+		$replyEntry['trip'] = $_POST['name'] === ''? substr($reply, -5) : trip(clean($_POST['name']));	
+		saveEntry('reply', $reply, $replyEntry);
 
-		$postEntry['comment'][$comment] = $comment;
-		saveEntry('post', $_GET['comment'], $postEntry);
+		$postEntry['reply'][$reply] = $reply;
+		saveEntry('post', $_GET['reply'], $postEntry);
 		
-		$_SESSION[$comment] = $comment;
-		$out['content'] .= '<p><a href="view.php?post=' .$_GET['comment']. '#' .$comment. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$_SESSION[$reply] = $reply;
+		$out['content'] .= '<p><a href="view.php?post=' .$_GET['reply']. '#' .$reply. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
 		require 'include/parser.inc.php';
-		$out['content'] .= '<form action="add.php?comment=' .$_GET['comment']. '" method="post">
+		$out['content'] .= '<form action="add.php?reply=' .$_GET['reply']. '" method="post">
 		<p>' .text('name'). '</p>
-		<p>' .textarea(isGET('quote') && isValidEntry('comment', $_GET['quote'])? '[quote]' .$_GET['quote']. '[/quote]' : ''). '</p>
+		<p>' .textarea(isGET('quote') && isValidEntry('reply', $_GET['quote'])? '[quote]' .$_GET['quote']. '[/quote]' : ''). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
 		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');

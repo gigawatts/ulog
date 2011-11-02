@@ -43,8 +43,8 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 	{
 		require 'include/parser.inc.php';
 		
-		$commentOptions['yes'] = $lang['yes'];
-		$commentOptions['no'] = $lang['no'];
+		$replyOptions['yes'] = $lang['yes'];
+		$replyOptions['no'] = $lang['no'];
 
 		$categoryOptions[''] = $lang['uncategorized'];
 		$categories = listEntry('category');
@@ -56,29 +56,29 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 		$out['content'] .= '<form action="edit.php?post=' .$_GET['post']. '" method="post">
 		<p>' .text('title', $postEntry['title']). '</p>
 		<p>' .textarea($postEntry['content']). '</p>
-		<p>' .select('locked', $commentOptions, $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
+		<p>' .select('locked', $replyOptions, $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
 		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
-else if(isGET('comment') && (isAdmin() || isAuthor($_GET['comment'])) && isValidEntry('comment', $_GET['comment']))
+else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntry('reply', $_GET['reply']))
 {
-	$commentEntry = readEntry('comment', $_GET['comment']);
-	$out['subtitle'] = $lang['edit'].$lang['comment'];
+	$replyEntry = readEntry('reply', $_GET['reply']);
+	$out['subtitle'] = $lang['edit'].$lang['reply'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('content', 1, 2000))
 	{
-		$commentEntry['content'] = clean($_POST['content']);
-		saveEntry('comment', $_GET['comment'], $commentEntry);
-		$postEntry = readEntry('post', $commentEntry['post']);
-		$out['content'] .= '<p><a href="view.php?post=' .$commentEntry['post']. '#' .$_GET['comment']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$replyEntry['content'] = clean($_POST['content']);
+		saveEntry('reply', $_GET['reply'], $replyEntry);
+		$postEntry = readEntry('post', $replyEntry['post']);
+		$out['content'] .= '<p><a href="view.php?post=' .$replyEntry['post']. '#' .$_GET['reply']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
 		require 'include/parser.inc.php';
-		$out['content'] .= '<form action="edit.php?comment=' .$_GET['comment']. '" method="post">
-		<p>' .textarea($commentEntry['content']). '</p>
+		$out['content'] .= '<form action="edit.php?reply=' .$_GET['reply']. '" method="post">
+		<p>' .textarea($replyEntry['content']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
 		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');

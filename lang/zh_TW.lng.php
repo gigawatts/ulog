@@ -1,7 +1,7 @@
 <?php
 
 $lang['post'] = '文章';
-$lang['comment'] = '回覆';
+$lang['reply'] = '回覆';
 $lang['more'] = '更多';
 $lang['config'] = '設定';
 $lang['logout'] = '登出';

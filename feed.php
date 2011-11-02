@@ -29,25 +29,25 @@ if(isGET('post'))
 		}
 	}
 }
-else if(isGET('comment'))
+else if(isGET('reply'))
 {
-	$out['subtitle'] = $lang['comment'];
-	$out['type'] = 'comment';
-	$comments = listEntry('comment');
-	rsort($comments);
-	$comments = array_slice($comments, 0, 4);
-	if($comments)
+	$out['subtitle'] = $lang['reply'];
+	$out['type'] = 'reply';
+	$replies = listEntry('reply');
+	rsort($replies);
+	$replies = array_slice($replies, 0, 4);
+	if($replies)
 	{
-		foreach($comments as $comment)
+		foreach($replies as $reply)
 		{
-			$commentEntry = readEntry('comment', $comment);
-			$postEntry = readEntry('post', $commentEntry['post']);
+			$replyEntry = readEntry('reply', $reply);
+			$postEntry = readEntry('post', $replyEntry['post']);
 			$out['content'] .= '<entry>
-			<id>' .$out['url']. 'view.php?post=' .$commentEntry['post']. '#' .$comment. '</id>
-			<title>' .$commentEntry['trip']. ' - ' .$postEntry['title']. '</title>
-			<updated>' .entryDate($comment, 'c'). '</updated>
-			<link href="' .$out['url']. 'view.php?post=' .$commentEntry['post']. '#' .$comment. '"/>
-			<summary type="html">' .htmlspecialchars(summary($commentEntry['content']), ENT_QUOTES). '</summary>
+			<id>' .$out['url']. 'view.php?post=' .$replyEntry['post']. '#' .$reply. '</id>
+			<title>' .$replyEntry['trip']. ' - ' .$postEntry['title']. '</title>
+			<updated>' .entryDate($reply, 'c'). '</updated>
+			<link href="' .$out['url']. 'view.php?post=' .$replyEntry['post']. '#' .$reply. '"/>
+			<summary type="html">' .htmlspecialchars(summary($replyEntry['content']), ENT_QUOTES). '</summary>
 			</entry>';
 		}
 	}
