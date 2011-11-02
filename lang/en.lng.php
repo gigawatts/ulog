@@ -1,7 +1,7 @@
 <?php
 
 $lang['post'] = 'Post';
-$lang['reply'] = 'Comment';
+$lang['reply'] = 'Reply';
 $lang['more'] = 'More';
 $lang['config'] = 'Config';
 $lang['logout'] = 'Logout';

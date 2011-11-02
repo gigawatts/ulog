@@ -35,11 +35,11 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	{
 		$replyEntry = readEntry('reply', $reply);
 		$out['content'] .= '<div id="' .$reply. '" class="entryContainer">
-		<div class="entryHeader">' .manageComment($reply).$replyEntry['trip']. '</div>
+		<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. '</div>
 		<div class="entryMain">
 		<p>' .content($replyEntry['content']). '</p>'.
 		(!$postEntry['locked']? '<p><a class="important" href="add.php?reply=' .$_GET['post']. '&quote=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
-		hook('afterComment', $reply).
+		hook('afterReply', $reply).
 		'</div>
 		<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
 		</div>';

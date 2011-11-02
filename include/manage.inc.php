@@ -5,9 +5,9 @@ function managePost($post)
 	return (isAdmin()? '<a href="edit.php?post=' .$post. '">[!]</a><a href="delete.php?post=' .$post. '">[x]</a>' : '').hook('managePost', $post);
 }
 
-function manageComment($reply)
+function manageReply($reply)
 {
-	return (isAdmin() || isAuthor($reply)? '<a href="edit.php?reply=' .$reply. '">[!]</a><a href="delete.php?reply=' .$reply. '">[x]</a>' : '').hook('manageComment', $reply);
+	return (isAdmin() || isAuthor($reply)? '<a href="edit.php?reply=' .$reply. '">[!]</a><a href="delete.php?reply=' .$reply. '">[x]</a>' : '').hook('manageReply', $reply);
 }
 
 function manageCategory($category)
