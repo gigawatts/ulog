@@ -1,6 +1,6 @@
 $(document).ready(function(){
-	$('#sidebar ul:last-child li a').hide();
-	$('#sidebar ul:last-child li').click(
+	$('#sidebar ul:eq(2) li a').hide();
+	$('#sidebar ul:eq(2) li').click(
 		function() {
 		        $(this).children('a').fadeToggle();
 		}
