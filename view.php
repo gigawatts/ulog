@@ -38,7 +38,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 		<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. '</div>
 		<div class="entryMain">
 		<p>' .content($replyEntry['content']). '</p>'.
-		(!$postEntry['locked']? '<p><a class="important" href="add.php?reply=' .$_GET['post']. '&quote=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
+		(!$postEntry['locked']? '<p><a class="important" href="add.php?reply=' .$_GET['post']. '&q=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 		hook('afterReply', $reply).
 		'</div>
 		<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
@@ -90,10 +90,10 @@ else if(isGET('archive') && strlen($_GET['archive']) === 7)
 	}
 	$out['content'] .= '</ul>';
 }
-else if(isGET('plugin') && function_exists($_GET['plugin']. '_page'))
+else if(isGET('plugin') && function_exists($_GET['plugin']. '_view'))
 {
-	$misc = $_GET['plugin']. '_page';
-	$out['subtitle'] = $_GET['plugin'];
+	$misc = $_GET['plugin']. '_view';
+	$out['subtitle'] = strtolower($_GET['plugin']);
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>'.
 	$misc();
 }
