@@ -1,9 +1,7 @@
-* {
-	letter-spacing: 1px;
-	font-size: 14px;
-}
 html {
 	border-top: 16px solid #FC3;
+	letter-spacing: 1px;
+	font-size: 14px;
 }
 ul {
 	list-style: none;
