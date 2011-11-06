@@ -38,7 +38,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 		<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. '</div>
 		<div class="entryMain">
 		<div>' .content($replyEntry['content']). '</div>'.
-		(!$postEntry['locked']? '<p><a class="important" href="add.php?reply=' .$_GET['post']. '&q=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
+		(!$postEntry['locked']? '<p><a class="important" href="add.php?reply=' .$_GET['post']. '&amp;q=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 		hook('afterReply', $reply).
 		'</div>
 		<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
