@@ -55,7 +55,7 @@ else if(isGET('plugin') && isAdmin())
 		{
 			foreach($pluginConfig as $plugin)
 			{
-				$out['content'] .= '<li><a href="config?plugin=' .$plugin. '">' .$plugin. '</a></li>';
+				$out['content'] .= '<li><a href="config.php?plugin=' .$plugin. '">' .$plugin. '</a></li>';
 			}
 		}
 		else
