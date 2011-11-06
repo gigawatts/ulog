@@ -30,12 +30,36 @@ if(isGET('main') && isAdmin())
 		</form>';
 	}
 }
-else if(isGET('plugin') && isAdmin() && function_exists($_GET['plugin']. '_config'))
+else if(isGET('plugin') && isAdmin())
 {
-	$misc = $_GET['plugin']. '_config';
-	$out['subtitle'] = strtolower($_GET['plugin']);
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>'.
-	$misc();
+	if(function_exists($_GET['plugin']. '_config'))
+	{
+		$misc = $_GET['plugin']. '_config';
+		$out['subtitle'] = $lang['config'].strtolower($_GET['plugin']);
+		$out['content'] .= '<h1>' .$out['subtitle']. '</h1>'.
+		$misc();
+	}
+	else
+	{
+		$out['subtitle'] = $lang['config'].$lang['plugin'];
+		$out['content'] .= '<h1>' .$out['subtitle']. '</h1>
+		<ul>';
+		if($plugins)
+		{
+			foreach($plugins as $plugin)
+			{
+				if(function_exists($plugin. '_config'))
+				{
+					$out['content'] .= '<li><a href="config?plugin=' .$plugin. '">' .$plugin. '</a></li>';
+				}
+			}
+		}
+		else
+		{
+			$out['content'] .= '<li>' .$lang['none']. '</li>';
+		}
+		$out['content'] .= '</ul>';
+	}
 }
 else
 {

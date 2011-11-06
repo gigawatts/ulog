@@ -29,6 +29,7 @@ header('Content-Type: text/html; charset=UTF-8');
 			<?php echo hook('menu').
 			(isAdmin()?
 			'<li><a href="config.php?main">' .$lang['config']. '</a></li>
+			<li><a href="config.php?plugin">' .$lang['plugin']. '</a></li>
 			<li><a href="auth.php?logout">' .$lang['logout']. '</a></li>' :
 			'<li><a href="auth.php?login">' .$lang['login']. '</a></li>');?>
 		</ul></div>

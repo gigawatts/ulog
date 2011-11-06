@@ -2,8 +2,9 @@
 
 $lang['post'] = 'Post';
 $lang['reply'] = 'Reply';
+$lang['plugin'] = 'Plugin';
 $lang['more'] = 'More';
-$lang['config'] = 'Config';
+$lang['config'] = 'Config ';
 $lang['logout'] = 'Logout';
 $lang['login'] = 'Login';
 $lang['redirect'] = 'Go back to';
