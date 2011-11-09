@@ -17,7 +17,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	<div class="entryHeader"><h1>' .managePost($_GET['post']).$out['subtitle']. '</h1></div>
 	<div class="entryMain">
 	<p>' .content($postEntry['content']). '</p>'.
-	(!$postEntry['locked']? '<p><a class="important" href="add.php?reply=' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
+	(!$postEntry['locked']? '<p><a class="button" href="add.php?reply=' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 	hook('afterPost', $_GET['post']).
 	'</div>
 	<div class="entryFooter"><ul>';
@@ -38,7 +38,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 		<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. '</div>
 		<div class="entryMain">
 		<p>' .content($replyEntry['content']). '</p>'.
-		(!$postEntry['locked']? '<p><a class="important" href="add.php?reply=' .$_GET['post']. '&amp;q=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
+		(!$postEntry['locked']? '<p><a class="button" href="add.php?reply=' .$_GET['post']. '&amp;q=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 		hook('afterReply', $reply).
 		'</div>
 		<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>

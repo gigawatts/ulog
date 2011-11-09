@@ -24,7 +24,7 @@ if(isGET('post'))
 			<div class="entryHeader">' .managePost($post).$postEntry['title']. '</div>
 			<div class="entryMain">
 			<p>' .summary($postEntry['content']). '</p>
-			<p><a class="important" href="view.php?post=' .$post. '">' .$lang['more']. '</a></p>
+			<p><a class="button" href="view.php?post=' .$post. '">' .$lang['more']. '</a></p>
 			</div>
 			<div class="entryFooter"><ul>';
 			if($postEntry['category'] !== '')
@@ -65,7 +65,7 @@ else if(isGET('reply'))
 			<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</div>
 			<div class="entryMain">
 			<p>' .summary($replyEntry['content']). '</p>
-			<p><a class="important" href="view.php?post=' .$replyEntry['post']. '#' .$reply. '">' .$lang['more']. '</a></p>
+			<p><a class="button" href="view.php?post=' .$replyEntry['post']. '#' .$reply. '">' .$lang['more']. '</a></p>
 			</div>
 			<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
 			</div>';

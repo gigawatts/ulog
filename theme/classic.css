@@ -72,7 +72,7 @@ img {
 #footer ul {
 	padding: 0;
 }
-.important, #menu ul li, #footer ul li, #page ul li, .entryFooter ul li {
+.button, .msg, #menu ul li, #footer ul li, #page ul li, .entryFooter ul li {
 	padding: 2px 4px;
 	margin: 4px;
 	display: inline-block;
@@ -81,13 +81,13 @@ img {
 #menu ul li {
 	background-color: #777;
 }
-.important, #menu ul li a {
+.msg, #menu ul li a {
 	color: #FFF;
 }
-#page ul li {
+.button, #page ul li {
 	background-color: #E0EAF1;
 }
-.important {
+.msg {
 	background-color: #9A4444;
 }
 .entryHeader {

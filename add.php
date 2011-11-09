@@ -27,7 +27,7 @@ if(isGET('post') && isAdmin())
 		<p>' .textarea(). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
+		(check('content', 1, 2000)? '<p>' .content(clean($_POST['content'])). '</p>' : '');
 	}
 }
 else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
@@ -71,7 +71,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 		<p>' .textarea($quote). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(check('content', 1, 2000)? '<div class="block">' .content(clean($_POST['content'])). '</div>' : '');
+		(check('content', 1, 2000)? '<p>' .content(clean($_POST['content'])). '</p>' : '');
 	}
 }
 else if(isGET('link') && isAdmin())
