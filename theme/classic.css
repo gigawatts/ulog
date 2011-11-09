@@ -103,3 +103,6 @@ img {
 	padding: 14px 7px 0 7px;
 	border-bottom: 1px dotted #777;
 }
+.entryContainer:target {
+	background-color: #FFE;
+}
