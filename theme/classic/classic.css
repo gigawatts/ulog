@@ -90,6 +90,10 @@ img {
 .msg {
 	background-color: #9A4444;
 }
+.box {
+	padding: 7px;
+	border: 1px solid #CCC;
+}
 .entryHeader {
 	color: #777;
 }
