@@ -96,6 +96,9 @@ img {
 	padding: 7px;
 	border: 1px solid #CCC;
 }
+.quote {
+	color: #789922;
+}
 .entryHeader {
 	color: #777;
 }

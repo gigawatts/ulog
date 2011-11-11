@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('a[href^="#"]').hover(
+	$('a.quote').hover(
 		function(e) {
 			var target = $($(this).attr('href') + ' .entryMain p:eq(0)');
 			$('<div id="reply" class="box"></div>').html($(target).length > 0? $(target).html() : 'nothing.')
