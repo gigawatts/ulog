@@ -115,3 +115,6 @@ img {
 .entryContainer:target {
 	background-color: #FFD;
 }
+#page {
+	text-align: center;
+}
