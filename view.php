@@ -7,6 +7,7 @@ require 'include/manage.inc.php';
 if(isGET('post') && isValidEntry('post', $_GET['post']))
 {
 	require 'include/parser.inc.php';
+	require 'include/page.inc.php';
 	$postEntry = readEntry('post', $_GET['post']);
 
 	$postEntry['view']++;
@@ -31,19 +32,26 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	<li>' .entryDate($_GET['post']). '</li>
 	</ul></div>
 	</div>';
-	foreach($postEntry['reply'] as $reply)
+	$pages = array_chunk($postEntry['reply'], 8);
+	$total = count($pages);
+	$p = pageNum($total);
+	if($total > 0)
 	{
-		$replyEntry = readEntry('reply', $reply);
-		$out['content'] .= '<div id="' .$reply. '" class="entryContainer">
-		<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. '</div>
-		<div class="entryMain">
-		<p>' .content($replyEntry['content']). '</p>'.
-		(!$postEntry['locked']? '<p><a class="button" href="add.php?reply=' .$_GET['post']. '&amp;q=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
-		hook('afterReply', $reply).
-		'</div>
-		<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
-		</div>';
+		foreach($pages[$p-1] as $reply)
+		{
+			$replyEntry = readEntry('reply', $reply);
+			$out['content'] .= '<div id="' .$reply. '" class="entryContainer">
+			<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. '</div>
+			<div class="entryMain">
+			<p>' .content($replyEntry['content']). '</p>'.
+			(!$postEntry['locked']? '<p><a class="button" href="add.php?reply=' .$_GET['post']. '&amp;q=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
+			hook('afterReply', $reply).
+			'</div>
+			<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
+			</div>';
+		}
 	}
+	$out['content'] .= pageControl($p, $total, 'post=' .$_GET['post']);
 }
 else if(isGET('category') && isValidEntry('category', $_GET['category']))
 {
