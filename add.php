@@ -57,8 +57,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 	{
 		if(isGET('q') && isValidEntry('reply', $_GET['q']))
 		{
-			$replyEntry = readEntry('reply', $_GET['q']);
-			$quote = '[quote=' .$_GET['q']. ']' .$replyEntry['trip']. '[/quote]';
+			$quote = '[quote]' .$_GET['q']. '[/quote]';
 		}
 		else
 		{
