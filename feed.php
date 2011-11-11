@@ -19,11 +19,12 @@ if(isGET('post'))
 		foreach($posts as $post)
 		{
 			$postEntry = readEntry('post', $post);
+			$url = $out['url']. 'view.php?post=' .$post;
 			$out['content'] .= '<entry>
-			<id>' .$out['url']. 'view.php?post=' .$post. '</id>
+			<id>' .$url. '</id>
 			<title>' .$postEntry['title']. '</title>
 			<updated>' .entryDate($post, 'c'). '</updated>
-			<link href="' .$out['url']. 'view.php?post=' .$post. '"/>
+			<link href="' .$url. '"/>
 			<summary type="html">' .htmlspecialchars(summary($postEntry['content']), ENT_QUOTES). '</summary>
 			</entry>';
 		}
@@ -42,11 +43,12 @@ else if(isGET('reply'))
 		{
 			$replyEntry = readEntry('reply', $reply);
 			$postEntry = readEntry('post', $replyEntry['post']);
+			$url = $out['url']. 'view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($reply, $postEntry['reply']). '#' .$reply;
 			$out['content'] .= '<entry>
-			<id>' .$out['url']. 'view.php?post=' .$replyEntry['post']. '#' .$reply. '</id>
+			<id>' .$url. '</id>
 			<title>' .$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</title>
 			<updated>' .entryDate($reply, 'c'). '</updated>
-			<link href="' .$out['url']. 'view.php?post=' .$replyEntry['post']. '#' .$reply. '"/>
+			<link href="' .$url. '"/>
 			<summary type="html">' .htmlspecialchars(summary($replyEntry['content']), ENT_QUOTES). '</summary>
 			</entry>';
 		}

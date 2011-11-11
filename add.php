@@ -51,7 +51,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 		saveEntry('post', $_GET['reply'], $postEntry);
 		
 		$_SESSION[$reply] = $reply;
-		$out['content'] .= '<p><a href="view.php?post=' .$_GET['reply']. '#' .$reply. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php?post=' .$_GET['reply']. '&amp;p=' .onPage($reply, $postEntry['reply']). '#' .$reply. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{

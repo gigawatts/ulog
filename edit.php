@@ -72,7 +72,7 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 		$replyEntry['content'] = clean($_POST['content']);
 		saveEntry('reply', $_GET['reply'], $replyEntry);
 		$postEntry = readEntry('post', $replyEntry['post']);
-		$out['content'] .= '<p><a href="view.php?post=' .$replyEntry['post']. '#' .$_GET['reply']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($_GET['reply'], $postEntry['reply']). '#' .$_GET['reply']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
