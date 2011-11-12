@@ -39,7 +39,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 	}
 	$out['subtitle'] = $lang['add'].$lang['reply']. ' : ' .$postEntry['title'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
-	if(checkBot() && check('name', 0) && check('content', 1, 2000))
+	if(checkBot() && check('name', 0, 20) && check('content', 1, 2000))
 	{
 		$replyEntry['content'] = clean($_POST['content']);
 		$replyEntry['post'] = $_GET['reply'];
