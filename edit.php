@@ -47,8 +47,7 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 		$replyOptions['no'] = $lang['no'];
 
 		$categoryOptions[''] = $lang['uncategorized'];
-		$categories = listEntry('category');
-		foreach($categories as $category)
+		foreach(listEntry('category') as $category)
 		{
 			$categoryEntry = readEntry('category', $category);
 			$categoryOptions[$category] = $categoryEntry['name'];

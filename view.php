@@ -32,12 +32,11 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	<li>' .entryDate($_GET['post']). '</li>
 	</ul></div>
 	</div>';
-	$pages = array_chunk($postEntry['reply'], 8);
-	$total = count($pages);
+	$total = count($postEntry['reply']);
 	$p = pageNum($total);
 	if($total > 0)
 	{
-		foreach($pages[$p-1] as $reply)
+		foreach(getPage($postEntry['reply'], $p) as $reply)
 		{
 			$replyEntry = readEntry('reply', $reply);
 			$out['content'] .= '<div id="' .$reply. '" class="entryContainer">
@@ -75,9 +74,8 @@ else if(isGET('category') && isValidEntry('category', $_GET['category']))
 }
 else if(isGET('archive') && strlen($_GET['archive']) === 7)
 {
-	$posts = listEntry('post');
 	$archivedPosts = array();
-	foreach($posts as $post)
+	foreach(listEntry('post') as $post)
 	{
 		if($_GET['archive'] === substr($post, 0, 7))
 		{

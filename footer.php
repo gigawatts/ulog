@@ -45,9 +45,8 @@ if($script === 'index' || $script === 'view' || $script === 'search')
 	$out['sidebar'] .= '</ul>';
 
 	//archive
-	$posts = listEntry('post');
 	$archives = array();
-	foreach($posts as $post)
+	foreach(listEntry('post') as $post)
 	{
 		$year = substr($post, 0, 4);
 		$month = substr($post, 5, 2);

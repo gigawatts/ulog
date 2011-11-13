@@ -10,9 +10,8 @@ $out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 if(checkBot() && check('post'))
 {
 	$_POST['post'] = clean($_POST['post']);
-	$posts = listEntry('post');
 	$foundPosts = array();
-	foreach($posts as $post)
+	foreach(listEntry('post') as $post)
 	{
 		$postEntry = readEntry('post', $post);
 		if(stripos($postEntry['title'], $_POST['post']) !== false || stripos($postEntry['content'], $_POST['post']) !== false)

@@ -12,12 +12,11 @@ if(isGET('post'))
 	$out['content'] .= '<h1>' .(isAdmin()? '<a href="add.php?post">[+]</a>' : '').$out['subtitle']. '</h1>';
 	$posts = listEntry('post');
 	rsort($posts);
-	$pages = array_chunk($posts, 4);
-	$total = count($pages);
+	$total = countPage($posts);
 	$p = pageNum($total);
 	if($total > 0)
 	{
-		foreach($pages[$p-1] as $post)
+		foreach(getPage($posts, $p) as $post)
 		{
 			$postEntry = readEntry('post', $post);
 			$out['content'] .= '<div class="entryContainer">
@@ -52,12 +51,11 @@ else if(isGET('reply'))
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	$replies = listEntry('reply');
 	rsort($replies);
-	$pages = array_chunk($replies, 4);
-	$total = count($pages);
+	$total = countPage($replies);
 	$p = pageNum($total);
 	if($total > 0)
 	{
-		foreach($pages[$p-1] as $reply)
+		foreach(getPage($replies, $p) as $reply)
 		{
 			$replyEntry = readEntry('reply', $reply);
 			$postEntry = readEntry('post', $replyEntry['post']);
@@ -69,7 +67,6 @@ else if(isGET('reply'))
 			</div>
 			<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
 			</div>';
-
 		}
 	}
 	else
