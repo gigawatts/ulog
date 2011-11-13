@@ -32,7 +32,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	<li>' .entryDate($_GET['post']). '</li>
 	</ul></div>
 	</div>';
-	$total = count($postEntry['reply']);
+	$total = countPage($postEntry['reply']);
 	$p = pageNum($total);
 	if($total > 0)
 	{
