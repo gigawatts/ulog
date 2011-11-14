@@ -28,7 +28,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 		$out['content'] .= '<li><a href="view.php?category=' .$postEntry['category']. '">' .$categoryEntry['name']. '</a></li>';
 	}
 	$out['content'] .= ($postEntry['reply']? '<li>' .$lang['reply']. ' (' .count($postEntry['reply']). ')</li>' : '').
-	'<li>' .$lang['view']. ' (' .$postEntry['view']. ')</li>
+	'<li>' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</li>
 	<li>' .entryDate($_GET['post']). '</li>
 	</ul></div>
 	</div>';

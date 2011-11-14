@@ -33,7 +33,7 @@ if(isGET('post'))
 			}
 			$out['content'] .= ($postEntry['reply']? '<li>' .$lang['reply']. ' (' .count($postEntry['reply']). ')</li>' : '').
 			($postEntry['locked']? '<li>' .$lang['locked']. '</li>' : '').
-			'<li>' .$lang['view']. ' (' .$postEntry['view']. ')</li>
+			'<li>' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</li>
 			<li>' .entryDate($post). '</li>
 			</ul></div>
 			</div>';
