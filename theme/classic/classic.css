@@ -100,7 +100,7 @@ img {
 	color: #789922;
 }
 .entryHeader {
-	color: #777;
+	font-weight: bold;
 }
 .entryFooter {
 	text-align: right;
