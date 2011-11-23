@@ -5,12 +5,14 @@ require 'header.php';
 
 if(isGET('post') && isAdmin())
 {
+	require 'include/parser.inc.php';
 	$out['subtitle'] = $lang['add'].$lang['post'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('title') && check('content', 1, 2000))
 	{
 		$postEntry['title'] = clean($_POST['title']);
 		$postEntry['content'] = clean($_POST['content']);
+		$postEntry['contentHTML'] = bbcode($postEntry['content']);
 		$postEntry['view'] = 0;
 		$postEntry['reply'] = array();
 		$postEntry['category'] = '';
@@ -21,17 +23,17 @@ if(isGET('post') && isAdmin())
 	}
 	else
 	{
-		require 'include/parser.inc.php';
 		$out['content'] .= '<form action="add.php?post" method="post">
 		<p>' .text('title'). '</p>
 		<p>' .textarea(). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(isPOST('content')? '<p class="box">' .content(clean($_POST['content'])). '</p>' : '');
+		(isPOST('content')? '<p class="box">' .bbcode(clean($_POST['content'])). '</p>' : '');
 	}
 }
 else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 {
+	require 'include/parser.inc.php';
 	$postEntry = readEntry('post', $_GET['reply']);
 	if($postEntry['locked'])
 	{
@@ -42,6 +44,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 	if(checkBot() && check('name', 0, 20) && check('content', 1, 2000))
 	{
 		$replyEntry['content'] = clean($_POST['content']);
+		$replyEntry['contentHTML'] = bbcode($replyEntry['content']);
 		$replyEntry['post'] = $_GET['reply'];
 		$reply = newEntry();
 		$replyEntry['trip'] = $_POST['name'] === ''? substr($reply, -5) : trip(clean($_POST['name']));	
@@ -63,14 +66,12 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 		{
 			$quote = '';
 		}
-		
-		require 'include/parser.inc.php';
 		$out['content'] .= '<form action="add.php?reply=' .$_GET['reply']. '" method="post">
 		<p>' .text('name'). '</p>
 		<p>' .textarea($quote). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(isPOST('content')? '<p class="box">' .content(clean($_POST['content'])). '</p>' : '');
+		(isPOST('content')? '<p class="box">' .bbcode(clean($_POST['content'])). '</p>' : '');
 	}
 }
 else if(isGET('link') && isAdmin())

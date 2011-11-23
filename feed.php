@@ -25,7 +25,7 @@ if(isGET('post'))
 			<title>' .$postEntry['title']. '</title>
 			<updated>' .entryDate($post, 'c'). '</updated>
 			<link href="' .$url. '"/>
-			<summary type="html">' .htmlspecialchars(summary($postEntry['content']), ENT_QUOTES). '</summary>
+			<summary type="html">' .htmlspecialchars(summary($postEntry['contentHTML']), ENT_QUOTES). '</summary>
 			</entry>';
 		}
 	}
@@ -49,7 +49,7 @@ else if(isGET('reply'))
 			<title>' .$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</title>
 			<updated>' .entryDate($reply, 'c'). '</updated>
 			<link href="' .$url. '"/>
-			<summary type="html">' .htmlspecialchars(summary($replyEntry['content']), ENT_QUOTES). '</summary>
+			<summary type="html">' .htmlspecialchars(summary($replyEntry['contentHTML']), ENT_QUOTES). '</summary>
 			</entry>';
 		}
 	}

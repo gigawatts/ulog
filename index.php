@@ -22,7 +22,7 @@ if(isGET('post'))
 			$out['content'] .= '<div class="entryContainer">
 			<div class="entryHeader">' .managePost($post).$postEntry['title']. '</div>
 			<div class="entryMain">
-			<p>' .summary($postEntry['content']). '</p>
+			<p>' .summary($postEntry['contentHTML']). '</p>
 			<p><a class="button" href="view.php?post=' .$post. '">' .$lang['more']. '</a></p>
 			</div>
 			<div class="entryFooter"><ul>';
@@ -62,7 +62,7 @@ else if(isGET('reply'))
 			$out['content'] .= '<div class="entryContainer">
 			<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</div>
 			<div class="entryMain">
-			<p>' .summary($replyEntry['content']). '</p>
+			<p>' .summary($replyEntry['contentHTML']). '</p>
 			<p><a class="button" href="view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$lang['more']. '</a></p>
 			</div>
 			<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
