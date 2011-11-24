@@ -82,6 +82,6 @@ if($script === 'index' || $script === 'view' || $script === 'search')
 	$out['sidebar'] .= '</ul>';
 }
 
-require 'template/' .$template. '.tpl.php';
+require 'theme/' $config['theme']. '/' .$template. '.tpl.php';
 
 ?>
