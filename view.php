@@ -6,6 +6,7 @@ require 'include/manage.inc.php';
 
 if(isGET('post') && isValidEntry('post', $_GET['post']))
 {
+	require 'include/parser.inc.php';
 	require 'include/page.inc.php';
 	$postEntry = readEntry('post', $_GET['post']);
 
@@ -16,7 +17,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	$out['content'] .= '<div class="entryContainer">
 	<div class="entryHeader"><h1>' .managePost($_GET['post']).$out['subtitle']. '</h1></div>
 	<div class="entryMain">
-	<p>' .$postEntry['contentHTML']. '</p>'.
+	<p>' .content($postEntry['content']). '</p>'.
 	(!$postEntry['locked']? '<p><a class="button" href="add.php?reply=' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 	hook('afterPost', $_GET['post']).
 	'</div>
@@ -41,7 +42,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 			$out['content'] .= '<div id="' .$reply. '" class="entryContainer">
 			<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. '</div>
 			<div class="entryMain">
-			<p>' .$replyEntry['contentHTML']. '</p>'.
+			<p>' .content($replyEntry['content']). '</p>'.
 			(!$postEntry['locked']? '<p><a class="button" href="add.php?reply=' .$_GET['post']. '&amp;q=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 			hook('afterReply', $reply).
 			'</div>

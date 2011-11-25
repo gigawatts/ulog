@@ -5,7 +5,6 @@ require 'header.php';
 
 if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 {
-	require 'include/parser.inc.php';
 	$postEntry = readEntry('post', $_GET['post']);
 	$out['subtitle'] = $lang['edit'].$lang['post']. ' : ' .$postEntry['title'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
@@ -15,7 +14,6 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 	{
 		$postEntry['title'] = clean($_POST['title']);
 		$postEntry['content'] = clean($_POST['content']);
-		$postEntry['contentHTML'] = bbcode($postEntry['content']);
 
 		$postEntry['locked'] = $_POST['locked'] === 'yes';
 
@@ -42,7 +40,9 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 		$out['content'] .= '<p><a href="view.php?post=' .$_GET['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
-	{	
+	{
+		require 'include/parser.inc.php';
+		
 		$replyOptions['yes'] = $lang['yes'];
 		$replyOptions['no'] = $lang['no'];
 
@@ -58,30 +58,29 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 		<p>' .select('locked', $replyOptions, $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(isPOST('content')? '<p class="box">' .bbcode(clean($_POST['content'])). '</p>' : '');
+		(isPOST('content')? '<p class="box">' .content(clean($_POST['content'])). '</p>' : '');
 	}
 }
 else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntry('reply', $_GET['reply']))
 {
-	require 'include/parser.inc.php';
 	$replyEntry = readEntry('reply', $_GET['reply']);
 	$out['subtitle'] = $lang['edit'].$lang['reply'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('content', 1, 2000))
 	{
 		$replyEntry['content'] = clean($_POST['content']);
-		$replyEntry['contentHTML'] = bbcode($replyEntry['content']);
 		saveEntry('reply', $_GET['reply'], $replyEntry);
 		$postEntry = readEntry('post', $replyEntry['post']);
 		$out['content'] .= '<p><a href="view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($_GET['reply'], $postEntry['reply']). '#' .$_GET['reply']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
+		require 'include/parser.inc.php';
 		$out['content'] .= '<form action="edit.php?reply=' .$_GET['reply']. '" method="post">
 		<p>' .textarea($replyEntry['content']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(isPOST('content')? '<p class="box">' .bbcode(clean($_POST['content'])). '</p>' : '');
+		(isPOST('content')? '<p class="box">' .content(clean($_POST['content'])). '</p>' : '');
 	}
 }
 else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
