@@ -11,7 +11,7 @@ if(isGET('post'))
 {
 	$out['subtitle'] = $lang['post'];
 	$out['type'] = 'post';
-	$posts = top(4, listEntry('post'));
+	$posts = part('rsort', listEntry('post'), 4);
 	if($posts)
 	{
 		foreach($posts as $post)
@@ -32,7 +32,7 @@ else if(isGET('reply'))
 {
 	$out['subtitle'] = $lang['reply'];
 	$out['type'] = 'reply';
-	$replies = top(4, listEntry('reply'));
+	$replies = part('rsort', listEntry('reply'), 4);
 	if($replies)
 	{
 		foreach($replies as $reply)
