@@ -54,7 +54,7 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 		}
 		$out['content'] .= '<form action="edit.php?post=' .$_GET['post']. '" method="post">
 		<p>' .text('title', $postEntry['title']). '</p>
-		<p>' .textarea($postEntry['content']). '</p>
+		<p>' .textarea('content', $postEntry['content']). '</p>
 		<p>' .select('locked', $replyOptions, $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
@@ -77,7 +77,7 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 	{
 		require 'include/parser.inc.php';
 		$out['content'] .= '<form action="edit.php?reply=' .$_GET['reply']. '" method="post">
-		<p>' .textarea($replyEntry['content']). '</p>
+		<p>' .textarea('content', $replyEntry['content']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
 		(isPOST('content')? '<p class="box">' .content(clean($_POST['content'])). '</p>' : '');
