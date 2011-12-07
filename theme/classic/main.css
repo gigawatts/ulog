@@ -109,11 +109,11 @@ img {
 .entryFooter ul li {
 	background-color: #FFEFC6;
 }
-.entryContainer {
+.postContainer, .replyContainer {
 	padding: 14px 7px 0 7px;
 	border-bottom: 1px dotted #777;
 }
-.entryContainer:target {
+.replyContainer:target {
 	background-color: #FFD;
 }
 #page {

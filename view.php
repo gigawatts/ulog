@@ -14,7 +14,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	saveEntry('post', $_GET['post'], $postEntry);
 
 	$out['subtitle'] = $postEntry['title'];
-	$out['content'] .= '<div class="entryContainer">
+	$out['content'] .= '<div class="postContainer">
 	<div class="entryHeader"><h1>' .managePost($_GET['post']).$out['subtitle']. '</h1></div>
 	<div class="entryMain">
 	<p>' .content($postEntry['content']). '</p>'.
@@ -39,7 +39,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 		foreach(getPage($postEntry['reply'], $p) as $reply)
 		{
 			$replyEntry = readEntry('reply', $reply);
-			$out['content'] .= '<div id="' .$reply. '" class="entryContainer">
+			$out['content'] .= '<div id="' .$reply. '" class="replyContainer">
 			<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. '</div>
 			<div class="entryMain">
 			<p>' .content($replyEntry['content']). '</p>'.
@@ -105,7 +105,7 @@ else if(isGET('plugin') && function_exists($_GET['plugin']. '_view'))
 }
 else
 {
-	exit;
+	redirect('index.php?404');
 }
 
 require 'footer.php';

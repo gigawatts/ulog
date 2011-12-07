@@ -19,7 +19,7 @@ if(isGET('post'))
 		foreach(getPage($posts, $p) as $post)
 		{
 			$postEntry = readEntry('post', $post);
-			$out['content'] .= '<div class="entryContainer">
+			$out['content'] .= '<div class="postContainer">
 			<div class="entryHeader">' .managePost($post).$postEntry['title']. '</div>
 			<div class="entryMain">
 			<p>' .summary($postEntry['content']). '</p>
@@ -59,7 +59,7 @@ else if(isGET('reply'))
 		{
 			$replyEntry = readEntry('reply', $reply);
 			$postEntry = readEntry('post', $replyEntry['post']);
-			$out['content'] .= '<div class="entryContainer">
+			$out['content'] .= '<div class="replyContainer">
 			<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</div>
 			<div class="entryMain">
 			<p>' .summary($replyEntry['content']). '</p>
@@ -75,10 +75,15 @@ else if(isGET('reply'))
 	}
 	$out['content'] .= pageControl($p, $total, 'reply');
 }
+else if(isGET('404'))
+{
+	$out['subtitle'] = 'HTTP 404';
+	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>
+	<p>That is an error :(</p>';
+}
 else
 {
-	header('Location: index.php?post');
-	exit;
+	redirect('index.php?post');
 }
 
 require 'footer.php';
