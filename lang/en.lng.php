@@ -40,5 +40,6 @@ $lang['ago'] = 'ago';
 $lang['errorLength'] = ' is too short or too long';
 $lang['errorBot'] = 'Incorrect CAPTCHA';
 $lang['replied'] = 'replied to';
+$lang['notFound'] = 'Oops! The page does not exist :(';
 
 ?>
