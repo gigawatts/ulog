@@ -32,8 +32,8 @@ function quote($reply)
 	if(isValidEntry('reply', $reply))
 	{
 		$replyEntry = readEntry('reply', $reply);
-		$topicEntry = readEntry('topic', $replyEntry['topic']);
-		return '<a class="quote" href="view.php?topic=' .$replyEntry['topic']. '&amp;p=' .onPage($reply, $topicEntry['reply']). '#' .$reply. '">&gt; ' .$replyEntry['trip']. '</a>';
+		$postEntry = readEntry('post', $replyEntry['post']);
+		return '<a class="quote" href="view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($reply, $postEntry['reply']). '#' .$reply. '">&gt; ' .$replyEntry['trip']. '</a>';
 	}
 	else
 	{
