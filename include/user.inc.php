@@ -27,13 +27,13 @@ function trip($name)
 	return $parts[0].(isset($parts[1])? '#' .substr(md5($parts[1]), -5) : '');
 }
 
-function permalink($reply)
+function quote($reply)
 {
 	if(isValidEntry('reply', $reply))
 	{
 		$replyEntry = readEntry('reply', $reply);
-		$postEntry = readEntry('post', $replyEntry['post']);
-		return '<a class="quote" href="view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($reply, $postEntry['reply']). '#' .$reply. '">&gt; ' .$replyEntry['trip']. '</a>';
+		$topicEntry = readEntry('topic', $replyEntry['topic']);
+		return '<a class="quote" href="view.php?topic=' .$replyEntry['topic']. '&amp;p=' .onPage($reply, $topicEntry['reply']). '#' .$reply. '">&gt; ' .$replyEntry['trip']. '</a>';
 	}
 	else
 	{

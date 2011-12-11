@@ -29,14 +29,14 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	}
 	$out['content'] .= ($postEntry['reply']? '<li>' .$lang['reply']. ' (' .count($postEntry['reply']). ')</li>' : '').
 	'<li>' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</li>
-	<li>' .entryDate($_GET['post']). '</li>
+	<li>' .toDate($_GET['post']). '</li>
 	</ul></div>
 	</div>';
-	$total = countPage($postEntry['reply']);
-	$p = pageNum($total);
+	$total = totalPage($postEntry['reply']);
+	$p = pid($total);
 	if($total > 0)
 	{
-		foreach(getPage($postEntry['reply'], $p) as $reply)
+		foreach(viewPage($postEntry['reply'], $p) as $reply)
 		{
 			$replyEntry = readEntry('reply', $reply);
 			$out['content'] .= '<div id="' .$reply. '" class="replyContainer">
@@ -46,7 +46,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 			(!$postEntry['locked']? '<p><a class="button" href="add.php?reply=' .$_GET['post']. '&amp;q=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 			hook('afterReply', $reply).
 			'</div>
-			<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
+			<div class="entryFooter"><ul><li>' .toDate($reply). '</li></ul></div>
 			</div>';
 		}
 	}
@@ -63,7 +63,7 @@ else if(isGET('category') && isValidEntry('category', $_GET['category']))
 		foreach($categoryEntry['post'] as $post)
 		{
 			$postEntry = readEntry('post', $post);
-			$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$postEntry['title']. '</a> - ' .entryDate($post). '</li>';
+			$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$postEntry['title']. '</a> - ' .toDate($post). '</li>';
 		}
 	}
 	else
@@ -92,7 +92,7 @@ else if(isGET('archive') && strlen($_GET['archive']) === 7)
 	foreach($archivedPosts as $post)
 	{
 		$postEntry = readEntry('post', $post);
-		$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$postEntry['title']. '</a> - ' .entryDate($post). '</li>';
+		$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$postEntry['title']. '</a> - ' .toDate($post). '</li>';
 	}
 	$out['content'] .= '</ul>';
 }

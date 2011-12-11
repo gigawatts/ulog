@@ -12,11 +12,11 @@ if(isGET('post'))
 	$out['content'] .= '<h1>' .(isAdmin()? '<a href="add.php?post">[+]</a>' : '').$out['subtitle']. '</h1>';
 	$posts = listEntry('post');
 	rsort($posts);
-	$total = countPage($posts);
-	$p = pageNum($total);
+	$total = totalPage($posts);
+	$p = pid($total);
 	if($total > 0)
 	{
-		foreach(getPage($posts, $p) as $post)
+		foreach(viewPage($posts, $p) as $post)
 		{
 			$postEntry = readEntry('post', $post);
 			$out['content'] .= '<div class="postContainer">
@@ -34,7 +34,7 @@ if(isGET('post'))
 			$out['content'] .= ($postEntry['reply']? '<li>' .$lang['reply']. ' (' .count($postEntry['reply']). ')</li>' : '').
 			($postEntry['locked']? '<li>' .$lang['locked']. '</li>' : '').
 			'<li>' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</li>
-			<li>' .entryDate($post). '</li>
+			<li>' .toDate($post). '</li>
 			</ul></div>
 			</div>';
 		}
@@ -51,11 +51,11 @@ else if(isGET('reply'))
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	$replies = listEntry('reply');
 	rsort($replies);
-	$total = countPage($replies);
-	$p = pageNum($total);
+	$total = totalPage($replies);
+	$p = pid($total);
 	if($total > 0)
 	{
-		foreach(getPage($replies, $p) as $reply)
+		foreach(viewPage($replies, $p) as $reply)
 		{
 			$replyEntry = readEntry('reply', $reply);
 			$postEntry = readEntry('post', $replyEntry['post']);
@@ -65,7 +65,7 @@ else if(isGET('reply'))
 			<p>' .summary($replyEntry['content']). '</p>
 			<p><a class="button" href="view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$lang['more']. '</a></p>
 			</div>
-			<div class="entryFooter"><ul><li>' .entryDate($reply). '</li></ul></div>
+			<div class="entryFooter"><ul><li>' .toDate($reply). '</li></ul></div>
 			</div>';
 		}
 	}

@@ -42,10 +42,6 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 	else
 	{
 		require 'include/parser.inc.php';
-		
-		$replyOptions['yes'] = $lang['yes'];
-		$replyOptions['no'] = $lang['no'];
-
 		$categoryOptions[''] = $lang['uncategorized'];
 		foreach(listEntry('category') as $category)
 		{
@@ -55,7 +51,7 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 		$out['content'] .= '<form action="edit.php?post=' .$_GET['post']. '" method="post">
 		<p>' .text('title', $postEntry['title']). '</p>
 		<p>' .textarea('content', $postEntry['content']). '</p>
-		<p>' .select('locked', $replyOptions, $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
+		<p>' .select('locked', array('yes' => $lang['yes'], 'no' => $lang['no']), $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
 		(isPOST('content')? '<p class="box">' .content(clean($_POST['content'])). '</p>' : '');
