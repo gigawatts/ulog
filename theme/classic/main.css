@@ -94,7 +94,8 @@ img {
 	background-color: #9A4444;
 }
 .box {
-	padding: 7px;
+	margin: 7px 0;
+	padding: 7px 14px;
 	border: 1px solid #CCC;
 }
 .quote {
@@ -113,7 +114,7 @@ img {
 	padding: 14px 7px 0 7px;
 	border-bottom: 1px dotted #777;
 }
-.replyContainer:target {
+:target {
 	background-color: #FFD;
 }
 #page {
