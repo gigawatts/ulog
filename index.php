@@ -14,7 +14,7 @@ if(isGET('post'))
 	rsort($posts);
 	$total = totalPage($posts);
 	$p = pid($total);
-	if($total > 0)
+	if($posts)
 	{
 		foreach(viewPage($posts, $p) as $post)
 		{
@@ -53,7 +53,7 @@ else if(isGET('reply'))
 	rsort($replies);
 	$total = totalPage($replies);
 	$p = pid($total);
-	if($total > 0)
+	if($replies)
 	{
 		foreach(viewPage($replies, $p) as $reply)
 		{

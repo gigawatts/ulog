@@ -34,7 +34,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	</div>';
 	$total = totalPage($postEntry['reply']);
 	$p = pid($total);
-	if($total > 0)
+	if($postEntry['reply'])
 	{
 		foreach(viewPage($postEntry['reply'], $p) as $reply)
 		{
