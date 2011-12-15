@@ -14,14 +14,14 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	saveEntry('post', $_GET['post'], $postEntry);
 
 	$out['subtitle'] = $postEntry['title'];
-	$out['content'] .= '<div class="postContainer">
-	<div class="entryHeader"><h1>' .managePost($_GET['post']).$out['subtitle']. '</h1></div>
-	<div class="entryMain">
+	$out['content'] .= '<div class="post">
+	<div class="title"><h1>' .managePost($_GET['post']).$out['subtitle']. '</h1></div>
+	<div class="content">
 	<p>' .content($postEntry['content']). '</p>'.
 	(!$postEntry['locked']? '<p><a class="button" href="add.php?reply=' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 	hook('afterPost', $_GET['post']).
 	'</div>
-	<div class="entryFooter"><ul>';
+	<div class="meta"><ul>';
 	if($postEntry['category'] !== '')
 	{
 		$categoryEntry = readEntry('category', $postEntry['category']);
@@ -39,14 +39,14 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 		foreach(viewPage($postEntry['reply'], $p) as $reply)
 		{
 			$replyEntry = readEntry('reply', $reply);
-			$out['content'] .= '<div id="' .$reply. '" class="replyContainer">
-			<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. '</div>
-			<div class="entryMain">
+			$out['content'] .= '<div id="' .$reply. '" class="reply">
+			<div class="title">' .manageReply($reply).$replyEntry['trip']. '</div>
+			<div class="content">
 			<p>' .content($replyEntry['content']). '</p>'.
 			(!$postEntry['locked']? '<p><a class="button" href="add.php?reply=' .$_GET['post']. '&amp;q=' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 			hook('afterReply', $reply).
 			'</div>
-			<div class="entryFooter"><ul><li>' .toDate($reply). '</li></ul></div>
+			<div class="meta"><ul><li>' .toDate($reply). '</li></ul></div>
 			</div>';
 		}
 	}

@@ -75,7 +75,7 @@ img {
 #footer ul {
 	padding: 0;
 }
-.button, .msg, #menu ul li, #footer ul li, #page ul li, .entryFooter ul li {
+.button, .msg, #menu ul li, #footer ul li, #page ul li, .meta ul li {
 	padding: 2px 4px;
 	margin: 4px;
 	display: inline-block;
@@ -101,16 +101,16 @@ img {
 .quote {
 	color: #789922;
 }
-.entryHeader {
+.title {
 	font-weight: bold;
 }
-.entryFooter {
+.meta {
 	text-align: right;
 }
-.entryFooter ul li {
+.meta ul li {
 	background-color: #FFEFC6;
 }
-.postContainer, .replyContainer {
+.post, .reply {
 	padding: 14px 7px 0 7px;
 	border-bottom: 1px dotted #777;
 }

@@ -19,13 +19,13 @@ if(isGET('post'))
 		foreach(viewPage($posts, $p) as $post)
 		{
 			$postEntry = readEntry('post', $post);
-			$out['content'] .= '<div class="postContainer">
-			<div class="entryHeader">' .managePost($post).$postEntry['title']. '</div>
-			<div class="entryMain">
+			$out['content'] .= '<div class="post">
+			<div class="title">' .managePost($post).$postEntry['title']. '</div>
+			<div class="content">
 			<p>' .summary($postEntry['content']). '</p>
 			<p><a class="button" href="view.php?post=' .$post. '">' .$lang['more']. '</a></p>
 			</div>
-			<div class="entryFooter"><ul>';
+			<div class="meta"><ul>';
 			if($postEntry['category'] !== '')
 			{
 				$categoryEntry = readEntry('category', $postEntry['category']);
@@ -59,13 +59,13 @@ else if(isGET('reply'))
 		{
 			$replyEntry = readEntry('reply', $reply);
 			$postEntry = readEntry('post', $replyEntry['post']);
-			$out['content'] .= '<div class="replyContainer">
-			<div class="entryHeader">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</div>
-			<div class="entryMain">
+			$out['content'] .= '<div class="reply">
+			<div class="title">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</div>
+			<div class="content">
 			<p>' .summary($replyEntry['content']). '</p>
 			<p><a class="button" href="view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$lang['more']. '</a></p>
 			</div>
-			<div class="entryFooter"><ul><li>' .toDate($reply). '</li></ul></div>
+			<div class="meta"><ul><li>' .toDate($reply). '</li></ul></div>
 			</div>';
 		}
 	}
