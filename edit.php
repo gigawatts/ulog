@@ -37,7 +37,7 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 			}
 		}
 		saveEntry('post', $_GET['post'], $postEntry);
-		$out['content'] .= '<p><a href="view.php?post=' .$_GET['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php/post/' .$_GET['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
@@ -48,7 +48,7 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 			$categoryEntry = readEntry('category', $category);
 			$categoryOptions[$category] = $categoryEntry['name'];
 		}
-		$out['content'] .= '<form action="edit.php?post=' .$_GET['post']. '" method="post">
+		$out['content'] .= '<form action="edit.php/post/' .$_GET['post']. '" method="post">
 		<p>' .text('title', $postEntry['title']). '</p>
 		<p>' .textarea('content', $postEntry['content']). '</p>
 		<p>' .select('locked', array('yes' => $lang['yes'], 'no' => $lang['no']), $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
@@ -67,12 +67,12 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 		$replyEntry['content'] = clean($_POST['content']);
 		saveEntry('reply', $_GET['reply'], $replyEntry);
 		$postEntry = readEntry('post', $replyEntry['post']);
-		$out['content'] .= '<p><a href="view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($_GET['reply'], $postEntry['reply']). '#' .$_GET['reply']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($_GET['reply'], $postEntry['reply']). '#' .$_GET['reply']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
 		require 'include/parser.inc.php';
-		$out['content'] .= '<form action="edit.php?reply=' .$_GET['reply']. '" method="post">
+		$out['content'] .= '<form action="edit.php/reply/' .$_GET['reply']. '" method="post">
 		<p>' .textarea('content', $replyEntry['content']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
@@ -89,11 +89,11 @@ else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
 		$linkEntry['name'] = clean($_POST['name']);
 		$linkEntry['url'] = clean($_POST['url']);
 		saveEntry('link', $_GET['link'], $linkEntry);
-		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action="edit.php?link=' .$_GET['link']. '" method="post">
+		$out['content'] .= '<form action="edit.php/link/' .$_GET['link']. '" method="post">
 		<p>' .text('name', $linkEntry['name']). '</p>
 		<p>' .text('url', $linkEntry['url']). '</p>
 		<p>' .submit(). '</p>
@@ -109,11 +109,11 @@ else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['catego
 	{
 		$categoryEntry['name'] = clean($_POST['name']);
 		saveEntry('category', $_GET['category'], $categoryEntry);
-		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action="edit.php?category=' .$_GET['category']. '" method="post">
+		$out['content'] .= '<form action="edit.php/category/' .$_GET['category']. '" method="post">
 		<p>' .text('name', $categoryEntry['name']). '</p>
 		<p>' .submit(). '</p>
 		</form>';

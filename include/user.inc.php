@@ -33,7 +33,7 @@ function quote($reply)
 	{
 		$replyEntry = readEntry('reply', $reply);
 		$postEntry = readEntry('post', $replyEntry['post']);
-		return '<a class="quote" href="view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($reply, $postEntry['reply']). '#' .$reply. '">&gt; ' .$replyEntry['trip']. '</a>';
+		return '<a class="quote" href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">&gt; ' .$replyEntry['trip']. '</a>';
 	}
 	else
 	{

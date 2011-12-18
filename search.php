@@ -24,7 +24,7 @@ if(checkBot() && check('post'))
 	{		
 		foreach($foundPosts as $post => $title)
 		{
-			$out['content'] .= '<li>' .managePost($post). '<a href="view.php?post=' .$post. '">' .$title. '</a></li>';
+			$out['content'] .= '<li>' .managePost($post). '<a href="view.php/post/' .$post. '">' .$title. '</a></li>';
 		}
 	}
 	else

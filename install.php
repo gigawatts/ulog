@@ -23,6 +23,6 @@ if(!isValidEntry('config', 'config'))
 	$_SESSION['role'] = 'admin';
 }
 
-redirect('index.php?post');
+redirect('index.php/post');
 
 ?>

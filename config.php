@@ -16,13 +16,13 @@ if(isGET('main') && isAdmin())
 		$config['theme'] = $_POST['theme'];
 		$config['lang'] = $_POST['lang'];
 		saveEntry('config', 'config', $config);
-		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
 		$themes = fdir('theme');
 		$langs = fdir('lang');
-		$out['content'] .= '<form action="config.php?main" method="post">
+		$out['content'] .= '<form action="config.php/main" method="post">
 		<p>' .password('password'). '</p>
 		<p>' .text('title', $config['title']). '</p>
 		<p>' .select('theme', array_combine($themes, $themes), $config['theme']). ' ' .select('lang', array_combine($langs, $langs), $config['lang']). '</p>
@@ -48,7 +48,7 @@ else if(isGET('plugin') && isAdmin())
 		{
 			foreach($plugins as $plugin)
 			{
-				$out['content'] .= '<li>' .$plugin.(function_exists($plugin. '_config')? ' - <a href="config.php?plugin=' .$plugin. '">' .$lang['config']. '</a>' : ''). '</li>';
+				$out['content'] .= '<li>' .$plugin.(function_exists($plugin. '_config')? ' - <a href="config.php/plugin/' .$plugin. '">' .$lang['config']. '</a>' : ''). '</li>';
 			}
 		}
 		else

@@ -4,9 +4,6 @@ $template = 'feed';
 require 'header.php';
 require 'include/parser.inc.php';
 
-$dir = dirname($_SERVER['SCRIPT_NAME']);
-$out['url'] = 'http://' .$_SERVER['SERVER_NAME'].$dir.($dir === '/'? '' : '/');
-
 if(isGET('post'))
 {
 	$out['subtitle'] = $lang['post'];
@@ -17,7 +14,7 @@ if(isGET('post'))
 		foreach($posts as $post)
 		{
 			$postEntry = readEntry('post', $post);
-			$url = $out['url']. 'view.php?post=' .$post;
+			$url = 'view.php/post/' .$post;
 			$out['content'] .= '<entry>
 			<id>' .$url. '</id>
 			<title>' .$postEntry['title']. '</title>
@@ -39,7 +36,7 @@ else if(isGET('reply'))
 		{
 			$replyEntry = readEntry('reply', $reply);
 			$postEntry = readEntry('post', $replyEntry['post']);
-			$url = $out['url']. 'view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($reply, $postEntry['reply']). '#' .$reply;
+			$url = 'view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply;
 			$out['content'] .= '<entry>
 			<id>' .$url. '</id>
 			<title>' .$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</title>

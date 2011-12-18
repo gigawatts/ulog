@@ -10,11 +10,11 @@ if(isGET('login'))
 	if(checkBot() && checkPass('password') && login($_POST['password']))
 	{
 		session_regenerate_id(true);
-		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action="auth.php?login" method="post">
+		$out['content'] .= '<form action="auth.php/login" method="post">
 		<p>' .password('password'). '</p>
 		<p>' .submit(). '</p>
 		</form>';
@@ -25,7 +25,7 @@ else if(isGET('logout') && isAdmin())
 	$_SESSION['role'] = '';
 	$out['subtitle'] = $lang['logout'];
 	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>
-	<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+	<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 }
 else
 {

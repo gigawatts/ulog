@@ -21,11 +21,11 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 		{
 			deleteEntry('reply', $reply);
 		}
-		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action="delete.php?post=' .$_GET['post']. '" method="post">
+		$out['content'] .= '<form action="delete.php/post/' .$_GET['post']. '" method="post">
 		<p>' .submit(). '</p>
 		</form>';
 	}
@@ -42,11 +42,11 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 		$postEntry = readEntry('post', $replyEntry['post']);
 		unset($postEntry['reply'][$_GET['reply']]);
 		saveEntry('post', $replyEntry['post'], $postEntry);
-		$out['content'] .= '<p><a href="view.php?post=' .$replyEntry['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php/post/' .$replyEntry['post']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action="delete.php?reply=' .$_GET['reply']. '" method="post">
+		$out['content'] .= '<form action="delete.php/reply/' .$_GET['reply']. '" method="post">
 		<p>' .submit(). '</p>
 		</form>';
 	}
@@ -59,11 +59,11 @@ else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
 	if(checkBot())
 	{
 		deleteEntry('link', $_GET['link']);
-		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action="delete.php?link=' .$_GET['link']. '" method="post">
+		$out['content'] .= '<form action="delete.php/link/' .$_GET['link']. '" method="post">
 		<p>' .submit(). '</p>
 		</form>';
 	}
@@ -82,11 +82,11 @@ else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['catego
 			$postEntry['category'] = '';
 			saveEntry('post', $post, $postEntry);
 		}
-		$out['content'] .= '<p><a href="index.php?post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
-		$out['content'] .= '<form action="delete.php?category=' .$_GET['category']. '" method="post">
+		$out['content'] .= '<form action="delete.php/category/' .$_GET['category']. '" method="post">
 		<p>' .submit(). '</p>
 		</form>';
 	}

@@ -9,7 +9,7 @@ $script = basename($_SERVER['SCRIPT_NAME'], '.php');
 if($script === 'index' || $script === 'view' || $script === 'search')
 {
 	//link
-	$out['sidebar'] .= '<h1>' .(isAdmin()? '<a href="add.php?link">[+]</a>' : '').$lang['link']. '</h1>
+	$out['sidebar'] .= '<h1>' .(isAdmin()? '<a href="add.php/link">[+]</a>' : '').$lang['link']. '</h1>
 	<ul>';
 	$links = listEntry('link');
 	if($links)
@@ -27,7 +27,7 @@ if($script === 'index' || $script === 'view' || $script === 'search')
 	$out['sidebar'] .= '</ul>';
 
 	//category
-	$out['sidebar'] .= '<h1>' .(isAdmin()? '<a href="add.php?category">[+]</a>' : '').$lang['category']. '</h1>
+	$out['sidebar'] .= '<h1>' .(isAdmin()? '<a href="add.php/category">[+]</a>' : '').$lang['category']. '</h1>
 	<ul>';
 	$categories = listEntry('category');
 	if($categories)
@@ -35,7 +35,7 @@ if($script === 'index' || $script === 'view' || $script === 'search')
 		foreach($categories as $category)
 		{
 			$categoryEntry = readEntry('category', $category);
-			$out['sidebar'] .= '<li>' .manageCategory($category). '<a href="view.php?category=' .$category. '">' .$categoryEntry['name']. ' (' .count($categoryEntry['post']). ')</a></li>';
+			$out['sidebar'] .= '<li>' .manageCategory($category). '<a href="view.php/category/' .$category. '">' .$categoryEntry['name']. ' (' .count($categoryEntry['post']). ')</a></li>';
 		}
 	}
 	else
@@ -70,7 +70,7 @@ if($script === 'index' || $script === 'view' || $script === 'search')
 			foreach($months as $month => $count)
 			{
 				$yearMonth = $year. '-' .$month;
-				$out['sidebar'] .= ' <a href="view.php?archive=' .$yearMonth. '">' .date('M', strtotime($yearMonth)). ' (' .$count. ')</a>';
+				$out['sidebar'] .= ' <a href="view.php/archive/' .$yearMonth. '">' .date('M', strtotime($yearMonth)). ' (' .$count. ')</a>';
 			}
 			$out['sidebar'] .= '</li>';
 		}

@@ -9,7 +9,7 @@ require 'include/page.inc.php';
 if(isGET('post'))
 {
 	$out['subtitle'] = $lang['post'];
-	$out['content'] .= '<h1>' .(isAdmin()? '<a href="add.php?post">[+]</a>' : '').$out['subtitle']. '</h1>';
+	$out['content'] .= '<h1>' .(isAdmin()? '<a href="add.php/post">[+]</a>' : '').$out['subtitle']. '</h1>';
 	$posts = listEntry('post');
 	rsort($posts);
 	$total = totalPage($posts);
@@ -23,13 +23,13 @@ if(isGET('post'))
 			<div class="title">' .managePost($post).$postEntry['title']. '</div>
 			<div class="content">
 			<p>' .summary($postEntry['content']). '</p>
-			<p><a class="button" href="view.php?post=' .$post. '">' .$lang['more']. '</a></p>
+			<p><a class="button" href="view.php/post/' .$post. '">' .$lang['more']. '</a></p>
 			</div>
 			<div class="meta"><ul>';
 			if($postEntry['category'] !== '')
 			{
 				$categoryEntry = readEntry('category', $postEntry['category']);
-				$out['content'] .= '<li><a href="view.php?category=' .$postEntry['category']. '">' .$categoryEntry['name']. '</a></li>';
+				$out['content'] .= '<li><a href="view.php/category/' .$postEntry['category']. '">' .$categoryEntry['name']. '</a></li>';
 			}
 			$out['content'] .= ($postEntry['reply']? '<li>' .$lang['reply']. ' (' .count($postEntry['reply']). ')</li>' : '').
 			($postEntry['locked']? '<li>' .$lang['locked']. '</li>' : '').
@@ -63,7 +63,7 @@ else if(isGET('reply'))
 			<div class="title">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</div>
 			<div class="content">
 			<p>' .summary($replyEntry['content']). '</p>
-			<p><a class="button" href="view.php?post=' .$replyEntry['post']. '&amp;p=' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$lang['more']. '</a></p>
+			<p><a class="button" href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$lang['more']. '</a></p>
 			</div>
 			<div class="meta"><ul><li>' .toDate($reply). '</li></ul></div>
 			</div>';
@@ -83,7 +83,7 @@ else if(isGET('404'))
 }
 else
 {
-	redirect('index.php?post');
+	redirect('index.php/post');
 }
 
 require 'footer.php';
