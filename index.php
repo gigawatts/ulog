@@ -43,7 +43,7 @@ if(isGET('post'))
 	{
 		$out['content'] .= '<p>' .$lang['none']. '</p>';
 	}
-	$out['content'] .= pageControl($p, $total, 'post');
+	$out['content'] .= pageControl($p, $total, 'index.php/post');
 }
 else if(isGET('reply'))
 {
@@ -73,7 +73,7 @@ else if(isGET('reply'))
 	{
 		$out['content'] .= '<p>' .$lang['none']. '</p>';
 	}
-	$out['content'] .= pageControl($p, $total, 'reply');
+	$out['content'] .= pageControl($p, $total, 'index.php/reply');
 }
 else if(isGET('404'))
 {

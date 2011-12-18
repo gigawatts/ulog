@@ -50,7 +50,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 			</div>';
 		}
 	}
-	$out['content'] .= pageControl($p, $total, 'post/' .$_GET['post']);
+	$out['content'] .= pageControl($p, $total, 'view.php/post/' .$_GET['post']);
 }
 else if(isGET('category') && isValidEntry('category', $_GET['category']))
 {
