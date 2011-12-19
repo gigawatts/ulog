@@ -60,12 +60,11 @@ else if(isGET('reply'))
 			$replyEntry = readEntry('reply', $reply);
 			$postEntry = readEntry('post', $replyEntry['post']);
 			$out['content'] .= '<div class="reply">
-			<div class="title">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</div>
+			<div class="title">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. ' - ' .toDate($reply). '</div>
 			<div class="content">
 			<p>' .summary($replyEntry['content']). '</p>
 			<p><a class="button" href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$lang['more']. '</a></p>
 			</div>
-			<div class="meta"><ul><li>' .toDate($reply). '</li></ul></div>
 			</div>';
 		}
 	}
