@@ -6,7 +6,8 @@ function core_head()
 	<script src="plugin/core/js/bbcode.js"></script>
 	<script src="plugin/core/js/archive.js"></script>
 	<script src="plugin/core/js/loadreply.js"></script>
-	<script src="plugin/core/js/loadform.js"></script>';
+	<script src="plugin/core/js/loadform.js"></script>
+	<script src="plugin/core/js/imgzoom.js"></script>';
 }
 
 ?>

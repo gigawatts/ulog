@@ -21,10 +21,8 @@ if(isGET('post'))
 			$postEntry = readEntry('post', $post);
 			$out['content'] .= '<div class="post">
 			<div class="title">' .managePost($post).$postEntry['title']. '</div>
-			<div class="content">
-			<p>' .summary($postEntry['content']). '</p>
+			<div class="content">' .summary($postEntry['content']). '</div>
 			<p><a class="button" href="view.php/post/' .$post. '">' .$lang['more']. '</a></p>
-			</div>
 			<div class="meta"><ul>';
 			if($postEntry['category'] !== '')
 			{
@@ -61,10 +59,8 @@ else if(isGET('reply'))
 			$postEntry = readEntry('post', $replyEntry['post']);
 			$out['content'] .= '<div class="reply">
 			<div class="title">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. ' - ' .toDate($reply). '</div>
-			<div class="content">
-			<p>' .summary($replyEntry['content']). '</p>
+			<div class="content">' .summary($replyEntry['content']). '</div>
 			<p><a class="button" href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$lang['more']. '</a></p>
-			</div>
 			</div>';
 		}
 	}

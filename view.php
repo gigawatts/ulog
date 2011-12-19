@@ -16,12 +16,10 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	$out['subtitle'] = $postEntry['title'];
 	$out['content'] .= '<div class="post">
 	<div class="title"><h1>' .managePost($_GET['post']).$out['subtitle']. '</h1></div>
-	<div class="content">
-	<p>' .content($postEntry['content']). '</p>'.
+	<div class="content">' .content($postEntry['content']). '</div>'.
 	(!$postEntry['locked']? '<p><a class="button" href="add.php/reply/' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 	hook('afterPost', $_GET['post']).
-	'</div>
-	<div class="meta"><ul>';
+	'<div class="meta"><ul>';
 	if($postEntry['category'] !== '')
 	{
 		$categoryEntry = readEntry('category', $postEntry['category']);
@@ -41,12 +39,10 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 			$replyEntry = readEntry('reply', $reply);
 			$out['content'] .= '<div id="' .$reply. '" class="reply">
 			<div class="title">' .manageReply($reply).$replyEntry['trip']. ' - ' .toDate($reply). '</div>
-			<div class="content">
-			<p>' .content($replyEntry['content']). '</p>'.
+			<div class="content">' .content($replyEntry['content']). '</div>'.
 			(!$postEntry['locked']? '<p><a class="button" href="add.php/reply/' .$_GET['post']. '/q/' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 			hook('afterReply', $reply).
-			'</div>
-			</div>';
+			'</div>';
 		}
 	}
 	$out['content'] .= pageControl($p, $total, 'view.php/post/' .$_GET['post']);
