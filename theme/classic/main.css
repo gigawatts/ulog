@@ -4,7 +4,7 @@ html {
 	font-size: 14px;
 	color: #555;
 }
-ul, p {
+ul, p, .content, .box {
 	margin: 7px 0;
 }
 ul {
@@ -93,7 +93,6 @@ input[type="text"] {
 	background-color: #9A4444;
 }
 .box {
-	margin: 7px 0;
 	padding: 7px 14px;
 	border: 1px solid #CCC;
 }
@@ -102,9 +101,6 @@ input[type="text"] {
 }
 .title {
 	font-weight: bold;
-}
-.content {
-	padding: 7px 0;
 }
 .meta {
 	text-align: right;
