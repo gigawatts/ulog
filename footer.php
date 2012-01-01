@@ -1,12 +1,11 @@
 <?php
 
-if(!isset($template))
+if(!isset($out))
 {
 	exit;
 }
 
-$script = basename($_SERVER['SCRIPT_NAME'], '.php');
-if($script === 'index' || $script === 'view' || $script === 'search')
+if($out['self'] === 'index' || $out['self'] === 'view' || $out['self'] === 'search')
 {
 	//link
 	$out['sidebar'] .= '<h1>' .(isAdmin()? '<a href="add.php/link">[+]</a>' : '').$lang['link']. '</h1>
@@ -82,6 +81,13 @@ if($script === 'index' || $script === 'view' || $script === 'search')
 	$out['sidebar'] .= '</ul>';
 }
 
-require 'theme/' .$config['theme']. '/' .$template. '.tpl.php';
+if($out['self'] === 'feed')
+{
+	require 'theme/' .$config['theme']. '/feed.tpl.php';
+}
+else
+{
+	require 'theme/' .$config['theme']. '/main.tpl.php';
+}
 
 ?>

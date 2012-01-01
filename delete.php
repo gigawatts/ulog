@@ -1,6 +1,6 @@
 <?php
 
-$template = 'main';
+$out['self'] = 'delete';
 require 'header.php';
 
 if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))

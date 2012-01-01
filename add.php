@@ -1,6 +1,6 @@
 <?php
 
-$template = 'main';
+$out['self'] = 'add';
 require 'header.php';
 
 if(isGET('post') && isAdmin())

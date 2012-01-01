@@ -1,6 +1,6 @@
 <?php
 
-$template = 'main';
+$out['self'] = 'search';
 require 'header.php';
 require 'include/manage.inc.php';
 

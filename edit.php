@@ -1,6 +1,6 @@
 <?php
 
-$template = 'main';
+$out['self'] = 'edit';
 require 'header.php';
 
 if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
