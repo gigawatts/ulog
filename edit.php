@@ -54,7 +54,7 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 		<p>' .select('locked', array('yes' => $lang['yes'], 'no' => $lang['no']), $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(isPOST('content')? '<p class="box">' .content(clean($_POST['content'])). '</p>' : '');
+		(isPOST('content')? '<div class="box">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
 else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntry('reply', $_GET['reply']))
@@ -76,7 +76,7 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 		<p>' .textarea('content', $replyEntry['content']). '</p>
 		<p>' .submit(). '</p>
 		</form>'.
-		(isPOST('content')? '<p class="box">' .content(clean($_POST['content'])). '</p>' : '');
+		(isPOST('content')? '<div class="box">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
 else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
