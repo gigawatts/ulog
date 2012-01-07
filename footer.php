@@ -65,13 +65,13 @@ if($out['self'] === 'index' || $out['self'] === 'view' || $out['self'] === 'sear
 	{
 		foreach($archives as $year => $months)
 		{
-			$out['sidebar'] .= '<li><b>' .$year. '</b>';
+			$out['sidebar'] .= '<li><b>' .$year. '</b><span class="months">';
 			foreach($months as $month => $count)
 			{
 				$yearMonth = $year. '-' .$month;
 				$out['sidebar'] .= ' <a href="view.php/archive/' .$yearMonth. '">' .date('M', strtotime($yearMonth)). ' (' .$count. ')</a>';
 			}
-			$out['sidebar'] .= '</li>';
+			$out['sidebar'] .= '</span></li>';
 		}
 	}
 	else
