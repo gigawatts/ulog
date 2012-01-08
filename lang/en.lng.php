@@ -37,9 +37,10 @@ $lang['minute'] = 'minute';
 $lang['second'] = 'second';
 $lang['plural'] = 's';
 $lang['ago'] = 'ago';
-$lang['errorLength'] = ' is too short or too long';
-$lang['errorBot'] = 'Incorrect CAPTCHA';
+$lang['errLen'] = 'Too short / long';
+$lang['errBot'] = 'Incorrect CAPTCHA';
 $lang['replied'] = 'replied to';
 $lang['notFound'] = 'Oops! The page does not exist :(';
+$lang['errNotMatch'] = 'Mismatched password';
 
 ?>
