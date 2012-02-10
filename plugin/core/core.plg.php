@@ -6,7 +6,7 @@ function core_head()
 		core_init();
 	$core = readEntry('plugin', 'core');
 	$out = '';
-	foreach(array('candy', 'bbcode', 'archive', 'loadreply', 'loadform', 'imgzoom') as $feature)
+	foreach(array('candy', 'bbcode', 'loadreply', 'loadform', 'imgzoom') as $feature)
 	{
 		$out .= $core[$feature]? '<script src="plugin/core/js/' .$feature. '.js"></script>' : '';
 	}
@@ -15,7 +15,7 @@ function core_head()
 
 function core_init()
 {
-	foreach(array('candy', 'bbcode', 'archive', 'loadreply', 'loadform', 'imgzoom') as $feature)
+	foreach(array('candy', 'bbcode', 'loadreply', 'loadform', 'imgzoom') as $feature)
 	{
 		$core[$feature] = true;
 	}
@@ -34,7 +34,6 @@ function core_config()
 	{
 		$lang['candy'] = 'eye candy';
 		$lang['bbcode'] = 'bbcode editor';
-		$lang['archive'] = 'fold archive';
 		$lang['loadreply'] = 'hover to read reply';
 		$lang['loadform'] = 'quick reply';
 		$lang['imgzoom'] = 'zoom image on click';
@@ -42,7 +41,7 @@ function core_config()
 		$core = readEntry('plugin', 'core');
 		$options = array('yes' => $lang['yes'], 'no' => $lang['no']);
 		$out = '<form action="config.php/plugin/core" method="post">';
-		foreach(array('candy', 'bbcode', 'archive', 'loadreply', 'loadform', 'imgzoom') as $feature)
+		foreach(array('candy', 'bbcode', 'loadreply', 'loadform', 'imgzoom') as $feature)
 		{
 			$out .= '<p>' .select($feature, $options, $core[$feature]? 'yes' : 'no'). '</p>';
 		}
@@ -54,7 +53,7 @@ function core_config()
 
 function core_checkConfig()
 {
-	foreach(array('candy', 'bbcode', 'archive', 'loadreply', 'loadform', 'imgzoom') as $feature)
+	foreach(array('candy', 'bbcode', 'loadreply', 'loadform', 'imgzoom') as $feature)
 	{
 		if(!isPOST($feature) || ($_POST[$feature] !== 'yes' && $_POST[$feature] !== 'no'))
 			return false;
@@ -64,7 +63,7 @@ function core_checkConfig()
 
 function core_getConfig()
 {
-	foreach(array('candy', 'bbcode', 'archive', 'loadreply', 'loadform', 'imgzoom') as $feature)
+	foreach(array('candy', 'bbcode', 'loadreply', 'loadform', 'imgzoom') as $feature)
 	{
 		$out[$feature] = $_POST[$feature] === 'yes';
 	}

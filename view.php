@@ -67,29 +67,40 @@ else if(isGET('category') && isValidEntry('category', $_GET['category']))
 	}
 	$out['content'] .= '</ul>';
 }
-else if(isGET('archive') && strlen($_GET['archive']) === 7)
+else if(isGET('archive') && strlen($_GET['archive']) === 4)
 {
 	$archivedPosts = array();
-	foreach(listEntry('post') as $post)
+	$posts = listEntry('post');
+	sort($posts);
+	foreach($posts as $post)
 	{
-		if($_GET['archive'] === substr($post, 0, 7))
+		if($_GET['archive'] === substr($post, 0, 4))
 		{
-			$archivedPosts[] = $post;
+			$month = substr($post, 5, 2);
+			$archivedPosts[$month][] = $post;
 		}
 	}
 	if(!$archivedPosts)
 	{
 		exit;
 	}
-	$out['subtitle'] = date('M Y', strtotime($_GET['archive']));
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>
-	<ul>';
-	foreach($archivedPosts as $post)
+	$monthStr = array(
+		'01' => 'Jan', '02' => 'Feb', '03' => 'Mar', '04' => 'Apr', '05' => 'May', '06' => 'Jun',
+		'07' => 'Jul', '08' => 'Aug', '09' => 'Sep', '10' => 'Oct', '11' => 'Nov', '12' => 'Dec'
+	);
+	$out['subtitle'] = $_GET['archive'];
+	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
+	foreach($archivedPosts as $month => $monthPosts)
 	{
-		$postEntry = readEntry('post', $post);
-		$out['content'] .= '<li>' .managePost($post). '<a href="view.php/post/' .$post. '">' .$postEntry['title']. '</a> - ' .toDate($post). '</li>';
+		$out['content'] .= '<b>' .$monthStr[$month]. '</b>
+		<ul>';
+		foreach($monthPosts as $post)
+		{
+			$postEntry = readEntry('post', $post);
+			$out['content'] .= '<li>' .managePost($post). '<a href="view.php/post/' .$post. '">' .$postEntry['title']. '</a> - ' .toDate($post). '</li>';
+		}
+		$out['content'] .= '</ul>';
 	}
-	$out['content'] .= '</ul>';
 }
 else if(isGET('plugin') && function_exists($_GET['plugin']. '_view'))
 {

@@ -48,14 +48,13 @@ if($out['self'] === 'index' || $out['self'] === 'view' || $out['self'] === 'sear
 	foreach(listEntry('post') as $post)
 	{
 		$year = substr($post, 0, 4);
-		$month = substr($post, 5, 2);
-		if(isset($archives[$year][$month]))
+		if(isset($archives[$year]))
 		{
-			$archives[$year][$month]++;
+			$archives[$year]++;
 		}
 		else
 		{
-			$archives[$year][$month] = 1;
+			$archives[$year] = 1;
 		}
 	}
 
@@ -63,15 +62,9 @@ if($out['self'] === 'index' || $out['self'] === 'view' || $out['self'] === 'sear
 	<ul>';
 	if($archives)
 	{
-		foreach($archives as $year => $months)
+		foreach($archives as $year => $count)
 		{
-			$out['sidebar'] .= '<li><b>' .$year. '</b><span class="months">';
-			foreach($months as $month => $count)
-			{
-				$yearMonth = $year. '-' .$month;
-				$out['sidebar'] .= ' <a href="view.php/archive/' .$yearMonth. '">' .date('M', strtotime($yearMonth)). ' (' .$count. ')</a>';
-			}
-			$out['sidebar'] .= '</span></li>';
+			$out['sidebar'] .= '<li><a href="view.php/archive/' .$year. '">' .$year. ' (' .$count. ')</a></li>';
 		}
 	}
 	else
