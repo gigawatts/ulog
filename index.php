@@ -29,7 +29,7 @@ if(isGET('post'))
 				$categoryEntry = readEntry('category', $postEntry['category']);
 				$out['content'] .= '<a class="btn" href="view.php/category/' .$postEntry['category']. '">' .$categoryEntry['name']. '</a>';
 			}
-			$out['content'] .= ($postEntry['reply']? '<a href="#">' .$lang['reply']. ' (' .count($postEntry['reply']). ')</a>' : '').
+			$out['content'] .= ($postEntry['reply']? '<a class="btn" href="#">' .$lang['reply']. ' (' .count($postEntry['reply']). ')</a>' : '').
 			($postEntry['locked']? '<a class="btn" href="#">' .$lang['locked']. '</a>' : '').
 			'<a class="btn" href="#">' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</a>
 			<a class="btn" href="#">' .toDate($post). '</a>
