@@ -48,12 +48,12 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 			$categoryEntry = readEntry('category', $category);
 			$categoryOptions[$category] = $categoryEntry['name'];
 		}
-		$out['content'] .= '<form action="edit.php/post/' .$_GET['post']. '" method="post">
-		<p>' .text('title', $postEntry['title']). '</p>
-		<p>' .textarea('content', $postEntry['content']). '</p>
-		<p>' .select('locked', array('yes' => $lang['yes'], 'no' => $lang['no']), $postEntry['locked']? 'yes' : 'no'). ' ' .select('category', $categoryOptions, $postEntry['category']). '</p>
-		<p>' .submit(). '</p>
-		</form>'.
+		$out['content'] .= form('edit.php/post/' .$_GET['post'],
+			text('title', $postEntry['title']).
+			textarea('content', $postEntry['content']).
+			select('locked', array('yes' => $lang['yes'], 'no' => $lang['no']), $postEntry['locked']? 'yes' : 'no').
+			select('category', $categoryOptions, $postEntry['category']).
+			submit()).
 		(isPOST('content')? '<div class="alert">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
@@ -72,10 +72,10 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 	else
 	{
 		require 'include/parser.inc.php';
-		$out['content'] .= '<form action="edit.php/reply/' .$_GET['reply']. '" method="post">
-		<p>' .textarea('content', $replyEntry['content']). '</p>
-		<p>' .submit(). '</p>
-		</form>'.
+		$out['content'] .= form('edit.php/reply/' .$_GET['reply'],
+			textarea('content', $replyEntry['content']).
+			submit())
+.
 		(isPOST('content')? '<div class="alert">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
@@ -93,11 +93,10 @@ else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
 	}
 	else
 	{
-		$out['content'] .= '<form action="edit.php/link/' .$_GET['link']. '" method="post">
-		<p>' .text('name', $linkEntry['name']). '</p>
-		<p>' .text('url', $linkEntry['url']). '</p>
-		<p>' .submit(). '</p>
-		</form>';
+		$out['content'] .= form('edit.php/link/' .$_GET['link'],
+			text('name', $linkEntry['name']).
+			text('url', $linkEntry['url']).
+			submit());
 	}
 }
 else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['category']))
@@ -113,10 +112,9 @@ else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['catego
 	}
 	else
 	{
-		$out['content'] .= '<form action="edit.php/category/' .$_GET['category']. '" method="post">
-		<p>' .text('name', $categoryEntry['name']). '</p>
-		<p>' .submit(). '</p>
-		</form>';
+		$out['content'] .= form('edit.php/category/' .$_GET['category'],
+			text('name', $categoryEntry['name']).
+			submit());
 	}
 }
 else

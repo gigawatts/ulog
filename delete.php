@@ -25,9 +25,8 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 	}
 	else
 	{
-		$out['content'] .= '<form action="delete.php/post/' .$_GET['post']. '" method="post">
-		<p>' .submit(). '</p>
-		</form>';
+		$out['content'] .= form('delete.php/post/' .$_GET['post'],
+			submit());
 	}
 }
 else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntry('reply', $_GET['reply']))
@@ -46,9 +45,8 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 	}
 	else
 	{
-		$out['content'] .= '<form action="delete.php/reply/' .$_GET['reply']. '" method="post">
-		<p>' .submit(). '</p>
-		</form>';
+		$out['content'] .= form('delete.php/reply/' .$_GET['reply'],
+			submit());
 	}
 }
 else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
@@ -63,9 +61,8 @@ else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
 	}
 	else
 	{
-		$out['content'] .= '<form action="delete.php/link/' .$_GET['link']. '" method="post">
-		<p>' .submit(). '</p>
-		</form>';
+		$out['content'] .= form('delete.php/link/' .$_GET['link'],
+			submit());
 	}
 }
 else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['category']))
@@ -86,9 +83,8 @@ else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['catego
 	}
 	else
 	{
-		$out['content'] .= '<form action="delete.php/category/' .$_GET['category']. '" method="post">
-		<p>' .submit(). '</p>
-		</form>';
+		$out['content'] .= form('delete.php/category/' .$_GET['category'],
+			submit());
 	}
 }
 else

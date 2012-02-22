@@ -34,10 +34,9 @@ if(checkBot() && check('post'))
 	$out['content'] .= '</ul>';
 }
 
-$out['content'] .= '<form action="search.php" method="post">
-<p>' .text('post'). '</p>
-<p>' .submit(). '</p>
-</form>';
+$out['content'] .= form('search.php',
+	text('post').
+	submit());
 
 require 'footer.php';
 
