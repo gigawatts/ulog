@@ -22,26 +22,32 @@ header('Content-Type: text/html; charset=UTF-8');
 	<?php echo hook('head', $out['self']);?>
 </head>
 <body>
-	<div id="container">
-		<div id="header"><h2><?php echo $config['title'];?></h2></div>
-		<div id="menu">
-			<ul>
-			<li><a href="index.php/post"><?php echo $lang['post'];?></a></li>
-			<li><a href="index.php/reply"><?php echo $lang['reply'];?></a></li>
-			<li><a href="search.php"><?php echo $lang['search'];?></a></li>
-			<?php echo hook('menu', $out['self']).
-			(isAdmin()?
-			'<li><a href="config.php/main">' .$lang['config']. '</a></li>
-			<li><a href="config.php/plugin">' .$lang['plugin']. '</a></li>
-			<li><a href="auth.php/logout">' .$lang['logout']. '</a></li>' :
-			'<li><a href="auth.php/login">' .$lang['login']. '</a></li>');?>
-			</ul>
-			<?php echo hook('beforeMain', $out['self']);?>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="#"><?php echo $config['title'];?></a>
+				<ul class="nav">
+				<li><a href="index.php/post"><?php echo $lang['post'];?></a></li>
+				<li><a href="index.php/reply"><?php echo $lang['reply'];?></a></li>
+				<li><a href="search.php"><?php echo $lang['search'];?></a></li>
+				<?php echo hook('menu', $out['self']).
+				(isAdmin()?
+				'<li><a href="config.php/main">' .$lang['config']. '</a></li>
+				<li><a href="config.php/plugin">' .$lang['plugin']. '</a></li>
+				<li><a href="auth.php/logout">' .$lang['logout']. '</a></li>' :
+				'<li><a href="auth.php/login">' .$lang['login']. '</a></li>');?>
+				</ul>
+			</div>
 		</div>
-		<div id="main"><?php echo $out['content'];?></div>
-		<div id="sidebar"><?php echo $out['sidebar'].hook('sidebar', $out['self']);?></div>
+	</div>
+	<div class="container">
+		<?php echo hook('beforeMain', $out['self']);?>
+		<div class="row">
+			<div id="main" class="span9"><?php echo $out['content'];?></div>
+			<div id="sidebar" class="span3"><?php echo $out['sidebar'].hook('sidebar', $out['self']);?></div>
+		</div>
+		<?php echo hook('afterMain', $out['self']);?>
 		<div id="footer">
-			<?php echo hook('afterMain', $out['self']);?>
 			<ul>
 			<li><?php echo $lang['poweredBy'];?> <a href="http://github.com/taylorchu/goolog">goolog</a></li>
 			<li><a href="feed.php/post"><?php echo $lang['feed'];?> (<?php echo $lang['post'];?>)</a></li>
