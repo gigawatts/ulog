@@ -9,7 +9,7 @@ require 'include/page.inc.php';
 if(isGET('post'))
 {
 	$out['subtitle'] = $lang['post'];
-	$out['content'] .= '<h1>' .(isAdmin()? '<a href="add.php/post">[+]</a>' : '').$out['subtitle']. '</h1>';
+	$out['content'] .= '<h1>' .(isAdmin()? '<a href="add.php/post"><i class="icon-plus"></i></a>' : '').$out['subtitle']. '</h1>';
 	$posts = listEntry('post');
 	rsort($posts);
 	$total = totalPage($posts);
