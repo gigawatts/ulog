@@ -23,16 +23,16 @@ if(isGET('post'))
 			<div class="title">' .managePost($post).$postEntry['title']. '</div>
 			<div class="content">' .summary($postEntry['content']). '</div>
 			<p><a class="btn" href="view.php/post/' .$post. '">' .$lang['more']. '</a></p>
-			<div class="pull-right btn-group">';
+			<div>';
 			if($postEntry['category'] !== '')
 			{
 				$categoryEntry = readEntry('category', $postEntry['category']);
-				$out['content'] .= '<a class="btn" href="view.php/category/' .$postEntry['category']. '">' .$categoryEntry['name']. '</a>';
+				$out['content'] .= '<a class="label" href="view.php/category/' .$postEntry['category']. '">' .$categoryEntry['name']. '</a>';
 			}
-			$out['content'] .= ($postEntry['reply']? '<a class="btn" href="#">' .$lang['reply']. ' (' .count($postEntry['reply']). ')</a>' : '').
-			($postEntry['locked']? '<a class="btn" href="#">' .$lang['locked']. '</a>' : '').
-			'<a class="btn" href="#">' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</a>
-			<a class="btn" href="#">' .toDate($post). '</a>
+			$out['content'] .= ($postEntry['reply']? '<a class="label" href="#">' .$lang['reply']. ' (' .count($postEntry['reply']). ')</a>' : '').
+			($postEntry['locked']? '<a class="label" href="#">' .$lang['locked']. '</a>' : '').
+			'<a class="label" href="#">' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</a>
+			<a class="label" href="#">' .toDate($post). '</a>
 			</div>
 			</div>';
 		}
