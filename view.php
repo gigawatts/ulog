@@ -19,16 +19,16 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	<div class="content">' .content($postEntry['content']). '</div>'.
 	(!$postEntry['locked']? '<p><a class="btn" href="add.php/reply/' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 	hook('afterPost', $_GET['post']).
-	'<div class="meta"><ul>';
+	'<div class="pull-right btn-group">';
 	if($postEntry['category'] !== '')
 	{
 		$categoryEntry = readEntry('category', $postEntry['category']);
-		$out['content'] .= '<li><a href="view.php/category/' .$postEntry['category']. '">' .$categoryEntry['name']. '</a></li>';
+		$out['content'] .= '<a class="btn" href="view.php/category/' .$postEntry['category']. '">' .$categoryEntry['name']. '</a>';
 	}
-	$out['content'] .= ($postEntry['reply']? '<li>' .$lang['reply']. ' (' .count($postEntry['reply']). ')</li>' : '').
-	'<li>' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</li>
-	<li>' .toDate($_GET['post']). '</li>
-	</ul></div>
+	$out['content'] .= ($postEntry['reply']? '<a class="btn" href="#">' .$lang['reply']. ' (' .count($postEntry['reply']). ')</a>' : '').
+	'<a class="btn" href="#">' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</a>
+	<a class="btn" href="#">' .toDate($_GET['post']). '</a>
+	</div>
 	</div>';
 	$total = totalPage($postEntry['reply']);
 	$p = pid($total);
