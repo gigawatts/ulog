@@ -7,7 +7,6 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 {
 	$postEntry = readEntry('post', $_GET['post']);
 	$out['subtitle'] = $lang['edit'].$lang['post']. ' : ' .$postEntry['title'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('title') && check('content', 1, 2000) &&
 		isPOST('locked') && ($_POST['locked'] === 'yes' || $_POST['locked'] === 'no') &&
 		isPOST('category') && ($_POST['category'] === '' || isValidEntry('category', $_POST['category'])))
@@ -61,7 +60,6 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 {
 	$replyEntry = readEntry('reply', $_GET['reply']);
 	$out['subtitle'] = $lang['edit'].$lang['reply'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('content', 1, 2000))
 	{
 		$replyEntry['content'] = clean($_POST['content']);
@@ -83,7 +81,6 @@ else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
 {
 	$linkEntry = readEntry('link', $_GET['link']);
 	$out['subtitle'] = $lang['edit'].$lang['link']. ' : ' .$linkEntry['name'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('name') && check('url', 1, 80))
 	{
 		$linkEntry['name'] = clean($_POST['name']);
@@ -103,7 +100,6 @@ else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['catego
 {
 	$categoryEntry = readEntry('category', $_GET['category']);
 	$out['subtitle'] = $lang['edit'].$lang['category']. ' : ' .$categoryEntry['name'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('name'))
 	{
 		$categoryEntry['name'] = clean($_POST['name']);

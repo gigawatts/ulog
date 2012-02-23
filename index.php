@@ -9,7 +9,7 @@ require 'include/page.inc.php';
 if(isGET('post'))
 {
 	$out['subtitle'] = $lang['post'];
-	$out['content'] .= '<h1>' .(isAdmin()? '<a href="add.php/post"><i class="icon-plus"></i></a>' : '').$out['subtitle']. '</h1>';
+	$out['sub_prefix'] = isAdmin()? '<a href="add.php/post"><i class="icon-plus"></i></a>' : '';
 	$posts = listEntry('post');
 	rsort($posts);
 	$total = totalPage($posts);
@@ -46,7 +46,6 @@ if(isGET('post'))
 else if(isGET('reply'))
 {
 	$out['subtitle'] = $lang['reply'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	$replies = listEntry('reply');
 	rsort($replies);
 	$total = totalPage($replies);
@@ -73,8 +72,7 @@ else if(isGET('reply'))
 else if(isGET('404'))
 {
 	$out['subtitle'] = 'HTTP 404';
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>
-	<p>' .$lang['notFound']. '</p>';
+	$out['content'] .= '<p>' .$lang['notFound']. '</p>';
 }
 else
 {

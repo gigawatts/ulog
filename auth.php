@@ -6,7 +6,6 @@ require 'header.php';
 if(isGET('login'))
 {
 	$out['subtitle'] = $lang['login'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && checkPass('password') && login($_POST['password']))
 	{
 		session_regenerate_id(true);
@@ -23,8 +22,7 @@ else if(isGET('logout') && isAdmin())
 {
 	$_SESSION['role'] = '';
 	$out['subtitle'] = $lang['logout'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>
-	<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+	$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 }
 else
 {

@@ -8,7 +8,7 @@ if(!isset($out))
 if($out['self'] === 'index' || $out['self'] === 'view' || $out['self'] === 'search')
 {
 	//link
-	$out['sidebar'] .= '<h1>' .(isAdmin()? '<a href="add.php/link"><i class="icon-plus"></i></a>' : '').$lang['link']. '</h1>
+	$out['sidebar'] .= '<b>' .(isAdmin()? '<a href="add.php/link"><i class="icon-plus"></i></a>' : '').$lang['link']. '</b>
 	<ul>';
 	$links = listEntry('link');
 	if($links)
@@ -26,7 +26,7 @@ if($out['self'] === 'index' || $out['self'] === 'view' || $out['self'] === 'sear
 	$out['sidebar'] .= '</ul>';
 
 	//category
-	$out['sidebar'] .= '<h1>' .(isAdmin()? '<a href="add.php/category"><i class="icon-plus"></i></a>' : '').$lang['category']. '</h1>
+	$out['sidebar'] .= '<b>' .(isAdmin()? '<a href="add.php/category"><i class="icon-plus"></i></a>' : '').$lang['category']. '</b>
 	<ul>';
 	$categories = listEntry('category');
 	if($categories)
@@ -58,7 +58,7 @@ if($out['self'] === 'index' || $out['self'] === 'view' || $out['self'] === 'sear
 		}
 	}
 
-	$out['sidebar'] .= '<h1>' .$lang['archive']. '</h1>
+	$out['sidebar'] .= '<b>' .$lang['archive']. '</b>
 	<ul>';
 	if($archives)
 	{

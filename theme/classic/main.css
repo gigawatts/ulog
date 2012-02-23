@@ -1,5 +1,5 @@
-p, .content {
-	margin: 7px 0;
+.content {
+	margin: 14px 0;
 }
 .thumbnail {
 	max-width: 320px;
@@ -27,7 +27,7 @@ h2 {
 :target {
 	background-color: #FFD;
 }
-//
+/* sp */
 .title {
 	font-weight: bold;
 }

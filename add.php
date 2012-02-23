@@ -6,7 +6,6 @@ require 'header.php';
 if(isGET('post') && isAdmin())
 {
 	$out['subtitle'] = $lang['add'].$lang['post'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('title') && check('content', 1, 2000))
 	{
 		$postEntry['title'] = clean($_POST['title']);
@@ -38,7 +37,6 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 		exit;
 	}
 	$out['subtitle'] = $lang['add'].$lang['reply']. ' : ' .$postEntry['title'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('name', 0, 20) && check('content', 1, 2000))
 	{
 		$replyEntry['content'] = clean($_POST['content']);
@@ -67,7 +65,6 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 else if(isGET('link') && isAdmin())
 {
 	$out['subtitle'] = $lang['add'].$lang['link'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('name') && check('url', 1, 80))
 	{
 		$linkEntry['name'] = clean($_POST['name']);
@@ -86,7 +83,6 @@ else if(isGET('link') && isAdmin())
 else if(isGET('category') && isAdmin())
 {
 	$out['subtitle'] = $lang['add'].$lang['category'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot() && check('name'))
 	{
 		$categoryEntry['name'] = clean($_POST['name']);

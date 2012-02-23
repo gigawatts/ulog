@@ -5,7 +5,6 @@ require 'header.php';
 require 'include/manage.inc.php';
 
 $out['subtitle'] = $lang['search'];
-$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 
 if(checkBot() && check('post'))
 {

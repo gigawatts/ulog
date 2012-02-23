@@ -7,7 +7,6 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 {
 	$postEntry = readEntry('post', $_GET['post']);
 	$out['subtitle'] = $lang['delete'].$lang['post']. ' : ' .$postEntry['title'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot())
 	{
 		deleteEntry('post', $_GET['post']);
@@ -33,7 +32,6 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 {
 	$replyEntry = readEntry('reply', $_GET['reply']);
 	$out['subtitle'] = $lang['delete'].$lang['reply'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot())
 	{
 		deleteEntry('reply', $_GET['reply']);
@@ -53,7 +51,6 @@ else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
 {
 	$linkEntry = readEntry('link', $_GET['link']);
 	$out['subtitle'] = $lang['delete'].$lang['link']. ' : ' .$linkEntry['name'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot())
 	{
 		deleteEntry('link', $_GET['link']);
@@ -69,7 +66,6 @@ else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['catego
 {
 	$categoryEntry = readEntry('category', $_GET['category']);
 	$out['subtitle'] = $lang['delete'].$lang['category']. ' : ' .$categoryEntry['name'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	if(checkBot())
 	{
 		deleteEntry('category', $_GET['category']);

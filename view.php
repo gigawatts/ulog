@@ -14,8 +14,8 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	saveEntry('post', $_GET['post'], $postEntry);
 
 	$out['subtitle'] = $postEntry['title'];
+	$out['subprefix'] = managePost($_GET['post']);
 	$out['content'] .= '<div class="post">
-	<div class="title"><h1>' .managePost($_GET['post']).$out['subtitle']. '</h1></div>
 	<div class="content">' .content($postEntry['content']). '</div>'.
 	(!$postEntry['locked']? '<p><a class="btn" href="add.php/reply/' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 	hook('afterPost', $_GET['post']).
@@ -51,8 +51,8 @@ else if(isGET('category') && isValidEntry('category', $_GET['category']))
 {
 	$categoryEntry = readEntry('category', $_GET['category']);
 	$out['subtitle'] = $categoryEntry['name'];
-	$out['content'] .= '<h1>' .manageCategory($_GET['category']).$out['subtitle']. '</h1>
-	<ul>';
+	$out['sub_prefix'] = manageCategory($_GET['category']);
+	$out['content'] .= '<ul>';
 	if($categoryEntry['post'])
 	{
 		foreach($categoryEntry['post'] as $post)
@@ -89,7 +89,6 @@ else if(isGET('archive') && strlen($_GET['archive']) === 4)
 		'07' => 'Jul', '08' => 'Aug', '09' => 'Sep', '10' => 'Oct', '11' => 'Nov', '12' => 'Dec'
 	);
 	$out['subtitle'] = $_GET['archive'];
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>';
 	foreach($archivedPosts as $month => $monthPosts)
 	{
 		$out['content'] .= '<b>' .$monthStr[$month]. '</b>
@@ -106,8 +105,7 @@ else if(isGET('plugin') && function_exists($_GET['plugin']. '_view'))
 {
 	$misc = $_GET['plugin']. '_view';
 	$out['subtitle'] = strtolower($_GET['plugin']);
-	$out['content'] .= '<h1>' .$out['subtitle']. '</h1>'.
-	$misc();
+	$out['content'] .= $misc();
 }
 else
 {
