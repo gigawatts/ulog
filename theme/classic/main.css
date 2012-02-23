@@ -1,4 +1,4 @@
-ul, p, .content, .box {
+ul, p, .content {
 	margin: 7px 0;
 }
 ul {
@@ -42,7 +42,7 @@ textarea {
 	font-weight: bold;
 }
 .post, .reply {
-	padding: 14px 7px 0 7px;
+	padding: 7px;
 	border-bottom: 1px dotted #777;
 }
 :target {

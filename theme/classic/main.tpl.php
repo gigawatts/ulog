@@ -43,8 +43,8 @@ header('Content-Type: text/html; charset=UTF-8');
 	<div class="container">
 		<?php echo hook('beforeMain', $out['self']);?>
 		<div class="row">
-			<div id="main" class="span9"><?php echo $out['content'];?></div>
-			<div id="sidebar" class="span3"><?php echo $out['sidebar'].hook('sidebar', $out['self']);?></div>
+			<div id="main" class="span8"><?php echo $out['content'];?></div>
+			<div id="sidebar" class="span4"><?php echo $out['sidebar'].hook('sidebar', $out['self']);?></div>
 		</div>
 		<?php echo hook('afterMain', $out['self']);?>
 		<div id="footer">
