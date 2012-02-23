@@ -35,8 +35,8 @@ textarea {
 	display: inline-block;
 	border-radius: 4px;
 }
-.quote {
-	color: #789922;
+.label {
+	margin: 4px 4px 4px 0;
 }
 .title {
 	font-weight: bold;
