@@ -31,7 +31,3 @@ h2 {
 .title {
 	font-weight: bold;
 }
-.post, .reply {
-	padding: 7px;
-	border-bottom: 1px solid #777;
-}

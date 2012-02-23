@@ -19,7 +19,7 @@ if(isGET('post'))
 		foreach(viewPage($posts, $p) as $post)
 		{
 			$postEntry = readEntry('post', $post);
-			$out['content'] .= '<div class="post">
+			$out['content'] .= '<div class="post well">
 			<div class="title">' .managePost($post).$postEntry['title']. '</div>
 			<div class="content">' .summary($postEntry['content']). '</div>
 			<p><a class="btn" href="view.php/post/' .$post. '">' .$lang['more']. '</a></p>
@@ -56,7 +56,7 @@ else if(isGET('reply'))
 		{
 			$replyEntry = readEntry('reply', $reply);
 			$postEntry = readEntry('post', $replyEntry['post']);
-			$out['content'] .= '<div class="reply">
+			$out['content'] .= '<div class="reply well">
 			<div class="title">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. ' - ' .toDate($reply). '</div>
 			<div class="content">' .summary($replyEntry['content']). '</div>
 			<p><a class="btn" href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$lang['more']. '</a></p>

@@ -15,7 +15,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 
 	$out['subtitle'] = $postEntry['title'];
 	$out['subprefix'] = managePost($_GET['post']);
-	$out['content'] .= '<div class="post">
+	$out['content'] .= '<div class="post well">
 	<div class="content">' .content($postEntry['content']). '</div>'.
 	(!$postEntry['locked']? '<p><a class="btn" href="add.php/reply/' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
 	hook('afterPost', $_GET['post']).
@@ -37,7 +37,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 		foreach(viewPage($postEntry['reply'], $p) as $reply)
 		{
 			$replyEntry = readEntry('reply', $reply);
-			$out['content'] .= '<div id="' .$reply. '" class="reply">
+			$out['content'] .= '<div id="' .$reply. '" class="reply well">
 			<div class="title">' .manageReply($reply).$replyEntry['trip']. ' - ' .toDate($reply). '</div>
 			<div class="content">' .content($replyEntry['content']). '</div>'.
 			(!$postEntry['locked']? '<p><a class="btn" href="add.php/reply/' .$_GET['post']. '/q/' .$reply. '">' .$lang['add'].$lang['reply']. '</a></p>' : '').
