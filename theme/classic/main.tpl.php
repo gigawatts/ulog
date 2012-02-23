@@ -48,12 +48,10 @@ header('Content-Type: text/html; charset=UTF-8');
 		</div>
 		<?php echo hook('afterMain', $out['self']);?>
 		<div id="footer">
-			<ul>
-			<li><?php echo $lang['poweredBy'];?> <a href="http://github.com/taylorchu/goolog">goolog</a></li>
-			<li><a href="feed.php/post"><?php echo $lang['feed'];?> (<?php echo $lang['post'];?>)</a></li>
-			<li><a href="feed.php/reply"><?php echo $lang['feed'];?> (<?php echo $lang['reply'];?>)</a></li>
+			<span><?php echo $lang['poweredBy'];?> <a href="http://github.com/taylorchu/goolog">goolog</a></span>
+			<span><a href="feed.php/post"><?php echo $lang['feed'];?> (<?php echo $lang['post'];?>)</a></span>
+			<span><a href="feed.php/reply"><?php echo $lang['feed'];?> (<?php echo $lang['reply'];?>)</a></span>
 			<?php echo hook('footer', $out['self']);?>
-			</ul>
 		</div>
 	</div>
 </body>
