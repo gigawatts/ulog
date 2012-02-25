@@ -20,20 +20,20 @@ if(isGET('post'))
 		{
 			$postEntry = readEntry('post', $post);
 			$out['content'] .= '<div class="post well">
-			<div class="title">' .managePost($post).$postEntry['title']. '</div>
-			<div class="content">' .summary($postEntry['content']). '</div>
-			<div class="btn-toolbar"><a class="btn" href="view.php/post/' .$post. '">' .$lang['more']. '</a></div>
-			<div>';
-			if($postEntry['category'] !== '')
-			{
-				$categoryEntry = readEntry('category', $postEntry['category']);
-				$out['content'] .= '<a class="label" href="view.php/category/' .$postEntry['category']. '">' .$categoryEntry['name']. '</a>';
-			}
-			$out['content'] .= ($postEntry['reply']? '<a class="label" href="#">' .$lang['reply']. ' (' .count($postEntry['reply']). ')</a>' : '').
-			($postEntry['locked']? '<a class="label" href="#">' .$lang['locked']. '</a>' : '').
-			'<a class="label" href="#">' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</a>
-			<a class="label" href="#">' .toDate($post). '</a>
-			</div>
+				<div class="title">' .managePost($post).$postEntry['title']. '</div>
+				<div class="content">' .summary($postEntry['content']). '</div>
+				<div class="btn-toolbar"><a class="btn" href="view.php/post/' .$post. '">' .$lang['more']. '</a></div>
+				<div>';
+					if($postEntry['category'] !== '')
+					{
+						$categoryEntry = readEntry('category', $postEntry['category']);
+						$out['content'] .= '<a class="label" href="view.php/category/' .$postEntry['category']. '">' .$categoryEntry['name']. '</a>';
+					}
+					$out['content'] .= ($postEntry['reply']? '<a class="label" href="#">' .$lang['reply']. ' (' .count($postEntry['reply']). ')</a>' : '').
+					($postEntry['locked']? '<a class="label" href="#">' .$lang['locked']. '</a>' : '').
+					'<a class="label" href="#">' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</a>
+					<a class="label" href="#">' .toDate($post). '</a>
+				</div>
 			</div>';
 		}
 	}
@@ -57,9 +57,9 @@ else if(isGET('reply'))
 			$replyEntry = readEntry('reply', $reply);
 			$postEntry = readEntry('post', $replyEntry['post']);
 			$out['content'] .= '<div class="reply well">
-			<div class="title">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. ' - ' .toDate($reply). '</div>
-			<div class="content">' .summary($replyEntry['content']). '</div>
-			<div class="btn-toolbar"><a class="btn" href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$lang['more']. '</a></div>
+				<div class="title">' .manageReply($reply).$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. ' - ' .toDate($reply). '</div>
+				<div class="content">' .summary($replyEntry['content']). '</div>
+				<div class="btn-toolbar"><a class="btn" href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$lang['more']. '</a></div>
 			</div>';
 		}
 	}

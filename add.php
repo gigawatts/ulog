@@ -24,8 +24,7 @@ if(isGET('post') && isAdmin())
 		$out['content'] .= form('add.php/post',
 			text('title').
 			textarea('content').
-			submit())
-.
+			submit()).
 		(isPOST('content')? '<div class="alert">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }
@@ -57,8 +56,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 		$out['content'] .= form('add.php/reply/' .$_GET['reply'],
 			text('name').
 			textarea('content', isGET('q') && isValidEntry('reply', $_GET['q'])? '[quote]' .$_GET['q']. '[/quote]' : '').
-			submit())
-.
+			submit()).
 		(isPOST('content')? '<div class="alert">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }

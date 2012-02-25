@@ -72,8 +72,7 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 		require 'include/parser.inc.php';
 		$out['content'] .= form('edit.php/reply/' .$_GET['reply'],
 			textarea('content', $replyEntry['content']).
-			submit())
-.
+			submit()).
 		(isPOST('content')? '<div class="alert">' .content(clean($_POST['content'])). '</div>' : '');
 	}
 }

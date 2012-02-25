@@ -16,19 +16,19 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	$out['subtitle'] = $postEntry['title'];
 	$out['subprefix'] = managePost($_GET['post']);
 	$out['content'] .= '<div class="post well">
-	<div class="content">' .content($postEntry['content']). '</div>'.
-	(!$postEntry['locked']? '<div class="btn-toolbar"><a class="btn" href="add.php/reply/' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></div>' : '').
-	hook('afterPost', $_GET['post']).
-	'<div>';
-	if($postEntry['category'] !== '')
-	{
-		$categoryEntry = readEntry('category', $postEntry['category']);
-		$out['content'] .= '<a class="label" href="view.php/category/' .$postEntry['category']. '">' .$categoryEntry['name']. '</a>';
-	}
-	$out['content'] .= ($postEntry['reply']? '<a class="label" href="#">' .$lang['reply']. ' (' .count($postEntry['reply']). ')</a>' : '').
-	'<a class="label" href="#">' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</a>
-	<a class="label" href="#">' .toDate($_GET['post']). '</a>
-	</div>
+		<div class="content">' .content($postEntry['content']). '</div>'.
+		(!$postEntry['locked']? '<div class="btn-toolbar"><a class="btn" href="add.php/reply/' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></div>' : '').
+		hook('afterPost', $_GET['post']).
+		'<div>';
+			if($postEntry['category'] !== '')
+			{
+				$categoryEntry = readEntry('category', $postEntry['category']);
+				$out['content'] .= '<a class="label" href="view.php/category/' .$postEntry['category']. '">' .$categoryEntry['name']. '</a>';
+			}
+			$out['content'] .= ($postEntry['reply']? '<a class="label" href="#">' .$lang['reply']. ' (' .count($postEntry['reply']). ')</a>' : '').
+			'<a class="label" href="#">' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</a>
+			<a class="label" href="#">' .toDate($_GET['post']). '</a>
+		</div>
 	</div>';
 	$total = totalPage($postEntry['reply']);
 	$p = pid($total);
@@ -38,10 +38,10 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 		{
 			$replyEntry = readEntry('reply', $reply);
 			$out['content'] .= '<div id="' .$reply. '" class="reply well">
-			<div class="title">' .manageReply($reply).$replyEntry['trip']. ' - ' .toDate($reply). '</div>
-			<div class="content">' .content($replyEntry['content']). '</div>'.
-			(!$postEntry['locked']? '<div class="btn-toolbar"><a class="btn" href="add.php/reply/' .$_GET['post']. '/q/' .$reply. '">' .$lang['add'].$lang['reply']. '</a></div>' : '').
-			hook('afterReply', $reply).
+				<div class="title">' .manageReply($reply).$replyEntry['trip']. ' - ' .toDate($reply). '</div>
+				<div class="content">' .content($replyEntry['content']). '</div>'.
+				(!$postEntry['locked']? '<div class="btn-toolbar"><a class="btn" href="add.php/reply/' .$_GET['post']. '/q/' .$reply. '">' .$lang['add'].$lang['reply']. '</a></div>' : '').
+				hook('afterReply', $reply).
 			'</div>';
 		}
 	}
