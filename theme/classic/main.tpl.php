@@ -49,7 +49,7 @@ header('Content-Type: text/html; charset=UTF-8');
 				<div class="page-header"><h1><?php echo $out['sub_prefix'].$out['subtitle'];?></h1></div>
 				<?php echo $out['content'];?>
 			</div>
-			<div id="sidebar" class="span4"><?php echo $out['sidebar'].hook('sidebar', $out['self']);?></div>
+			<div id="sidebar" class="offset1 span3"><?php echo $out['sidebar'].hook('sidebar', $out['self']);?></div>
 		</div>
 		<?php echo hook('afterMain', $out['self']);?>
 		<div id="footer">
