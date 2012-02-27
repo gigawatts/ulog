@@ -25,7 +25,7 @@ if(isGET('post') && isAdmin())
 			text('title').
 			textarea('content').
 			submit()).
-		(isPOST('content')? '<div class="alert">' .content(clean($_POST['content'])). '</div>' : '');
+		preview('content');
 	}
 }
 else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
@@ -57,7 +57,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 			text('name').
 			textarea('content', isGET('q') && isValidEntry('reply', $_GET['q'])? '[quote]' .$_GET['q']. '[/quote]' : '').
 			submit()).
-		(isPOST('content')? '<div class="alert">' .content(clean($_POST['content'])). '</div>' : '');
+		preview('content');
 	}
 }
 else if(isGET('link') && isAdmin())
