@@ -53,7 +53,7 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 			select('locked', array('yes' => $lang['yes'], 'no' => $lang['no']), $postEntry['locked']? 'yes' : 'no').
 			select('category', $categoryOptions, $postEntry['category']).
 			submit()).
-		(isPOST('content')? '<div class="alert">' .content(clean($_POST['content'])). '</div>' : '');
+		preview('content');
 	}
 }
 else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntry('reply', $_GET['reply']))
@@ -73,7 +73,7 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 		$out['content'] .= form('edit.php/reply/' .$_GET['reply'],
 			textarea('content', $replyEntry['content']).
 			submit()).
-		(isPOST('content')? '<div class="alert">' .content(clean($_POST['content'])). '</div>' : '');
+		preview('content');
 	}
 }
 else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
