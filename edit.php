@@ -12,7 +12,7 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 		isPOST('category') && ($_POST['category'] === '' || isValidEntry('category', $_POST['category'])))
 	{
 		$postEntry['title'] = clean($_POST['title']);
-		$postEntry['content'] = clean($_POST['content']);
+		$postEntry['content'] = transNL(clean($_POST['content']));
 
 		$postEntry['locked'] = $_POST['locked'] === 'yes';
 
@@ -62,7 +62,7 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 	$out['subtitle'] = $lang['edit'].$lang['reply'];
 	if(checkBot() && check('content', 1, 2000))
 	{
-		$replyEntry['content'] = clean($_POST['content']);
+		$replyEntry['content'] = transNL(clean($_POST['content']));
 		saveEntry('reply', $_GET['reply'], $replyEntry);
 		$postEntry = readEntry('post', $replyEntry['post']);
 		$out['content'] .= '<p><a href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($_GET['reply'], $postEntry['reply']). '#' .$_GET['reply']. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';

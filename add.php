@@ -9,7 +9,7 @@ if(isGET('post') && isAdmin())
 	if(checkBot() && check('title') && check('content', 1, 2000))
 	{
 		$postEntry['title'] = clean($_POST['title']);
-		$postEntry['content'] = clean($_POST['content']);
+		$postEntry['content'] = transNL(clean($_POST['content']));
 		$postEntry['view'] = 0;
 		$postEntry['reply'] = array();
 		$postEntry['category'] = '';
@@ -38,7 +38,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 	$out['subtitle'] = $lang['add'].$lang['reply']. ' : ' .$postEntry['title'];
 	if(checkBot() && check('name', 0, 20) && check('content', 1, 2000))
 	{
-		$replyEntry['content'] = clean($_POST['content']);
+		$replyEntry['content'] = transNL(clean($_POST['content']));
 		$replyEntry['post'] = $_GET['reply'];
 		$reply = newEntry();
 		$replyEntry['trip'] = $_POST['name'] === ''? substr($reply, -5) : trip(clean($_POST['name']));	
