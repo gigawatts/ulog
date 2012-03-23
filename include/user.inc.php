@@ -33,11 +33,11 @@ function quote($reply)
 	{
 		$replyEntry = readEntry('reply', $reply);
 		$postEntry = readEntry('post', $replyEntry['post']);
-		return '<p><a class="label label-info" href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$replyEntry['trip']. '</a></p>';
+		return '<a class="label label-info" href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$replyEntry['trip']. '</a><br />';
 	}
 	else
 	{
-		return '<p><a class="label label-info">[?]</a></p>';
+		return '<a class="label label-info">[?]</a><br />';
 	}
 }
 
