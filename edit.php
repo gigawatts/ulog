@@ -40,7 +40,6 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 	}
 	else
 	{
-		require 'include/parser.inc.php';
 		$categoryOptions[''] = $lang['uncategorized'];
 		foreach(listEntry('category') as $category)
 		{
@@ -69,7 +68,6 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 	}
 	else
 	{
-		require 'include/parser.inc.php';
 		$out['content'] .= form('edit.php/reply/' .$_GET['reply'],
 			textarea('content', $replyEntry['content']).
 			submit()).

@@ -2,7 +2,6 @@
 
 $out['self'] = 'search';
 require 'header.php';
-require 'include/manage.inc.php';
 
 $out['subtitle'] = $lang['search'];
 

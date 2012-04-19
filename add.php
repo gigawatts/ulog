@@ -20,7 +20,6 @@ if(isGET('post') && isAdmin())
 	}
 	else
 	{
-		require 'include/parser.inc.php';
 		$out['content'] .= form('add.php/post',
 			text('title').
 			textarea('content').
@@ -52,7 +51,6 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 	}
 	else
 	{	
-		require 'include/parser.inc.php';
 		$out['content'] .= form('add.php/reply/' .$_GET['reply'],
 			text('name').
 			textarea('content', isGET('q') && isValidEntry('reply', $_GET['q'])? '[quote]' .$_GET['q']. '[/quote]' : '').

@@ -2,12 +2,9 @@
 
 $out['self'] = 'view';
 require 'header.php';
-require 'include/manage.inc.php';
 
 if(isGET('post') && isValidEntry('post', $_GET['post']))
 {
-	require 'include/parser.inc.php';
-	require 'include/page.inc.php';
 	$postEntry = readEntry('post', $_GET['post']);
 
 	$postEntry['view']++;
