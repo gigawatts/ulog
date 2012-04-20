@@ -5,7 +5,7 @@ if(!isset($out))
 	exit;
 }
 
-if(in_array($out['self'], array('index', 'view', 'search'))
+if(in_array($out['self'], array('index', 'view', 'search')))
 {
 	//link
 	$out['sidebar'] .= '<b>' .(isAdmin()? '<a href="add.php/link"><i class="icon-plus"></i></a>' : '').$lang['link']. '</b>

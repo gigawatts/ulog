@@ -26,16 +26,16 @@ $config = readEntry('config', 'config');
 require 'lang/' .$config['lang']. '.lng.php';
 require 'lib/user.lib.php';
 require 'lib/ui.lib.php';
-if(in_array($out['self'], array('add', 'edit', 'feed', 'index', 'view'))
+if(in_array($out['self'], array('add', 'edit', 'feed', 'index', 'view')))
 {
 	hook('bbcode');
 	require 'lib/parser.lib.php';
 }
-if(in_array($out['self'], array('index', 'search', 'view'))
+if(in_array($out['self'], array('index', 'search', 'view')))
 {
 	require 'lib/manage.lib.php';
 }
-if(in_array($out['self'], array('index', 'view'))
+if(in_array($out['self'], array('index', 'view')))
 {
 	require 'lib/page.lib.php';
 }
