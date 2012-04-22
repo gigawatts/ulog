@@ -26,6 +26,11 @@ $config = readEntry('config', 'config');
 require 'lang/' .$config['lang']. '.lng.php';
 require 'lib/user.lib.php';
 require 'lib/ui.lib.php';
+$plugins = fdir('plugin');
+foreach($plugins as $plugin)
+{
+	require 'plugin/' .$plugin. '/' .$plugin. '.plg.php';
+}
 if(in_array($out['self'], array('add', 'edit', 'feed', 'index', 'view')))
 {
 	hook('bbcode');
@@ -42,11 +47,6 @@ if(in_array($out['self'], array('index', 'view')))
 
 $_GET = fURL();
 
-$plugins = fdir('plugin');
-foreach($plugins as $plugin)
-{
-	require 'plugin/' .$plugin. '/' .$plugin. '.plg.php';
-}
 
 $out['content'] = '';
 $out['sidebar'] = '';
