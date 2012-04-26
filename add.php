@@ -40,7 +40,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 		$replyEntry['content'] = transNL(clean($_POST['content']));
 		$replyEntry['post'] = $_GET['reply'];
 		$reply = newEntry();
-		$replyEntry['trip'] = $_POST['name'] === ''? substr($reply, -5) : trip(clean($_POST['name']));	
+		$replyEntry['trip'] = trip(clean($_POST['name']), $reply);	
 		saveEntry('reply', $reply, $replyEntry);
 
 		$postEntry['reply'][$reply] = $reply;
