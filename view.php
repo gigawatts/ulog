@@ -14,7 +14,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	$out['sub_prefix'] = managePost($_GET['post']);
 	$out['content'] .= '<div class="post well">
 		<div class="content">' .content($postEntry['content']). '</div>'.
-		(!$postEntry['locked']? '<div class="btn-toolbar"><a class="btn" href="add.php/reply/' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></div>' : '').
+		(!$postEntry['locked']? '<div class="btn-toolbar"><a class="btn btn-primary btn-large" href="add.php/reply/' .$_GET['post']. '">' .$lang['add'].$lang['reply']. '</a></div>' : '').
 		hook('afterPost', $_GET['post']).
 		'<div>';
 			if($postEntry['category'] !== '')
