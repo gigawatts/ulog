@@ -14,6 +14,7 @@ $lang['delete'] = '刪除';
 $lang['title'] = '標題';
 $lang['content'] = '內容';
 $lang['name'] = '名稱';
+$lang['trip'] = '暱稱 (可無)';
 $lang['view'] = '點閱';
 $lang['search'] = '搜尋';
 $lang['link'] = '網誌連結';

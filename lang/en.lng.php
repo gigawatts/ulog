@@ -14,6 +14,7 @@ $lang['delete'] = 'Delete ';
 $lang['title'] = 'Title';
 $lang['content'] = 'Content';
 $lang['name'] = 'Name';
+$lang['trip'] = 'Your name (optional)';
 $lang['view'] = 'View';
 $lang['search'] = 'Search';
 $lang['link'] = 'Link';
