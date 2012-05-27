@@ -16,7 +16,7 @@ if(isGET('post') && isAdmin())
 		$postEntry['locked'] = false;
 		$post = newEntry();
 		saveEntry('post', $post, $postEntry);
-		$out['content'] .= '<p><a href="view.php/post/' .$post. '">â†� ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php/post/' .$post. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
@@ -47,7 +47,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 		saveEntry('post', $_GET['reply'], $postEntry);
 		
 		$_SESSION[$reply] = $reply;
-		$out['content'] .= '<p><a href="view.php/post/' .$_GET['reply']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">â†� ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php/post/' .$_GET['reply']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{	
@@ -66,7 +66,7 @@ else if(isGET('link') && isAdmin())
 		$linkEntry['name'] = clean($_POST['name']);
 		$linkEntry['url'] = clean($_POST['url']);
 		saveEntry('link', newEntry(), $linkEntry);
-		$out['content'] .= '<p><a href="index.php/post">â†� ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
@@ -84,7 +84,7 @@ else if(isGET('category') && isAdmin())
 		$categoryEntry['name'] = clean($_POST['name']);
 		$categoryEntry['post'] = array();
 		saveEntry('category', newEntry(), $categoryEntry);
-		$out['content'] .= '<p><a href="index.php/post">â†� ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
