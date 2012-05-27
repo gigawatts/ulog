@@ -1,5 +1,6 @@
 <?php
 
+$lang['useSpace'] = false;
 $lang['post'] = '文章';
 $lang['reply'] = '回覆';
 $lang['plugin'] = '插件';
@@ -42,6 +43,6 @@ $lang['errLen'] = '太短或太長';
 $lang['errBot'] = '驗證碼不正確';
 $lang['replied'] = '回覆';
 $lang['notFound'] = '糟糕! 這個頁面不存在 :(';
-$lang['errNotMatch'] = 'Mismatched password';
+$lang['errNotMatch'] = '兩個密碼不相同';
 
 ?>

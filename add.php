@@ -5,7 +5,7 @@ require 'header.php';
 
 if(isGET('post') && isAdmin())
 {
-	$out['subtitle'] = $lang['add'].$lang['post'];
+	$out['subtitle'] = lang('add post');
 	if(checkBot() && check('title') && check('content', 1, 2000))
 	{
 		$postEntry['title'] = clean($_POST['title']);
@@ -34,23 +34,23 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 	{
 		exit;
 	}
-	$out['subtitle'] = $lang['add'].$lang['reply']. ' : ' .$postEntry['title'];
+	$out['subtitle'] = lang('add reply : %s', $postEntry['title']);
 	if(checkBot() && check('trip', 0, 20) && check('content', 1, 2000))
 	{
 		$replyEntry['content'] = transNL(clean($_POST['content']));
 		$replyEntry['post'] = $_GET['reply'];
 		$reply = newEntry();
-		$replyEntry['trip'] = trip(clean($_POST['trip']), $reply);	
+		$replyEntry['trip'] = trip(clean($_POST['trip']), $reply);
 		saveEntry('reply', $reply, $replyEntry);
 
 		$postEntry['reply'][$reply] = $reply;
 		saveEntry('post', $_GET['reply'], $postEntry);
-		
+
 		$_SESSION[$reply] = $reply;
 		$out['content'] .= '<p><a href="view.php/post/' .$_GET['reply']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
-	{	
+	{
 		$out['content'] .= form('add.php/reply/' .$_GET['reply'],
 			text('trip').
 			textarea('content', isGET('q') && isValidEntry('reply', $_GET['q'])? '[quote]' .$_GET['q']. '[/quote]' : '').
@@ -60,7 +60,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 }
 else if(isGET('link') && isAdmin())
 {
-	$out['subtitle'] = $lang['add'].$lang['link'];
+	$out['subtitle'] = lang('add link');
 	if(checkBot() && check('name') && check('url', 1, 80))
 	{
 		$linkEntry['name'] = clean($_POST['name']);
@@ -78,7 +78,7 @@ else if(isGET('link') && isAdmin())
 }
 else if(isGET('category') && isAdmin())
 {
-	$out['subtitle'] = $lang['add'].$lang['category'];
+	$out['subtitle'] = lang('add category');
 	if(checkBot() && check('name'))
 	{
 		$categoryEntry['name'] = clean($_POST['name']);

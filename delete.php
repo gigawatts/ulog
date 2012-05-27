@@ -6,7 +6,7 @@ require 'header.php';
 if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 {
 	$postEntry = readEntry('post', $_GET['post']);
-	$out['subtitle'] = $lang['delete'].$lang['post']. ' : ' .$postEntry['title'];
+	$out['subtitle'] = lang('delete post : %s', $postEntry['title']);
 	if(checkBot())
 	{
 		deleteEntry('post', $_GET['post']);
@@ -31,7 +31,7 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntry('reply', $_GET['reply']))
 {
 	$replyEntry = readEntry('reply', $_GET['reply']);
-	$out['subtitle'] = $lang['delete'].$lang['reply'];
+	$out['subtitle'] = lang('delete reply');
 	if(checkBot())
 	{
 		deleteEntry('reply', $_GET['reply']);
@@ -50,7 +50,7 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
 {
 	$linkEntry = readEntry('link', $_GET['link']);
-	$out['subtitle'] = $lang['delete'].$lang['link']. ' : ' .$linkEntry['name'];
+	$out['subtitle'] = lang('delete link : %s', $linkEntry['name']);
 	if(checkBot())
 	{
 		deleteEntry('link', $_GET['link']);
@@ -65,7 +65,7 @@ else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
 else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['category']))
 {
 	$categoryEntry = readEntry('category', $_GET['category']);
-	$out['subtitle'] = $lang['delete'].$lang['category']. ' : ' .$categoryEntry['name'];
+	$out['subtitle'] = lang('delete category : %s', $categoryEntry['name']);
 	if(checkBot())
 	{
 		deleteEntry('category', $_GET['category']);
