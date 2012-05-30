@@ -22,9 +22,9 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 				$categoryEntry = readEntry('category', $postEntry['category']);
 				$out['content'] .= '<a class="label" href="view.php/category/' .$postEntry['category']. '">' .$categoryEntry['name']. '</a>';
 			}
-			$out['content'] .= ($postEntry['reply']? '<a class="label" href="#">' .$lang['reply']. ' (' .count($postEntry['reply']). ')</a>' : '').
-			'<a class="label" href="#">' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</a>
-			<a class="label" href="#">' .toDate($_GET['post']). '</a>
+			$out['content'] .= ($postEntry['reply']? '<a class="label">' .$lang['reply']. ' (' .count($postEntry['reply']). ')</a>' : '').
+			'<a class="label">' .$lang['view']. ' (' .shortNum($postEntry['view']). ')</a>
+			<a class="label">' .toDate($_GET['post']). '</a>
 		</div>
 	</div>';
 	$total = totalPage($postEntry['reply']);
