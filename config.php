@@ -30,11 +30,10 @@ if(isGET('main') && isAdmin())
 }
 else if(isGET('plugin') && isAdmin())
 {
-	if(function_exists($_GET['plugin']. '_config'))
+	if(isValidHook('config', $_GET['plugin']))
 	{
-		$misc = $_GET['plugin']. '_config';
-		$out['subtitle'] = $lang['config'].strtolower($_GET['plugin']);
-		$out['content'] .= $misc();
+		$out['subtitle'] = $lang['config']. ' ' .strtolower($_GET['plugin']);
+		$out['content'] .= myHook('config', $_GET['plugin']);
 	}
 	else
 	{
@@ -44,7 +43,7 @@ else if(isGET('plugin') && isAdmin())
 		{
 			foreach($plugins as $plugin)
 			{
-				$out['content'] .= '<li>' .$plugin.(function_exists($plugin. '_config')? ' - <a href="config.php/plugin/' .$plugin. '">' .$lang['config']. '</a>' : ''). '</li>';
+				$out['content'] .= '<li>' .$plugin.(isValidHook('config', $plugin)? ' - <a href="config.php/plugin/' .$plugin. '">' .$lang['config']. '</a>' : ''). '</li>';
 			}
 		}
 		else

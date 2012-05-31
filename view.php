@@ -81,28 +81,23 @@ else if(isGET('archive') && strlen($_GET['archive']) === 4)
 	{
 		exit;
 	}
-	$monthStr = array(
-		'01' => 'Jan', '02' => 'Feb', '03' => 'Mar', '04' => 'Apr', '05' => 'May', '06' => 'Jun',
-		'07' => 'Jul', '08' => 'Aug', '09' => 'Sep', '10' => 'Oct', '11' => 'Nov', '12' => 'Dec'
-	);
 	$out['subtitle'] = $_GET['archive'];
-	foreach($archivedPosts as $month => $monthPosts)
+	foreach($archivedPosts as $monthPosts)
 	{
-		$out['content'] .= '<b>' .$monthStr[$month]. '</b>
+		$out['content'] .= '<b>' .toDate($monthPosts[0], 'M'). '</b>
 		<ul>';
 		foreach($monthPosts as $post)
 		{
 			$postEntry = readEntry('post', $post);
-			$out['content'] .= '<li>' .managePost($post). '<a href="view.php/post/' .$post. '">' .$postEntry['title']. '</a> - ' .toDate($post). '</li>';
+			$out['content'] .= '<li>' .toDate($post, 'jS'). ' - ' .managePost($post). '<a href="view.php/post/' .$post. '">' .$postEntry['title']. '</a></li>';
 		}
 		$out['content'] .= '</ul>';
 	}
 }
-else if(isGET('plugin') && function_exists($_GET['plugin']. '_view'))
+else if(isGET('plugin') && isValidHook('view', $_GET['plugin']))
 {
-	$misc = $_GET['plugin']. '_view';
 	$out['subtitle'] = strtolower($_GET['plugin']);
-	$out['content'] .= $misc();
+	$out['content'] .= myHook('view', $_GET['plugin']);
 }
 else
 {
