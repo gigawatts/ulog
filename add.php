@@ -27,7 +27,7 @@ if(isGET('post') && isAdmin())
 		preview('content');
 	}
 }
-else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
+else if(isGETValidEntry('post', 'reply'))
 {
 	$postEntry = readEntry('post', $_GET['reply']);
 	if($postEntry['locked'])
@@ -53,7 +53,7 @@ else if(isGET('reply') && isValidEntry('post', $_GET['reply']))
 	{
 		$out['content'] .= form('add.php/reply/' .$_GET['reply'],
 			text('trip').
-			textarea('content', isGET('q') && isValidEntry('reply', $_GET['q'])? '[quote]' .$_GET['q']. '[/quote]' : '').
+			textarea('content', isGETValidEntry('reply', 'q')? '[quote]' .$_GET['q']. '[/quote]' : '').
 			submit()).
 		preview('content');
 	}

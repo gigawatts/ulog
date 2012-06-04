@@ -3,7 +3,7 @@
 $out['self'] = 'view';
 require 'header.php';
 
-if(isGET('post') && isValidEntry('post', $_GET['post']))
+if(isGETValidEntry('post', 'post'))
 {
 	$postEntry = readEntry('post', $_GET['post']);
 
@@ -44,7 +44,7 @@ if(isGET('post') && isValidEntry('post', $_GET['post']))
 	}
 	$out['content'] .= pageControl($p, $total, 'view.php/post/' .$_GET['post']);
 }
-else if(isGET('category') && isValidEntry('category', $_GET['category']))
+else if(isGETValidEntry('category', 'category'))
 {
 	$categoryEntry = readEntry('category', $_GET['category']);
 	$out['subtitle'] = $categoryEntry['name'];
@@ -94,7 +94,7 @@ else if(isGET('archive') && strlen($_GET['archive']) === 4)
 		$out['content'] .= '</ul>';
 	}
 }
-else if(isGET('plugin') && isValidHook('view', $_GET['plugin']))
+else if(isGETValidHook('view', 'plugin'))
 {
 	$out['subtitle'] = strtolower($_GET['plugin']);
 	$out['content'] .= myHook('view', $_GET['plugin']);

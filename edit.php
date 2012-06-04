@@ -3,7 +3,7 @@
 $out['self'] = 'edit';
 require 'header.php';
 
-if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
+if(isGETValidEntry('post', 'post') && isAdmin())
 {
 	$postEntry = readEntry('post', $_GET['post']);
 	$out['subtitle'] = lang('edit post : %s', $postEntry['title']);
@@ -55,7 +55,7 @@ if(isGET('post') && isAdmin() && isValidEntry('post', $_GET['post']))
 		preview('content');
 	}
 }
-else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntry('reply', $_GET['reply']))
+else if(isGETValidEntry('reply', 'reply') && (isAdmin() || isAuthor($_GET['reply'])))
 {
 	$replyEntry = readEntry('reply', $_GET['reply']);
 	$out['subtitle'] = lang('edit reply');
@@ -74,7 +74,7 @@ else if(isGET('reply') && (isAdmin() || isAuthor($_GET['reply'])) && isValidEntr
 		preview('content');
 	}
 }
-else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
+else if(isGETValidEntry('link', 'link') && isAdmin())
 {
 	$linkEntry = readEntry('link', $_GET['link']);
 	$out['subtitle'] = lang('edit link : %s', $linkEntry['name']);
@@ -93,7 +93,7 @@ else if(isGET('link') && isAdmin() && isValidEntry('link', $_GET['link']))
 			submit());
 	}
 }
-else if(isGET('category') && isAdmin() && isValidEntry('category', $_GET['category']))
+else if(isGETValidEntry('category', 'category') && isAdmin())
 {
 	$categoryEntry = readEntry('category', $_GET['category']);
 	$out['subtitle'] = lang('edit category : %s', $categoryEntry['name']);
