@@ -27,7 +27,7 @@ if(isGETValidEntry('post', 'post'))
 			<a class="label">' .toDate($_GET['post']). '</a>
 		</div>
 	</div>';
-	$total = totalPage($postEntry['reply']);
+	$total = countPage($postEntry['reply']);
 	$p = pid($total);
 	if($postEntry['reply'])
 	{
@@ -42,7 +42,7 @@ if(isGETValidEntry('post', 'post'))
 			'</div>';
 		}
 	}
-	$out['content'] .= pageControl($p, $total, 'view.php/post/' .$_GET['post']);
+	$out['content'] .= pageLink($p, $total, 'view.php/post/' .$_GET['post']);
 }
 else if(isGETValidEntry('category', 'category'))
 {

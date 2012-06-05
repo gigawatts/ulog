@@ -9,7 +9,7 @@ if(isGET('post'))
 	$out['sub_prefix'] = isAdmin()? '<a href="add.php/post"><i class="icon-plus"></i></a>' : '';
 	$posts = listEntry('post');
 	rsort($posts);
-	$total = totalPage($posts);
+	$total = countPage($posts);
 	$p = pid($total);
 	if($posts)
 	{
@@ -38,14 +38,14 @@ if(isGET('post'))
 	{
 		$out['content'] .= '<p>' .$lang['none']. '</p>';
 	}
-	$out['content'] .= pageControl($p, $total, 'index.php/post/o');
+	$out['content'] .= pageLink($p, $total, 'index.php/post/o');
 }
 else if(isGET('reply'))
 {
 	$out['subtitle'] = $lang['reply'];
 	$replies = listEntry('reply');
 	rsort($replies);
-	$total = totalPage($replies);
+	$total = countPage($replies);
 	$p = pid($total);
 	if($replies)
 	{
@@ -64,7 +64,7 @@ else if(isGET('reply'))
 	{
 		$out['content'] .= '<p>' .$lang['none']. '</p>';
 	}
-	$out['content'] .= pageControl($p, $total, 'index.php/reply/o');
+	$out['content'] .= pageLink($p, $total, 'index.php/reply/o');
 }
 else if(isGET('404'))
 {
