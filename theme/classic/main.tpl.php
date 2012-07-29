@@ -64,7 +64,7 @@ header('Content-Type: text/html; charset=UTF-8');
 		</div>
 		<?php echo hook('afterMain', $out['self'])?>
 		<div id="footer">
-			<span><?php echo $lang['poweredBy']?> <a href="http://github.com/taylorchu/goolog">goolog</a></span>
+			<span><?php echo $lang['poweredBy']?> <a href="http://github.com/gigawatts/ulog">ulog</a></span>
 			<span><a href="feed.php/post"><?php echo $lang['feed']?> (<?php echo $lang['post']?>)</a></span>
 			<span><a href="feed.php/reply"><?php echo $lang['feed']?> (<?php echo $lang['reply']?>)</a></span>
 			<?php echo hook('footer', $out['self'])?>
