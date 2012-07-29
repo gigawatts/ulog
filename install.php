@@ -13,6 +13,7 @@ if(!isValidEntry('config', 'config'))
 	mkdir('data/category');
 	mkdir('data/plugin');
 	mkdir('data/config');
+	mkdir('data/image');
 
 	$config['password'] = hide('demo');
 	$config['title'] = 'goolog demo';

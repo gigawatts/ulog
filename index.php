@@ -1,4 +1,6 @@
 <?php
+// ULog v1.6 - 2012/07/29
+// Forked by Ken Johnson from "Goolog" - https://github.com/taylorchu/goolog
 
 $out['self'] = 'index';
 require 'header.php';
@@ -17,7 +19,7 @@ if(isGET('post'))
 		{
 			$postEntry = readEntry('post', $post);
 			$out['content'] .= '<div class="post well">
-				<div class="title">' .managePost($post).$postEntry['title']. '</div>
+				<div class="title">' .managePost($post).$postEntry['title'].' ['.$postEntry['userid']. ']</div>
 				<div class="content">' .summary($postEntry['content']). '</div>
 				<div class="btn-toolbar"><a class="btn" href="view.php/post/' .$post. '">' .$lang['more']. '</a></div>
 				<div>';

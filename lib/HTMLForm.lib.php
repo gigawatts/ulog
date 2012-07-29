@@ -17,6 +17,7 @@ function hide($text)
 	return md5($text.md5($text));
 }
 
+/*
 function trip($name, $id)
 {
 	if ($name === '')
@@ -29,6 +30,7 @@ function trip($name, $id)
 		return  $parts[0].(isset($parts[1])? '#' .substr(md5($parts[1]), -5) : '');
 	}
 }
+*/
 
 function err($eid, $msg)
 {
@@ -79,6 +81,7 @@ function textarea($name, $default = '')
 function submit()
 {
 	global $lang;
+/*
 	$num1 = rand(1, 10);
 	$num2 = rand(1, 10);
 	$_SESSION['captcha'] = (string) ($num1 * $num2);
@@ -88,6 +91,13 @@ function submit()
 			err('ErrBot', $lang['errBot']).
 			'<input type="text" name="captcha" style="width: 50px;"/>
 		</div>
+	</div>
+*/
+
+	return '<div class="control-group">
+		<div class="controls">'.
+			err('ErrBot', $lang['errBot']).
+		'</div>
 	</div>
 	<div class="form-actions">
 		<input class="btn btn-primary" type="submit" value="' .$lang['confirm']. '"/>
@@ -146,12 +156,12 @@ function checkPass($name)
 
 function checkBot()
 {
-	if(!isPOST('captcha'))
-		return false;
-	if(isset($_SESSION['captcha']) && $_POST['captcha'] === $_SESSION['captcha'])
+	//if(!isPOST('captcha'))
+	//	return false;
+	//if(isset($_SESSION['captcha']) && $_POST['captcha'] === $_SESSION['captcha'])
 		return true;
-	$_SESSION['ErrBot'] = 1;
-	return false;
+	//$_SESSION['ErrBot'] = 1;
+	//return false;
 }
 
 ?>

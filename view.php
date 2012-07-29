@@ -10,10 +10,11 @@ if(isGETValidEntry('post', 'post'))
 	$postEntry['view']++;
 	saveEntry('post', $_GET['post'], $postEntry);
 
-	$out['subtitle'] = $postEntry['title'];
+	$out['subtitle'] = $postEntry['title'].' ['.$postEntry['userid']. ']';
+	$out['userid'] = $postEntry['userid'];
 	$out['sub_prefix'] = managePost($_GET['post']);
 	$out['content'] .= '<div class="post well">
-		<div class="content">' .content($postEntry['content']). '</div>'.
+		<div class="content">' . content($postEntry['content']). '</div>'.
 		(!$postEntry['locked']? '<div class="btn-toolbar"><a class="btn btn-primary btn-large" href="add.php/reply/' .$_GET['post']. '">' .lang('add reply'). '</a></div>' : '').
 		hook('afterPost', $_GET['post']).
 		'<div>';

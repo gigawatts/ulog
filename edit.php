@@ -29,7 +29,6 @@ if(isGETValidEntry('post', 'post') && isAdmin())
 			if($_POST['category'] !== '')
 			{
 				$postEntry['category'] = $_POST['category'];
-
 				$categoryEntry = readEntry('category', $postEntry['category']);
 				$categoryEntry['post'][$_GET['post']] = $_GET['post'];
 				saveEntry('category', $postEntry['category'], $categoryEntry);

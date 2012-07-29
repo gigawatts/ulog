@@ -12,19 +12,35 @@ if(isGET('post') && isAdmin())
 		$postEntry['content'] = transNL(clean($_POST['content']));
 		$postEntry['view'] = 0;
 		$postEntry['reply'] = array();
-		$postEntry['category'] = '';
+		$postEntry['category'] = $_POST['category'];
 		$postEntry['locked'] = false;
+		$postEntry['userid'] = $_SERVER['REMOTE_USER'];
 		$post = newEntry();
+
+		if($_POST['category'] !== '')
+		{
+                	$categoryEntry = readEntry('category', $postEntry['category']);
+			$categoryEntry['post'][$post] = $post;
+                	saveEntry('category', $postEntry['category'], $categoryEntry);
+		}
+
 		saveEntry('post', $post, $postEntry);
-		$out['content'] .= '<p><a href="view.php/post/' .$post. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php/post/' .$post. '">. ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
+		$categoryOptions[''] = $lang['uncategorized'];
+			foreach(listEntry('category') as $category)
+			{
+				$categoryEntry = readEntry('category', $category);
+				$categoryOptions[$category] = $categoryEntry['name'];
+			}
 		$out['content'] .= form('add.php/post',
 			text('title').
 			textarea('content').
+			select('category', $categoryOptions, $categoryOptions['']).
 			submit()).
-		preview('content');
+			preview('content');
 	}
 }
 else if(isGETValidEntry('post', 'reply'))
@@ -35,24 +51,23 @@ else if(isGETValidEntry('post', 'reply'))
 		exit;
 	}
 	$out['subtitle'] = lang('add reply : %s', $postEntry['title']);
-	if(checkBot() && check('trip', 0, 20) && check('content', 1, 2000))
+	if(checkBot() && check('content', 1, 2000))
 	{
 		$replyEntry['content'] = transNL(clean($_POST['content']));
 		$replyEntry['post'] = $_GET['reply'];
 		$reply = newEntry();
-		$replyEntry['trip'] = trip(clean($_POST['trip']), $reply);
+		$replyEntry['trip'] = $_SERVER['REMOTE_USER'];
 		saveEntry('reply', $reply, $replyEntry);
 
 		$postEntry['reply'][$reply] = $reply;
 		saveEntry('post', $_GET['reply'], $postEntry);
 
 		$_SESSION[$reply] = $reply;
-		$out['content'] .= '<p><a href="view.php/post/' .$_GET['reply']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">← ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
+		$out['content'] .= '<p><a href="view.php/post/' .$_GET['reply']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">. ' .$lang['redirect']. ' : ' .$postEntry['title']. '</a></p>';
 	}
 	else
 	{
 		$out['content'] .= form('add.php/reply/' .$_GET['reply'],
-			text('trip').
 			textarea('content', isGETValidEntry('reply', 'q')? '[quote]' .$_GET['q']. '[/quote]' : '').
 			submit()).
 		preview('content');
@@ -66,7 +81,7 @@ else if(isGET('link') && isAdmin())
 		$linkEntry['name'] = clean($_POST['name']);
 		$linkEntry['url'] = clean($_POST['url']);
 		saveEntry('link', newEntry(), $linkEntry);
-		$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php/post">. ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
@@ -84,7 +99,7 @@ else if(isGET('category') && isAdmin())
 		$categoryEntry['name'] = clean($_POST['name']);
 		$categoryEntry['post'] = array();
 		saveEntry('category', newEntry(), $categoryEntry);
-		$out['content'] .= '<p><a href="index.php/post">← ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
+		$out['content'] .= '<p><a href="index.php/post">. ' .$lang['redirect']. ' : ' .$lang['post']. '</a></p>';
 	}
 	else
 	{
@@ -101,3 +116,4 @@ else
 require 'footer.php';
 
 ?>
+

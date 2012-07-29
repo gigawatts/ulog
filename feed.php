@@ -7,7 +7,7 @@ if(isGET('post'))
 {
 	$out['subtitle'] = $lang['post'];
 	$out['type'] = 'post';
-	$posts = _max(listEntry('post'), 4);
+	$posts = _max(listEntry('post'), 6);
 	if($posts)
 	{
 		foreach($posts as $post)
@@ -16,9 +16,10 @@ if(isGET('post'))
 			$url = 'view.php/post/' .$post;
 			$out['content'] .= '<entry>
 				<id>' .$out['baseURL'].$url. '</id>
-				<title>' .$postEntry['title']. '</title>
+				<title>' .$postEntry['title'].' ['.$postEntry['userid']. ']</title>
 				<updated>' .toDate($post, 'c'). '</updated>
-				<link href="' .$url. '"/>
+				<link href="' .$out['baseURL'].$url. '"/>
+				<userid>' .$postEntry['userid']. '</userid>
 				<summary type="html">' .htmlspecialchars(summary($postEntry['content']), ENT_QUOTES). '</summary>
 			</entry>';
 		}
@@ -28,7 +29,7 @@ else if(isGET('reply'))
 {
 	$out['subtitle'] = $lang['reply'];
 	$out['type'] = 'reply';
-	$replies = _max(listEntry('reply'), 4);
+	$replies = _max(listEntry('reply'), 6);
 	if($replies)
 	{
 		foreach($replies as $reply)

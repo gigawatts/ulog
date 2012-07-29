@@ -82,5 +82,4 @@ else
 {
 	require 'theme/' .$config['theme']. '/main.tpl.php';
 }
-
 ?>
