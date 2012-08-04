@@ -1,4 +1,5 @@
 <?php
+// change this path to your the absolut path of your image directory
 $path = "/var/www/ulog/data/image/";
 
 $valid_formats = array("jpg", "png", "gif", "bmp","jpeg");
@@ -9,6 +10,7 @@ $size = $_FILES['photoimg']['size'];
 if(strlen($name))
 {
 list($txt, $ext) = explode(".", $name);
+$ext = strtolower($ext);
 if(in_array($ext,$valid_formats))
 {
 if($size<(1024*1024)) // Image size max 1 MB
