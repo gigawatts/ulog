@@ -40,15 +40,15 @@ header('Content-Type: text/html; charset=UTF-8');
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand"><font color="#ff7920"><?php echo $config['title']?></font></a>
+				<a href="index.php" class="brand"><font color="#ff7920"><?php echo $config['title']?></font></a>
 				<ul class="nav">
 				<li><a href="index.php/post"><?php echo $lang['post']?></a></li>
 				<li><a href="index.php/reply"><?php echo $lang['reply']?></a></li>
 				<li><a href="search.php"><?php echo $lang['search']?></a></li>
 				<?php echo hook('menu', $out['self']).
 				(isAdmin()?
-				'<li><a>User ID: <b>' . $_SERVER['REMOTE_USER'] . '</b> [Admin]</a></li>' :
-                                '<li><a>User ID: <b>' . $_SERVER['REMOTE_USER'] . '</b></a></li>')?>
+				'<li class="userid">User ID: <b>' . $_SERVER['REMOTE_USER'] . '</b> [Admin]</li>' :
+                                '<li>User ID: <b>' . $_SERVER['REMOTE_USER'] . '</b></li>')?>
 				</ul>
 			</div>
 		</div>

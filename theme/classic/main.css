@@ -1,3 +1,23 @@
+li.userid {
+	float: none;
+	height: 19px;
+	line-height: 19px;
+	padding-bottom: 11px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 9px;
+	text-decoration: none;
+	text-shadow: rgba(0, 0, 0, 0.247059) 0px -1px 0px;
+}
+
+a.header {
+	color: #333;
+	text-decoration: none;
+}
+a.header:hover {
+	color: #333;
+	text-decoration: none;
+}	
 .content {
 	margin: 9px 0;
 }

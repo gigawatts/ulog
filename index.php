@@ -7,7 +7,7 @@ require 'header.php';
 
 if(isGET('post'))
 {
-	$out['subtitle'] = $lang['post'];
+	$out['subtitle'] = isAdmin()? "<a href='add.php/post' class=header>" . $lang['post'] . '</a>' : $lang['post'];
 	$out['sub_prefix'] = isAdmin()? '<a href="add.php/post"><i class="icon-plus"></i></a>' : '';
 	$posts = listEntry('post');
 	rsort($posts);
