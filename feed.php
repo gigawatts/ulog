@@ -41,7 +41,7 @@ else if(isGET('reply'))
 				<id>' .$out['baseURL'].$url. '</id>
 				<title>' .$replyEntry['trip']. ' ' .$lang['replied']. ' ' .$postEntry['title']. '</title>
 				<updated>' .toDate($reply, 'c'). '</updated>
-				<link href="' .$url. '"/>
+				<link href="' .$out['baseURL'].$url. '"/>
 				<summary type="html">' .htmlspecialchars(summary($replyEntry['content']), ENT_QUOTES). '</summary>
 			</entry>';
 		}
