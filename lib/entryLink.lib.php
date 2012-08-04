@@ -7,7 +7,6 @@ function managePost($post)
 
 function manageReply($reply)
 {
-	//return (isAdmin() || isAuthor($reply)? '<a href="edit.php/reply/' .$reply. '"><i class="icon-edit"></i></a><a href="delete.php/reply/' .$reply. '"><i class="icon-remove"></i></a>' : '').hook('manageReply', $reply);
 	return (isAdmin()? '<a href="edit.php/reply/' .$reply. '"><i class="icon-edit"></i></a><a href="delete.php/reply/' .$reply. '"><i class="icon-remove"></i></a>' : '').hook('manageReply', $reply);
 }
 

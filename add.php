@@ -40,7 +40,7 @@ if(isGET('post') && isAdmin())
 			textarea('content').
 			select('category', $categoryOptions, $categoryOptions['']).
 			submit()).
-			preview('content');
+		preview('content');
 	}
 }
 else if(isGETValidEntry('post', 'reply'))
