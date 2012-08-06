@@ -1,13 +1,10 @@
 <?php
-// ULog v1.6 - 2012/07/29
-// Forked by Ken Johnson from "Goolog" - https://github.com/taylorchu/goolog
-
 $out['self'] = 'index';
 require 'header.php';
 
 if(isGET('post'))
 {
-	$out['subtitle'] = isAdmin()? "<a href='add.php/post' class=header>" . $lang['post'] . '</a>' : $lang['post'];
+	$out['subtitle'] = isAdmin()? '<a href="add.php/post" class=header>' . $lang['post'] . '</a>' : $lang['post'];
 	$out['sub_prefix'] = isAdmin()? '<a href="add.php/post"><i class="icon-plus"></i></a>' : '';
 	$posts = listEntry('post');
 	rsort($posts);

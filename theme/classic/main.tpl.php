@@ -48,7 +48,7 @@ header('Content-Type: text/html; charset=UTF-8');
 				<?php echo hook('menu', $out['self']).
 				(isAdmin()?
 				'<li class="userid">User ID: <b>' . $_SERVER['REMOTE_USER'] . '</b> [Admin]</li>' :
-                                '<li>User ID: <b>' . $_SERVER['REMOTE_USER'] . '</b></li>')?>
+                                '<li class="userid">User ID: <b>' . $_SERVER['REMOTE_USER'] . '</b></li>')?>
 				</ul>
 			</div>
 		</div>
