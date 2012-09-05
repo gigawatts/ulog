@@ -7,7 +7,6 @@ $out['subtitle'] = $lang['search'];
 
 if($_REQUEST['s'])
 {
-	// $_POST['post'] = '#'.$_REQUEST['s'];
 	$_POST['post'] = $_REQUEST['s'];
 }
 	
