@@ -8,7 +8,7 @@ if(!isset($out))
 if(in_array($out['self'], array('index', 'view', 'search')))
 {
 	//link
-	$out['sidebar'] .= '<b>' .(isAdmin()? '<a href="add.php/link"><i class="icon-plus"></i></a>' : '').$lang['link']. '</b>
+	$out['sidebar'] .= '<b>' .(isAdmin()? '<a href="add.php/link"><i class="icon-plus"></i></a>' : '').$lang['link'].' / Tag'. '</b>
 	<ul>';
 	$links = listEntry('link');
 	if($links)

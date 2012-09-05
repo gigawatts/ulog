@@ -5,7 +5,13 @@ require 'header.php';
 
 $out['subtitle'] = $lang['search'];
 
-if(checkBot() && check('post'))
+if($_REQUEST['s'])
+{
+	// $_POST['post'] = '#'.$_REQUEST['s'];
+	$_POST['post'] = $_REQUEST['s'];
+}
+	
+if(check('post'))
 {
         // find all posts
         $_POST['post'] = clean($_POST['post']);

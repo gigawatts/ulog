@@ -129,7 +129,7 @@ function checkPass($name)
 
 function checkBot()
 {
-		return true;
+	return true;
 }
 
 ?>
