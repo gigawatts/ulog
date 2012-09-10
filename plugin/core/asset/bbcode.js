@@ -12,7 +12,7 @@ function bbcode() {
 	$(bar).insertBefore(ta);
 
 function addImage() {
-	ta.value += '\n[img]' + document.getElementById("preview").getElementsByTagName("IMG")[0].src + '[/img]\n';
+	ta.value += '\n[url=' + document.getElementById("preview").getElementsByTagName("IMG")[0].src + '][img]' + document.getElementById("preview").getElementsByTagName("IMG")[0].src + '[/img][/url]\n';
 }
 
 document.getElementById("preview").addEventListener("click", addImage, false);
