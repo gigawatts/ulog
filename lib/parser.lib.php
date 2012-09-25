@@ -33,6 +33,9 @@ function bbcode($text, $summary = true)
 	$pattern[] = '%\[quote\](\d{4}-\d{2}-\d{8}[a-z\d]{5})\[/quote\]%e';
 	$replace[] = 'quote(\'$1\')';
 
+	$pattern[] = '%\[li\]([^\n]+?)\[/li\]%';
+	$replace[] = '<li>$1</li>';
+
 	return preg_replace($pattern, $replace, $text);
 }
 
