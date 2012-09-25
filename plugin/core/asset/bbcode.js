@@ -5,7 +5,7 @@ $(function() {
 function bbcode() {
 	var ta = $('textarea[name="content"]')[0];
 	var bar = $('<div id="bbcode" class="btn-group"></div>');
-	$.each(['b', 'i', 'u', 's', 'li', 'img', 'url', 'block'], function (i, tag) {
+	$.each(['b', 'i', 'u', 's', 'li', 'ul', 'ol', 'img', 'url', 'block'], function (i, tag) {
 		$('<input class="btn" type="button"/>').attr('value', tag).appendTo(bar);
 	});
 	$('<div><form id="imageform" method="post" enctype="multipart/form-data" action="ajaximage.php"><input type="file" name="photoimg" id="photoimg" /> </form></div><div id="preview"></div>').insertBefore(ta);

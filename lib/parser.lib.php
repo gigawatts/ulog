@@ -36,6 +36,12 @@ function bbcode($text, $summary = true)
 	$pattern[] = '%\[li\]([^\n]+?)\[/li\]%';
 	$replace[] = '<li>$1</li>';
 
+	$pattern[] = '%\[ul\]([^\n]+?)\[/ul\]%';
+	$replace[] = '<ul>$1</ul>';
+
+	$pattern[] = '%\[ol\]([^\n]+?)\[/ol\]%';
+	$replace[] = '<ol>$1</ol>';
+
 	return preg_replace($pattern, $replace, $text);
 }
 
