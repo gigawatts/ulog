@@ -14,6 +14,7 @@ if(!isValidEntry('config', 'config'))
 	mkdir('data/plugin');
 	mkdir('data/config');
 	mkdir('data/image');
+	touch('.htadmins');
 
 	$config['password'] = hide('demo');
 	$config['title'] = 'goolog demo';
