@@ -70,6 +70,56 @@ else if(isGET('404'))
 	$out['subtitle'] = 'HTTP 404';
 	$out['content'] .= '<p>' .$lang['notFound']. '</p>';
 }
+else if(isGET('help'))
+{
+        $out['subtitle'] = 'Help';
+        $out['content'] .= '<p>' .'So you are looking for some help with something on this site, eh? What do you need help with?'. '</p>
+<ul>
+<li><a href="index.php/help#Post">Post</a></li>
+<li><a href="index.php/help#Reply">Reply</a></li>
+<li><a href="index.php/help#Search">Search</a></li>
+<li><a href="index.php/help#Category">Category</a></li>
+<li><a href="index.php/help#Tag">Tag</a></li>
+<li><a href="index.php/help#RSS">RSS Feed</a></li>
+</ul>
+
+<br>
+<h4 id="Post">Post</h4>
+<pre>
+making new posts
+editing
+image attachments
+</pre>
+
+<h4 id="Reply">Reply</h4>
+<pre>
+reply vs new post vs edit
+</pre>
+
+<h4 id="Search">Search</h4>
+<pre>
+tags, predefined searches
+url search
+</pre>
+
+<h4 id="Category">Category</h4>
+<pre>
+what category to use for what
+</pre>
+
+<h4 id="Tag">Tag</h4>
+<pre>
+adding tags to quick search
+</pre>
+
+<h4 id="RSS">RSS Feed</h4>
+<pre>
+number of items
+programs to use
+blackberry
+</pre>
+';
+}
 else
 {
 	redirect('index.php/post');

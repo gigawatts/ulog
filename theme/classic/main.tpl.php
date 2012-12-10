@@ -42,9 +42,14 @@ header('Content-Type: text/html; charset=UTF-8');
 			<div class="container">
 				<a href="index.php" class="brand"><font color="#ff7920"><?php echo $config['title']?></font></a>
 				<ul class="nav">
-				<li><a href="index.php/post"><?php echo $lang['post']?></a></li>
-				<li><a href="index.php/reply"><?php echo $lang['reply']?></a></li>
-				<li><a href="search.php"><?php echo $lang['search']?></a></li>
+                                <?php if( strpos($_SERVER["PHP_SELF"], 'php/post') !== false) {echo '<li class="active">';} else {echo '<li>';} ?>
+                                <a href="index.php/post"><?php echo $lang['post']?></a></li>
+                                <?php if( strpos($_SERVER["PHP_SELF"], 'php/reply') !== false) {echo '<li class="active">';} else {echo '<li>';} ?>
+                                <a href="index.php/reply"><?php echo $lang['reply']?></a></li>
+                                <?php if( strpos($_SERVER["PHP_SELF"], 'search.php') !== false) {echo '<li class="active">';} else {echo '<li>';} ?>
+                                <a href="search.php"><?php echo $lang['search']?></a></li>
+                                <?php if( strpos($_SERVER["PHP_SELF"], 'php/help') !== false) {echo '<li class="active">';} else {echo '<li>';} ?>
+                                <a href="index.php/help"><?php echo 'Help'?></a></li>
 				<?php echo hook('menu', $out['self']).
 				(isAdmin()?
 				'<li class="userid">User ID: <b>' . $_SERVER['REMOTE_USER'] . '</b> [Admin]</li>' :
