@@ -57,7 +57,7 @@ if(check('post'))
                 {
                         $replyEntry = readEntry('reply', $reply);
                         $postEntry = readEntry('post', $replyEntry['post']);
-                        $out['content'] .= '<li>' .managePost($reply). '<a href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$content. '</a> - ' .toDate($post). ' </li>';
+                        $out['content'] .= '<li>' .managePost($reply). '<a href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$content. '</a> - ' .toDate($reply). ' </li>';
                 }
         }
         else
