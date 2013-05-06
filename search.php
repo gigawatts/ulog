@@ -42,7 +42,7 @@ if(check('post'))
         {
                 foreach($foundPosts as $post => $title)
                 {
-                        $out['content'] .= '<li>' .managePost($post). '<a href="view.php/post/' .$post. '">' .$title. '</a></li>';
+                        $out['content'] .= '<li>' .managePost($post). '<a href="view.php/post/' .$post. '">' .$title. '</a> - ' .toDate($post). '</li>';
                 }
         }
         else
@@ -57,7 +57,7 @@ if(check('post'))
                 {
                         $replyEntry = readEntry('reply', $reply);
                         $postEntry = readEntry('post', $replyEntry['post']);
-                        $out['content'] .= '<li>' .managePost($reply). '<a href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$content. '</a></li>';
+                        $out['content'] .= '<li>' .managePost($reply). '<a href="view.php/post/' .$replyEntry['post']. '/p/' .onPage($reply, $postEntry['reply']). '#' .$reply. '">' .$content. '</a> - ' .toDate($post). ' </li>';
                 }
         }
         else
