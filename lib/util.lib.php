@@ -90,9 +90,9 @@ function toDate($id, $pattern = 'Y/m/d H:i')
 	global $lang;
 	$timestamp = strtotime(substr($id, 0, 16));
 	$diff = time() - $timestamp;
-	if($pattern === 'Y/m/d H:i' && $diff < 3600) //1 hour
+	if($pattern === 'Y/m/d H:i' && $diff < 82800) //23 hours
 	{
-		$periods = array(3600 => $lang['hour'], 60 => $lang['minute'], 1 => $lang['second']);
+		$periods = array(86400 => $lang['day'], 3600 => $lang['hour'], 60 => $lang['minute'], 1 => $lang['second']);
 		foreach($periods as $key => $value)
 		{
 			if($diff >= $key)
